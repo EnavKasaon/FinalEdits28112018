@@ -14,7 +14,7 @@
                             <!-----Choose Familiy --> 
                             <div class="form-group">
                                     <label>:בחר ספק</label>
-                                    <select [(ngModel)]="newSupp.ID" (change)="onChange($event.target.value)" dir= "rtl" name="familyType" id="familyType" class= "form-control">
+                                    <select [(ngModel)]="newSupp.ID" (change)="onChange($event.target.value)"   dir= "rtl" name="familyType" id="familyType" class= "form-control">
                                          <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
                                          {{sup.companyName}}
                                         </option>  
@@ -25,18 +25,17 @@
                 </div>
                 <!---END-->
                 <hr>
-
+                <!-- <label>סוג ספק:  </label> -->
                 <div class="form-group">
                         <label>:ספק</label>
-                        <select  dir= "rtl" name="SupplierChooseType" class= "form-control">
-                            <option value="regular" >רגיל</option>
-                            <option value="doner" >תורם</option>
+                        <select  dir= "rtl" name="SupplierChooseType"  class= "form-control">
+                            <option value="רגיל" >רגיל</option>
+                            <option value="תורם" >תורם</option>
                         </select>
                       </div>
 
                 <form #suppliersForm = "ngForm" (ngSubmit)= "addSupplier(suppliersForm)">
                         <div class="row">
-                          
                            <div class="col-md-6">
                                 <input type="text" ngModel name = "contactName" id="contactName" placeholder="שם איש קשר" class= "form-control"> <br><br>
                                 <input type="text" ngModel name = "contactPhone" id="contactPhone" placeholder="טלפון איש קשר" class= "form-control">        

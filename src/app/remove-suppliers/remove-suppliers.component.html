@@ -7,13 +7,14 @@
 <!-----Remove Familiy form------>
 <div class="container">
         <div class="col-md-6 col-md-offset-3">
-             <form #myForm2 = "ngForm" (ngSubmit) = "DeleteFamiliy(myForm2)">
+             <form  #myForm2 = "ngForm" (ngSubmit) = "DeleteFamiliy(myForm2)">
                  <!-----Choose Familiy --> 
                  <div class="form-group">
-                         <label>:בחר חבילה</label>
-                    <select dir= "rtl" name="chooseSupplierToDelete" id="chooseSupplierToDelete" class= "form-control">
-                        <option value="רווחה" >רווחה</option>
-                        <option value="פרטי" >פרטי</option>
+                         <label>:בחר ספק</label>
+                    <select [(ngModel)]="newSupp.ID" dir= "rtl" name="chooseSupplierToDelete" id="chooseSupplierToDelete" class= "form-control">
+                        <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
+                            {{sup.companyName}}
+                           </option> 
                     </select>
                 </div>
                 <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>
