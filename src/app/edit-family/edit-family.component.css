@@ -1,0 +1,38 @@
+* {
+    font-family: 'Varela Round', sans-serif;
+}
+label {
+ text-align: right;
+    float:right;
+    width:100%;
+ }
+
+form {
+     overflow: hidden;
+}
+   
+input {
+      float: right;
+      clear: both;
+      width: 100%;
+      text-align: right;
+}
+
+
+/* button style */
+.submitBtn{
+    position: relative;
+    background-color: rgb(46,184,184);
+}
+
+input[type=checkbox]{
+    width:auto;
+}
+
+textarea{
+    width: 100%;
+    text-align: right;
+    float: right;
+
+}
+

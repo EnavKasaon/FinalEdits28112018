@@ -1,0 +1,47 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- volunteers Form -->
+<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'"
+[action]="'עריכה'"></app-header>
+    <div class="container">
+            <div class="col-md-6 col-md-offset-3">
+                <!-----Choose Familiy form------>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6">
+                         <form #myForm2 = "ngForm" (ngSubmit) = "ChooseFamiliy(myForm2)">
+                             <!-----Choose Familiy --> 
+                             <div class="form-group">
+                                    <label>:בחר מתנדב</label>
+                                    <select  dir= "rtl" name="volunteersType" id="volunteersType" class= "form-control">
+                                            <option value="משהו" >משהו</option>
+                                            <option value="1משהו" >משהו1</option>
+                                    </select> 
+                                 </div>
+                         </form>
+                     </div>
+                 </div>
+                 <!---END-->
+                 <hr>
+                <form #volunteersForm = "ngForm" (ngSubmit)= "addvolunteer(volunteersForm)">
+               
+                <!-- the fields of the form -->
+                <div class="form-group">
+                <label>:סוג מתנדב</label>
+                <select  dir= "rtl" name="volunteersType" id="volunteersType" class= "form-control">
+                        <option value="Permanent">מתנדב קבוע</option>
+                        <option value="holidays">בחגים</option>
+                </select> </div>
+
+                <input type="text" ngModel name = "firstName" id="firstName" placeholder="שם פרטי" class= "form-control">  <br><br>
+                <input type="text" ngModel name = "lastName" id="lastName" placeholder="שם משפחה" class= "form-control"> <br><br>
+                <input type="text" ngModel name = "phone" id="phone" placeholder="טלפון" class= "form-control"> <br><br>
+                
+                <label>:תאריך לידה</label>
+                <input type="date" class= "form-control" class= "form-control"> <br> <br>      
+               
+                <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
+                </form>
+            </div>
+        </div>

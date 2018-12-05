@@ -1,0 +1,105 @@
+
+
+<!-- Family Form -->
+<app-header [name]="'משפחות נתרמות'" [titleIcon]="'fa fa-address-card-o TitleIcon'"
+[action]="'הוספה'"></app-header>
+<div class="container">
+
+    <div class="col-md-8 col-md-offset-2">
+        <form #myForm = "ngForm" (ngSubmit)= "addFamily(smyForm)">
+        <div class="row">
+                <div class="col-md-6">
+
+                        <!-----Date-->
+                        <div class="form-group">
+                                <label>:תאריך הצטרפות</label>
+                                <input type="date" class= "form-control" id="date">     
+                         </div>
+                       <br>
+                        <!-----Familiy type--> 
+                        <div class="form-group">
+                            <label>:סוג משפחה</label>
+                            <select dir = "rtl" name="familyType" id="familyType" class= "form-control">
+                                    <option value="רווחה" >רווחה</option>
+                                    <option value="פרטי" >פרטי</option>
+                             </select>
+                        </div>
+                        
+                         <!-----package type-->
+                         <div class="form-group">
+                             <label>:סוג סל</label>
+                             <select dir = "rtl" name="BasketType" id="BasketType" class= "form-control">
+                                    <option value="normal">רגיל</option>
+                                    <option value="fruit&vegs" >פירות וירקות</option>
+                                </select>
+                         </div>
+                        
+
+                        <!-----appartment-->  
+                        <div class="checkbox">
+                            <label><input type="checkbox"  ngModel name = "appartment">:דירה בבעלות</label>
+                        </div> <br>
+
+                        <!--car-->
+                        <div class="checkbox">
+                         <label> <input type="checkbox" ngModel name = "car">:רכב בבעלות</label>
+                        </div><br>
+                  
+                        <!--debts-->
+                        <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:חובות </label>
+                        </div>
+
+                                           <!-- The files -->
+
+                    <!--Pay Checks-->
+                    <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:תלושי שכר מן החודשיים האחרונים </label>
+                            </div> <br>
+        
+                            <!--Social Security-->
+                            <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:מסמכים המוכיחים קבלת תמיכה מביטוח לאומי - אם יש</label>
+                            </div> <br>
+        
+                            <!--Bank Account-->
+                            <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:פירוט חשבון בנק מן החודשיים האחרונים </label>
+                            </div> <br>
+        
+                            <!--Credit details-->
+                            <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:פירוט אשראי מן החודשיים האחרונים </label>
+                            </div> <br>
+                                                        
+                            <!--Id-->
+                            <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:צילום+ ספח של ת.ז </label>
+                            </div> <br>
+                                                        
+                            <!--Rent Contract-->
+                            <div class="checkbox">
+                            <label> <input type="checkbox" ngModel name = "debts">:חוזה שכר דירה </label>
+                            </div> <br>
+                            
+                    </div>
+            <div class="col-md-6">
+                <!-- the filds of the form -->
+                <input type="text" ngModel name = "firstName" placeholder="שם פרטי" class= "form-control form-fields">  <br><br>
+                <input type="text" ngModel name = "lastName" placeholder="שם משפחה" class= "form-control form-fields"> <br><br>
+                <input type="text" ngModel name = "street" placeholder="רחוב" class= "form-control form-fields"><br><br>
+                <input type="text" ngModel name = "houseNum" placeholder="מספר בית" class= "form-control form-fields"><br><br>
+                <input type="text" ngModel name = "floor" placeholder="קומה" class= "form-control form-fields"><br><br>
+                <input type="text" ngModel name = "phone" placeholder="טלפון" class= "form-control form-fields"> <br><br>
+                <input type="text" ngModel name = "numOfPeople" placeholder="מס' נפשות" class= "form-control form-fields"> <br><br>
+                <input type="text" ngModel name = "howDidYouHear" placeholder="איך שמעתם על העמותה" class= "form-control form-fields"> <br><br>
+                <textarea ngModel name = "reason" placeholder="סיבת הפנייה" class= "form-control"></textarea><br><br> <br>
+                <textarea ngModel name = "notes" placeholder="הערות" class= "form-control"></textarea><br><br>
+            </div>     
+        </div>
+        <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
+    
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- File Form -->
+<app-header [name]="'טפסים'" [titleIcon]="'fa fa-file-text-o'"
+[action]="'הוספה'"></app-header>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+            <form #filesForm = "ngForm" (ngSubmit)= "addFiles(filesForm)">
+               
+                    <!-- the fields of the form -->
+                    <input type="text"  placeholder="שם טופס" class= "form-control form-fields">  <br><br>
+                    <br>
+                    <div class="form-group">
+                        <label>:בחר קובץ</label>
+                            <input type="file" name="fileToUpload" class="form-fields">
+                    </div>
+                    
+                    <br>
+                    <br>
+                    <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
+                
+            </form>
+        
+    </div>
+</div>

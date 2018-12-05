@@ -1,0 +1,71 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
+
+
+<div class="topnav">
+
+    <!-- logout -->
+      <button class="menu-btn" routerLink="login">
+      <i class="fas fa-sign-out-alt"></i>יציאה</button> 
+      
+
+      <div class="topnav-right" routerLinkActive="active"> 
+
+        <!-- Inventory Navbar -->
+            <button class="menu-btn" mat-button [matMenuTriggerFor]="inventory">מלאי</button> 
+            <mat-menu #inventory="matMenu">
+             <button mat-menu-item routerLink="inventory-management">הוספה</button>
+              <button mat-menu-item routerLink="edit-inventory">עריכה</button>
+              <button mat-menu-item routerLink="remove-inventory">מחיקה</button>
+            </mat-menu>
+        
+
+               <!-- Files Navbar -->
+               <button class="menu-btn" mat-button [matMenuTriggerFor]="files">קבצים</button> 
+               <mat-menu #files="matMenu">
+                <button mat-menu-item routerLink="files">הוספה</button>
+                 <button mat-menu-item routerLink="remove-files">מחיקה</button>
+               </mat-menu>
+
+ <!-- Volunteers Navbar -->
+ <button class="menu-btn" mat-button [matMenuTriggerFor]="volunteers">מתנדבים</button> 
+ <mat-menu #volunteers="matMenu">
+  <button mat-menu-item routerLink="volunteers">הוספה</button>
+  <button mat-menu-item routerLink="edit-volunteers">עריכה</button>
+   <button mat-menu-item routerLink="remove-volunteers">מחיקה</button>
+ </mat-menu>
+
+  <!-- Suppliers Navbar -->
+  <button class="menu-btn" mat-button [matMenuTriggerFor]="suppliers">ספקים</button> 
+  <mat-menu #suppliers="matMenu">
+   <button mat-menu-item routerLink="suppliers">הוספה</button>
+   <button mat-menu-item routerLink="edit-suppliers">עריכה</button>
+    <button mat-menu-item routerLink="remove-suppliers">מחיקה</button>
+  </mat-menu>
+
+    <!-- Packages Navbar -->
+    <button class="menu-btn" mat-button [matMenuTriggerFor]="packages">חבילות</button> 
+    <mat-menu #packages="matMenu">
+     <button mat-menu-item routerLink="packages">הוספה</button>
+     <button mat-menu-item routerLink="edit-packages">עריכה</button>
+      <button mat-menu-item routerLink="remove-packages">מחיקה</button>
+    </mat-menu>
+
+     <!-- Family Navbar -->
+     <button class="menu-btn" mat-button [matMenuTriggerFor]="family">משפחות</button> 
+     <mat-menu #family="matMenu">
+      <button mat-menu-item routerLink="family">הוספה</button>
+      <button mat-menu-item routerLink="edit-family">עריכה</button>
+       <button mat-menu-item routerLink="remove-family">מחיקה</button>
+     </mat-menu>
+  
+         <!-- logo -->
+         <button class="menu-btn" routerLink="home">
+          <img src="assets/images/Ahva-logo-trans-200-89.png" class="logo-menu">
+         </button> 
+         
+
+        </div>
+  </div>
+
+

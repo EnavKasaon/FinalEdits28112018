@@ -1,0 +1,23 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Supplier Form -->
+<app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
+[action]="'מחיקה'"></app-header>
+<!-----Remove Familiy form------>
+<div class="container">
+        <div class="col-md-6 col-md-offset-3">
+             <form #myForm2 = "ngForm" (ngSubmit) = "DeleteFamiliy(myForm2)">
+                 <!-----Choose Familiy --> 
+                 <div class="form-group">
+                         <label>:בחר חבילה</label>
+                    <select dir= "rtl" name="chooseSupplierToDelete" id="chooseSupplierToDelete" class= "form-control">
+                        <option value="רווחה" >רווחה</option>
+                        <option value="פרטי" >פרטי</option>
+                    </select>
+                </div>
+                <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>
+        </form>
+    </div>
+</div>
+<!---END-->

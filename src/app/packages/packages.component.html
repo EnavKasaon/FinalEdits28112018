@@ -1,0 +1,32 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- packages Form -->
+<app-header [name]="'חבילות'" [titleIcon]="'fas fa-box-open'"
+[action]="'הוספה'"></app-header>
+<div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <form #packagesForm = "ngForm" (ngSubmit)= "addpackages(packagesForm)">
+                    <!-- the fields of the form -->
+                    <input type="text" ngModel name = "packageType" id="packageType" placeholder="שם סוג חבילה" class= "form-control">  <br><br>
+                    <div class="row">
+                        <div class="col-md-6"><br>
+                            <textarea ngModel name = "ProductInPackage" id="ProductInPackage" placeholder="מוצרים בחבילה" class= "form-control"></textarea><br><br>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                    <label>:בחירת מוצרים</label>
+                                    <select dir = "rtl" name="Product" id="Product" class= "form-control">
+                                            <option value="1" >1</option>
+                                            <option value="2" >2</option>
+                                    </select>
+                            </div>
+                         </div>
+                     </div>
+                     <br>
+                     <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
+                
+            </form>
+    </div>
+</div>

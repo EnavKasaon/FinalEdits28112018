@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+.footer-general{
+    color: white;
+    /* font-family: serif; */
+    position: relative;
+    bottom: 20px;
+    text-align: center;
+    font-family: 'PT Sans', sans-serif;
+
+}
+
+footer{
+position: -webkit-sticky; /* Safari */
+    position: static; /*****you can change it here to sticky if you want it to appear always at the end.******/
+   bottom: 0;
+   height:20px; 
+   width: 100%;
+   background-color: gray;
+   color: white;
+   text-align: center;
+   margin-top:20px;
+}

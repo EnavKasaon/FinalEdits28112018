@@ -1,0 +1,66 @@
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #ebfafa; 
+    color: black;
+    border: 1px solid black;
+    border-top: none;
+    border-right: none;
+    overflow: hidden;
+    font-family: 'Varela Round', sans-serif; 
+}
+
+/* Style the links inside the navigation bar */
+.topnav button { 
+  float: left;
+  background-color: #ebfafa; 
+  color: black;
+  font-weight: 700; 
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Varela Round', sans-serif; 
+}
+
+/* Change the color of links on hover */
+.topnav button:hover {
+    background-color:  rgb(46,184,184);
+    color: white;
+    border-color: black;
+  font-family: 'Varela Round', sans-serif; 
+}
+
+/* Add a color to the active/current link */
+.topnav button.active {
+    background-color: #ebfafa; 
+    color: black;
+    border-left: 1px solid black;
+}
+
+/* Add a color to the active/current link */
+.topnav button.exit {
+    background-color: black;
+    color: white;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
+
+/* logo style */
+.logo-menu {
+    width: 100px;
+    height: 40px;
+    margin: -10px;
+    padding: -30px;
+}
+
+
+.menu-btn {
+    border: none;
+}
+
+
+
