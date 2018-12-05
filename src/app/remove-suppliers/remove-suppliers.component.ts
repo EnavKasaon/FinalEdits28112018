@@ -10,7 +10,7 @@ import { SupplierService } from '../services/suppliers.service';
 export class RemoveSuppliersComponent implements OnInit {
 
   supplierDetails:any =  [];
-  public newSupp: Supplier = new Supplier;
+  selectedSupplier: number;
   ansFromServer: any;
  
   
@@ -28,5 +28,14 @@ export class RemoveSuppliersComponent implements OnInit {
       console.log(this.supplierDetails.companyName);
     
     }
+    DeleteSupplier(form){
+      //let id  = form.value.ID;
+      console.log(this.selectedSupplier);
+      this._supplierService.deleteSupplier(this.selectedSupplier)
+      .subscribe((data)=>{
+        this.ansFromServer = data;
+        console.log("success");
+        });
+    } 
 
 }

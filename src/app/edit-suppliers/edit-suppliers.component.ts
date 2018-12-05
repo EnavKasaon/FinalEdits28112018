@@ -14,8 +14,8 @@ export class EditSuppliersComponent implements OnInit {
   public newSupp: Supplier = new Supplier;
   ansFromServer: any;
   arr: any = [];
-  supForm : FormGroup;
-    constructor(private _supplierService:SupplierService, private fb: FormBuilder) { 
+  
+    constructor(private _supplierService:SupplierService) { 
       
     }
    
