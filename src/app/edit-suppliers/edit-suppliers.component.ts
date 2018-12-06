@@ -11,9 +11,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EditSuppliersComponent implements OnInit {
 
   supplierDetails:any =  [];
-  public newSupp: Supplier = new Supplier;
   ansFromServer: any;
   arr: any = [];
+  selectedSup : Supplier = new Supplier;
+  alertType: string;
+  alertMsg: string;
   
     constructor(private _supplierService:SupplierService) { 
       
@@ -32,13 +34,27 @@ export class EditSuppliersComponent implements OnInit {
     onChange(supplierId) {
       console.log(supplierId);
       this._supplierService.getSupplier(supplierId).subscribe((data: {}) => {
-        
-         this.newSupp = new Supplier(data);
-         console.log(this.newSupp.companyName);
-       //  this.supForm = this.fb.group({
-      //   typeControl: [this.supplierDetails[1]]
-       // });
+         this.selectedSup = new Supplier(data);
+         console.log(this.selectedSup.companyName);      
       });
+  }
+  UpdateSupplier(){
+    console.log("Trying to insert Supplier...");
+    console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
+    this._supplierService.UpdateSupplier(this.selectedSup)
+    .subscribe((res) => {
+      this.ansFromServer = res;
+      if(this.ansFromServer != -1){
+        this.alertType = "success";
+        this.alertMsg ="הספק עודכן בהצלחה!";
+      }
+      else{
+        this.alertType = "danger";
+        this.alertMsg ="עדכון הספק נכשל.";
+      }
+        console.log(this.ansFromServer);
+ });
+  
   }
   
 }

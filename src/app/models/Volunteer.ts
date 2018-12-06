@@ -1,11 +1,11 @@
 export class Volunteer {
    
-    volunteerId: number;
-    volunteerFName	:string;
-    volunteerLName:string;
-    phone:string;
-    birthDate: string;
-    volunteerType: string;
+    VolunteerId: number;
+    VolunteerFName	:string;
+    VolunteerLName:string;
+    Phone:string;
+    BirthDate: Date;
+    VolunteerType: string;
    
 
     public constructor(init?: Partial< Volunteer >) {

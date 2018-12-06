@@ -6,14 +6,12 @@
 [action]="'עריכה'"></app-header>
 <div class="container">      
         <div class="col-md-6 col-md-offset-3">
-            <!-----Choose Familiy form------>
-            <!------------success message
-            <p>
-                <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
-              </p>
-              <p>
-                <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
-              </p>-->
+            
+            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+                    <a href="edit-suppliers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{ alertMsg }}</strong>
+              </div>
+           
             
             <div class="row">
                     <div class="col-md-6 col-md-offset-6">
@@ -21,7 +19,7 @@
                             <!-----Choose Familiy --> 
                             <div class="form-group">
                                     <label>:בחר ספק</label>
-                                    <select [(ngModel)]="newSupp.ID" (change)="onChange($event.target.value)"   dir= "rtl" name="familyType" id="familyType" class= "form-control">
+                                    <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)"   dir= "rtl" name="familyType" id="familyType" class= "form-control">
                                          <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
                                          {{sup.companyName}}
                                         </option>  
@@ -33,25 +31,25 @@
                 <!---END-->
                 <hr>
                 <!-- <label>סוג ספק:  </label> -->
-                <div class="form-group">
+                <div class="form-group" *ngIf="selectedSup.ID">
                         <label>:ספק</label>
-                        <select  dir= "rtl" name="SupplierChooseType"  class= "form-control">
+                        <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierChooseType"  class= "form-control">
                             <option value="רגיל" >רגיל</option>
                             <option value="תורם" >תורם</option>
                         </select>
                       </div>
 
-                <form #suppliersForm = "ngForm" (ngSubmit)= "addSupplier(suppliersForm)">
+                <form #suppliersForm = "ngForm" (ngSubmit)= "UpdateSupplier()" *ngIf="selectedSup.ID">
                         <div class="row">
                            <div class="col-md-6">
-                                <input type="text" ngModel name = "contactName" id="contactName" placeholder="שם איש קשר" class= "form-control"> <br><br>
-                                <input type="text" ngModel name = "contactPhone" id="contactPhone" placeholder="טלפון איש קשר" class= "form-control">        
+                                <input type="text" ngModel name = "contactName" id="contactName" placeholder="שם איש קשר" [(ngModel)]="selectedSup.ContactPerson" class= "form-control"> <br><br>
+                                <input type="text" ngModel name = "contactPhone" id="contactPhone" placeholder="טלפון איש קשר" [(ngModel)]="selectedSup.ContactPhone" class= "form-control">        
                            </div> 
                            <div class="col-md-6">
-                                <input type="text" ngModel name = "company" id="company" placeholder="שם חברה" class= "form-control">  <br><br>
-                                <input type="text" ngModel name = "phone" id="phone" placeholder="טלפון" class= "form-control"> <br><br>
-                                <input type="text" ngModel name = "fax" id="fax" placeholder="פקס" class= "form-control"> <br><br>
-                                <input type="text" ngModel name = "goodsType" id="goodsType" placeholder="סוג סחורה" class= "form-control"><br><br>
+                                <input type="text" ngModel name = "company" id="company" placeholder="שם חברה" [(ngModel)]="selectedSup.companyName"  class= "form-control">  <br><br>
+                                <input type="text" ngModel name = "phone" id="phone" placeholder="טלפון" [(ngModel)]="selectedSup.Phone"  class= "form-control"> <br><br>
+                                <input type="text" ngModel name = "fax" id="fax" placeholder="פקס" [(ngModel)]="selectedSup.Fax" class= "form-control"> <br><br>
+                                <input type="text" ngModel name = "goodsType" id="goodsType" placeholder="סוג סחורה" [(ngModel)]="selectedSup.GoodsType" class= "form-control"><br><br>
                            </div>
                            <br>       
                            
