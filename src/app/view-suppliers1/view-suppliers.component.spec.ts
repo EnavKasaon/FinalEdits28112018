@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemoveFamilyComponent } from './remove-family.component';
+import { ViewSuppliersComponent } from './view-suppliers.component';
 
-describe('RemoveFamilyComponent', () => {
-  let component: RemoveFamilyComponent;
-  let fixture: ComponentFixture<RemoveFamilyComponent>;
+describe('ViewSuppliersComponent', () => {
+  let component: ViewSuppliersComponent;
+  let fixture: ComponentFixture<ViewSuppliersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemoveFamilyComponent ]
+      declarations: [ ViewSuppliersComponent ]
     })
     .compileComponents(); 
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RemoveFamilyComponent);
+    fixture = TestBed.createComponent(ViewSuppliersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

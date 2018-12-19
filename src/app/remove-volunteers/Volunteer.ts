@@ -7,6 +7,7 @@ export class Volunteer {
     BirthDate:Date;
     VolunteerType: string;
    
+    // DateTime.ParseExact(BirthDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
     public constructor(init?: Partial< Volunteer >) {
         Object.assign(this, init);  }

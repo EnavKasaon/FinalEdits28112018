@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SupplierService } from '../supplier.service';
+import { SupplierService } from './suppliers.service';
 
 describe('SupplierService', () => {
   beforeEach(() => {
@@ -13,3 +13,4 @@ describe('SupplierService', () => {
     expect(service).toBeTruthy();
   }));
 });
+ 

@@ -10,7 +10,7 @@ describe('EditSuppliersComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditSuppliersComponent ]
     })
-    .compileComponents();
+    .compileComponents(); 
   }));
 
   beforeEach(() => {

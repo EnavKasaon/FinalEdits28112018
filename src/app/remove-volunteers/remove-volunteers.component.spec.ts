@@ -6,7 +6,7 @@ describe('RemoveVolunteersComponent', () => {
   let component: RemoveVolunteersComponent;
   let fixture: ComponentFixture<RemoveVolunteersComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(async(() => { 
     TestBed.configureTestingModule({
       declarations: [ RemoveVolunteersComponent ]
     })

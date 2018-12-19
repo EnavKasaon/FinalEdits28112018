@@ -28,10 +28,13 @@ import { MyCommonModule } from './common/mycommon.mudule';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatMenuModule} from '@angular/material/menu';
 import {SupplierService} from './services/suppliers.service';
+import {VolunteerService} from './services/volunteers.service';
 import { HttpClientModule  } from '@angular/common/http';
 import { appSettings } from './app.settings';
-
-
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FamilyService } from './services/families.service';
+import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
 
 
 @NgModule({
@@ -57,7 +60,8 @@ import { appSettings } from './app.settings';
     RemoveInventoryComponent,
     RemovePackagesComponent,
     RemoveSuppliersComponent,
-    RemoveVolunteersComponent
+    RemoveVolunteersComponent,
+    ViewSuppliersComponent
     
   ],
   
@@ -67,6 +71,8 @@ import { appSettings } from './app.settings';
     MyCommonModule,
     BrowserAnimationsModule,
     MatMenuModule,
+    MatDatepickerModule,
+    DateValueAccessorModule,
     HttpClientModule ,
     RouterModule.forRoot([
    
@@ -144,7 +150,11 @@ import { appSettings } from './app.settings';
         
       // remove-volunteers path
       { path: 'remove-volunteers',
-        component: RemoveVolunteersComponent },    
+        component: RemoveVolunteersComponent }, 
+
+          // View-Supplier path
+      { path: 'view-supplier',
+      component: ViewSuppliersComponent },    
      
       // home path
       {
@@ -155,6 +165,8 @@ import { appSettings } from './app.settings';
   ]) ],
   providers: [
     SupplierService,
+    VolunteerService,
+    FamilyService,
     appSettings
   ],
   bootstrap: [AppComponent]

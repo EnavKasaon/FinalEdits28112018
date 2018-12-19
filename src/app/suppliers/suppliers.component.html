@@ -1,13 +1,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
 
+
 <!-- Suppliers Form -->
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
-[action]="'הוספה'"></app-header>
+[action]="'הוספה'"></app-header> 
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
       <form #f = "ngForm" (ngSubmit)= "insertSupplier()" accept-charset="UTF-8" >
         
+        <!-- Dropdown -->
           <div class="form-group">
               <label>:ספק</label>
               <select #Type dir= "rtl" name="SupplierChooseType" ngModel [(ngModel)]="newSupp.SupplierType" name= "Type" class= "form-control">
@@ -32,7 +34,7 @@
                 <input #GoodsType type="text" ngModel [(ngModel)]="newSupp.GoodsType" name = "GoodsType" id="goodsType" placeholder="סוג סחורה" class= "form-control"><br><br>
            </div>
            <br>       
-           
+            
         </div>
         <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
     </form>

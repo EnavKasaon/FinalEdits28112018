@@ -8,13 +8,16 @@
 <!-----Remove Familiy form------>
 <div class="container">
         <div class="col-md-6 col-md-offset-3">
-             <form #myForm2 = "ngForm" (ngSubmit) = "DeleteFamiliy(myForm2)">
+             <form #myForm2 = "ngForm" (ngSubmit) = "DeleteVolunteer(myForm2)">
+
+
                  <!-----Choose Familiy --> 
                  <div class="form-group">
                         <label>:בחר מתנדב</label>
-                        <select dir= "rtl" name="volunteersType" id="volunteersType" class= "form-control">
-                                <option value="משהו" >משהו</option>
-                                <option value="1משהו" >משהו1</option>
+                        <select #VolunteerId [(ngModel)]="selectedVolunteer"  dir= "rtl" name="volunteersType" id="volunteersType" class= "form-control">
+                                <option *ngFor="let vol of volunteerDetails" [ngValue]="vol.VolunteerId">
+                                {{vol.VolunteerFName}}
+                        </option>
                         </select> 
                      </div>
                      <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>

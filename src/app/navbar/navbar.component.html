@@ -37,10 +37,12 @@
 
   <!-- Suppliers Navbar -->
   <button class="menu-btn" mat-button [matMenuTriggerFor]="suppliers">ספקים</button> 
-  <mat-menu #suppliers="matMenu">
+  <mat-menu #suppliers="matMenu" >
    <button mat-menu-item routerLink="suppliers">הוספה</button>
    <button mat-menu-item routerLink="edit-suppliers">עריכה</button>
     <button mat-menu-item routerLink="remove-suppliers">מחיקה</button>
+    <button mat-menu-item routerLink="view-suppliers">צפייה</button>
+
   </mat-menu>
 
     <!-- Packages Navbar -->

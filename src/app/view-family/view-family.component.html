@@ -3,7 +3,7 @@
 
 <!-- Family Form -->
 <app-header [name]="'משפחות נתרמות'" [titleIcon]="'fa fa-address-card-o TitleIcon'"
-[action]="'עריכה'"></app-header>
+[action]="'צפיה'"></app-header>
 
  
 <div class="container">
@@ -41,7 +41,7 @@
                                 <!-----Date--> 
                                 <div class="form-group">
                                         <label>:תאריך הצטרפות</label>
-                                        <input #joinDate type="date" name = "joinDate" ngModel [(ngModel)]="newFam.joinDate" class= "form-control">     
+                                        <input #joinDate type="date" name = "joinDate" ngModel [(ngModel)]="newFam.joinDate" class= "form-control" disabled>     
 
                                  </div>
                                <br>

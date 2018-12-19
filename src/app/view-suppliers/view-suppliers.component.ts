@@ -4,12 +4,12 @@ import { SupplierService } from '../services/suppliers.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-suppliers',
-  templateUrl: './edit-suppliers.component.html',
-  styleUrls: ['./edit-suppliers.component.css']
+  selector: 'app-view-suppliers',
+  templateUrl: './view-suppliers.component.html',
+  styleUrls: ['./view-suppliers.component.css']
 })
 
-export class EditSuppliersComponent implements OnInit {
+export class ViewSuppliersComponent implements OnInit {
 
   supplierDetails:any =  [];
   ansFromServer: any;
@@ -42,11 +42,11 @@ export class EditSuppliersComponent implements OnInit {
       });
   }
 
-  //edit
-  UpdateSupplier(){
-    console.log("Trying to insert Supplier...");
+  //View
+  ViewSupplier(){
+    console.log("Trying to view Supplier...");
     console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
-    this._supplierService.UpdateSupplier(this.selectedSup)
+    this._supplierService.ViewSupplier(this.selectedSup)
     .subscribe((res) => {
       this.ansFromServer = res;
       if(this.ansFromServer != -1){

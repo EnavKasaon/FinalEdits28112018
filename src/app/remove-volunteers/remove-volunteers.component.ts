@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VolunteerService } from '../services/volunteers.service';
 
 @Component({
   selector: 'app-remove-volunteers',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemoveVolunteersComponent implements OnInit {
 
-  constructor() { }
+  volunteerDetails:any =  [];
+  selectedVolunteer: number;
+  ansFromServer: any;
 
-  ngOnInit() {
+  constructor(private _volunteerService:VolunteerService) { }
+
+  ngOnInit() { 
+    this.volunteerDetails = [];
+      this._volunteerService.getVolunteerName().subscribe((data: {}) => {
+       console.log(data[0].VolunteerFName);
+        this.volunteerDetails = data;
+      });
+      console.log(this.volunteerDetails.VolunteerFName);
   }
+
+  // Delete volunteer
+  DeleteVolunteer(form){
+    console.log(this.selectedVolunteer);
+    this._volunteerService.deleteVolunteer(this.selectedVolunteer)
+    .subscribe((data)=>{
+      this.ansFromServer = data;
+      console.log("success");
+      });
+  } 
 
 }

@@ -1,41 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { Volunteer } from '../models/Volunteer';
-import { VolunteersService } from '../services/volunteers.service';
+import { VolunteerService } from '../services/volunteers.service';
 
 @Component({
   selector: 'app-volunteers',
   templateUrl: './volunteers.component.html',
   styleUrls: ['./volunteers.component.css']
 })
+
 export class VolunteersComponent implements OnInit {
 
-  newVol: Volunteer = new Volunteer;
+  volunteerDetails:any =  [];
+  public newVol: Volunteer = new Volunteer;
   ansFromServer: any;
 
   alertType: string;
   alertMsg: string;
-
-  constructor(private _volunteerService:VolunteersService) { 
+  arr: any = [];
+  constructor(private _volunteerService:VolunteerService) { 
     
   }
  
   ngOnInit() {
+    this.newVol.VolunteerId= 0;
+
   }
 
   insertVolunteer(){
-    console.log("Trying to insert Supplier...");
-    console.log("Supplier: "+JSON.stringify(this.newVol)+" ID: "+this.newVol.VolunteerFName);
-    this._volunteerService.insertVolunteer(this.newVol)
-    .subscribe((res) => {
+    console.log("Trying to insert Volunteer...");
+    console.log("Volunteer: "+JSON.stringify(this.newVol)+" ID: "+this.newVol.BirthDate);
+    this._volunteerService.insertVolunteer(this.newVol).subscribe((res) => {
       this.ansFromServer = res;
-      if(this.ansFromServer != -1){
-        this.alertType = "success";
-        this.alertMsg ="!המתנדב הוזן בהצלחה";
-      }
-      else{
-        this.alertType = "danger";
-        this.alertMsg =" הזנת המתנדב נכשלה";
-      }
                  console.log(this.ansFromServer);
       });
   

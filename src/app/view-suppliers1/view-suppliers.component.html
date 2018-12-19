@@ -3,14 +3,14 @@
 
 <!-- Suppliers Form -->
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
-[action]="'עריכה'"></app-header>
+[action]="'צפייה'"></app-header>
 <div class="container">       
         <div class="col-md-6 col-md-offset-3">
             
 
             <!-- ngif in case i dont wont it will appeare every time -->
             <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                    <a href="edit-suppliers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <a href="view-suppliers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>{{ alertMsg }}</strong>
               </div>
            
@@ -38,28 +38,27 @@
                 <!-- <label>סוג ספק:  </label> -->
                 <div class="form-group" *ngIf="selectedSup.ID">
                         <label>:ספק</label>
-                        <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierChooseType"  class= "form-control">
+                        <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierChooseType"  class= "form-control" disabled>
                             <option value="רגיל" >רגיל</option>
                             <option value="תורם" >תורם</option>
                         </select>
                       </div>
 
-                <form #suppliersForm = "ngForm" (ngSubmit)= "UpdateSupplier()" *ngIf="selectedSup.ID">
+                <form #suppliersForm = "ngForm" (ngSubmit)= "ViewSupplier()" *ngIf="selectedSup.ID">
                         <div class="row">
                            <div class="col-md-6">
-                                <input type="text" ngModel name = "contactName" id="contactName" placeholder="שם איש קשר" [(ngModel)]="selectedSup.ContactPerson" class= "form-control"> <br><br>
-                                <input type="text" ngModel name = "contactPhone" id="contactPhone" placeholder="טלפון איש קשר" [(ngModel)]="selectedSup.ContactPhone" class= "form-control">        
+                                <input type="text" ngModel name = "contactName" id="contactName" placeholder="שם איש קשר" [(ngModel)]="selectedSup.ContactPerson" class= "form-control" disabled> <br><br>
+                                <input type="text" ngModel name = "contactPhone" id="contactPhone" placeholder="טלפון איש קשר" [(ngModel)]="selectedSup.ContactPhone" class= "form-control" disabled>        
                            </div> 
                            <div class="col-md-6">
-                                <input type="text" ngModel name = "company" id="company" placeholder="שם חברה" [(ngModel)]="selectedSup.companyName"  class= "form-control">  <br><br>
-                                <input type="text" ngModel name = "phone" id="phone" placeholder="טלפון" [(ngModel)]="selectedSup.Phone"  class= "form-control"> <br><br>
-                                <input type="text" ngModel name = "fax" id="fax" placeholder="פקס" [(ngModel)]="selectedSup.Fax" class= "form-control"> <br><br>
-                                <input type="text" ngModel name = "goodsType" id="goodsType" placeholder="סוג סחורה" [(ngModel)]="selectedSup.GoodsType" class= "form-control"><br><br>
+                                <input type="text" ngModel name = "company" id="company" placeholder="שם חברה" [(ngModel)]="selectedSup.companyName"  class= "form-control" disabled>  <br><br>
+                                <input type="text" ngModel name = "phone" id="phone" placeholder="טלפון" [(ngModel)]="selectedSup.Phone"  class= "form-control" disabled> <br><br>
+                                <input type="text" ngModel name = "fax" id="fax" placeholder="פקס" [(ngModel)]="selectedSup.Fax" class= "form-control" disabled> <br><br>
+                                <input type="text" ngModel name = "goodsType" id="goodsType" placeholder="סוג סחורה" [(ngModel)]="selectedSup.GoodsType" class= "form-control" disabled><br><br>
                            </div>
                            <br>       
                            
                         </div>
-                        <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button>
                     </form>
     </div>
 </div>

@@ -13,15 +13,12 @@ import { catchError, retry, map } from 'rxjs/operators';
 @Injectable()
 export class SupplierService {
   headers: HttpHeaders;
-
   sup: Supplier;
-  ansFromServer: any; 
+  ansFromServer: any;  
 
   constructor(private _http: HttpClient, private _appSettings: appSettings) {
     this.headers = new HttpHeaders();
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
- 
- 
   }
 
   //result: [];
@@ -29,39 +26,36 @@ export class SupplierService {
 
   public getSupplierName(): Observable<Supplier>{  
    return this._http.get<Supplier>(`${this._appSettings.serverBaseUrl}/api/Supplier/GetAllSuppliers`);
-
   };
 
   public getSupplier (id:number): Observable<Supplier>{  
    console.log("Supplier ID: "+id);
     return this._http.get<Supplier>(`${this._appSettings.serverBaseUrl}/api/Supplier/GetSupplierByID/?id=${id}`);
- 
    };
 
    public deleteSupplier (id:number): Observable<any>{  
     console.log("Supplier ID: "+id);
      return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Supplier/Delete/?id=${id}`);
-  
     };
+
     public UpdateSupplier(supplier:Supplier): Observable<any>{
     const body = JSON.stringify(supplier);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-   
     return this._http.put(`${this._appSettings.serverBaseUrl}/api/Supplier/Update`, body , headerOptions);
-    
     }
 
-  public insertSupplier(supplier:Supplier): Observable<any>{
+    // View supplier
+    public ViewSupplier(supplier:Supplier): Observable<any>{
+      const body = JSON.stringify(supplier);
+      const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+      return this._http.put(`${this._appSettings.serverBaseUrl}/api/Supplier/View`, body , headerOptions);
+      }
 
+
+  public insertSupplier(supplier:Supplier): Observable<any>{
     const body = JSON.stringify(supplier);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-  
     return this._http.post(`${this._appSettings.serverBaseUrl}/api/Supplier/Insert`, body , headerOptions);
-    
-
 }
-
-
-
-    
+  
 }

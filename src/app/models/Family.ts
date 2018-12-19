@@ -1,9 +1,9 @@
 export class Family {
    
-    familyId: number;
+    familyId: number; 
     firstName:string;
     lastName:string;
-    street:string;
+    street:string; 
     houseNum: string;
     floor: number;
     phone: number;
@@ -11,18 +11,18 @@ export class Family {
     notes: string;
     howDidYouHear: string;
     reasonForReferral: string;
-    joinDate: string;
+    joinDate: Date;
     familyType: string;
     basketType: string;
-    house: string;
-    car: string;
-    debt: string; 
-    payChecks: string;
-    bituahLeumi: string;
-    bankAccount: string; 
-    creditCard: string;
-    copyId: string;
-    rentContract: string; 
+    house: boolean;
+    car: boolean;
+    debt: boolean; 
+    payChecks: boolean;
+    bituahLeumi: boolean;
+    bankAccount: boolean; 
+    creditCard: boolean;
+    copyId: boolean;
+    rentContract: boolean; 
 
 
     public constructor(init?: Partial< Family >) {
