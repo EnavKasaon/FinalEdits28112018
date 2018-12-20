@@ -3,12 +3,12 @@ import { Volunteer } from '../models/Volunteer';
 import { VolunteerService } from '../services/volunteers.service';
 
 @Component({
-  selector: 'app-edit-volunteers',
-  templateUrl: './edit-volunteers.component.html',
-  styleUrls: ['./edit-volunteers.component.css']
+  selector: 'app-view-volunteers',
+  templateUrl: './view-volunteers.component.html',
+  styleUrls: ['./view-volunteers.component.css']
 })
 
-export class EditVolunteersComponent implements OnInit {
+export class ViewVolunteersComponent implements OnInit {
 
   volunteerDetails:any =  [];
   ansFromServer: any;
@@ -38,13 +38,13 @@ export class EditVolunteersComponent implements OnInit {
         });
     }
 
-      //edit
-  UpdateVolunteer(){
+      //view
+  ViewVolunteer(){
   //  console.log("Trying to update volunteer...");
   //  console.log("Volunteer: "+JSON.stringify(this.selectedVol)+" ID: "+this.selectedVol.VolunteerId);
   console.log(this.selectedVol);
 
-    this._volunteerService.UpdateVolunteer(this.selectedVol)
+    this._volunteerService.ViewVolunteer(this.selectedVol)
     .subscribe((data) => {
       this.ansFromServer = data;
         console.log("success"); 

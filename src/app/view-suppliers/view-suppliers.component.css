@@ -20,12 +20,6 @@ input {
 }
 
 
-/* button style */
-.submitBtn{
-    position: relative;
-    background-color: rgb(46,184,184);
-}
-
 input[type=checkbox]{
     width:auto;
 }

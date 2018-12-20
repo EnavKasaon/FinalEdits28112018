@@ -35,6 +35,8 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FamilyService } from './services/families.service';
 import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
+import { ViewFamilyComponent } from './view-family/view-family.component';
+import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.component';
 
 
 @NgModule({
@@ -60,8 +62,10 @@ import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.componen
     RemoveInventoryComponent,
     RemovePackagesComponent,
     RemoveSuppliersComponent,
-    RemoveVolunteersComponent,
-    ViewSuppliersComponent
+    ViewSuppliersComponent,
+    ViewFamilyComponent,
+    ViewVolunteersComponent,
+    RemoveVolunteersComponent
     
   ],
   
@@ -153,9 +157,17 @@ import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.componen
         component: RemoveVolunteersComponent }, 
 
           // View-Supplier path
-      { path: 'view-supplier',
+      { path: 'view-suppliers',
       component: ViewSuppliersComponent },    
      
+  // View-Family path
+  { path: 'view-family',
+  component: ViewFamilyComponent }, 
+
+    // View-volunteer path
+    { path: 'view-volunteers',
+    component: ViewVolunteersComponent }, 
+
       // home path
       {
           path: 'home',

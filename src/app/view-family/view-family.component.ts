@@ -3,11 +3,11 @@ import { Family } from '../models/Family';
 import { FamilyService } from '../services/families.service';
 
 @Component({
-  selector: 'app-edit-family',
-  templateUrl: './edit-family.component.html',
-  styleUrls: ['./edit-family.component.css']
+  selector: 'app-view-family',
+  templateUrl: './view-family.component.html',
+  styleUrls: ['./view-family.component.css']
 })
-export class EditFamilyComponent implements OnInit {
+export class ViewFamilyComponent implements OnInit {
 
   familyDetails:any =  [];
   ansFromServer: any;
@@ -36,23 +36,14 @@ export class EditFamilyComponent implements OnInit {
         });
     }
 
-      //edit
-  UpdateFamily(){
-    console.log("Trying to update family...");
-    console.log("Family: "+JSON.stringify(this.selectedFam)+" ID: "+this.selectedFam.familyId);
-    this._familyService.UpdateFamily(this.selectedFam)
-    .subscribe((res) => {
-      this.ansFromServer = res;
-      if(this.ansFromServer != -1){
-        this.alertType = "success";
-        this.alertMsg ="המשפחה עודכנה בהצלחה!";
-      }
+      //view
+  ViewFamily(){
+    console.log(this.selectedFam);
 
-      else{
-        this.alertType = "danger";
-        this.alertMsg ="עדכון המשפחה נכשל.";
-      }
-        console.log(this.ansFromServer);
+    this._familyService.ViewFamily(this.selectedFam)
+     .subscribe((data) => {
+       this.ansFromServer = data;
+       console.log("success");
  });
   
   }

@@ -35,9 +35,16 @@ export class VolunteerService {
     public UpdateVolunteer(volunteer:Volunteer): Observable<any>{
     const body = JSON.stringify(volunteer);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-   
     return this._http.put(`${this._appSettings.serverBaseUrl}/api/Volunteer/Update`, body , headerOptions);
     }
+
+    // View volunteer
+    public ViewVolunteer(volunteer:Volunteer): Observable<any>{
+      const body = JSON.stringify(volunteer);
+      const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+      return this._http.put(`${this._appSettings.serverBaseUrl}/api/Volunteer/View`, body , headerOptions);
+      }
+
 
    public insertVolunteer(volunteer:Volunteer): Observable<any>{
 

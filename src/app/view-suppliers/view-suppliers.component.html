@@ -7,12 +7,6 @@
 <div class="container">       
         <div class="col-md-6 col-md-offset-3">
             
-
-            <!-- ngif in case i dont wont it will appeare every time -->
-            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                    <a href="view-suppliers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>{{ alertMsg }}</strong>
-              </div>
            
             <!-----Choose Suppliers ------>
             <div class="row">
@@ -38,7 +32,7 @@
                 <!-- <label>סוג ספק:  </label> -->
                 <div class="form-group" *ngIf="selectedSup.ID">
                         <label>:ספק</label>
-                        <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierChooseType"  class= "form-control" disabled>
+                        <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierType"  class= "form-control" disabled>
                             <option value="רגיל" >רגיל</option>
                             <option value="תורם" >תורם</option>
                         </select>
@@ -47,17 +41,16 @@
                 <form #suppliersViewForm = "ngForm" (ngSubmit)= "ViewSupplier()" *ngIf="selectedSup.ID">
                         <div class="row">
                            <div class="col-md-6">
-                                <input type="text" ngModel name = "contactName" id="contactName" placeholder="שם איש קשר" [(ngModel)]="selectedSup.ContactPerson" class= "form-control" disabled> <br><br>
-                                <input type="text" ngModel name = "contactPhone" id="contactPhone" placeholder="טלפון איש קשר" [(ngModel)]="selectedSup.ContactPhone" class= "form-control" disabled>        
+                                <input type="text" ngModel name = "ContactPerson" id="ContactPerson" placeholder="שם איש קשר" [(ngModel)]="selectedSup.ContactPerson" class= "form-control" disabled> <br><br>
+                                <input type="text" ngModel name = "ContactPhone" id="ContactPhone" placeholder="טלפון איש קשר" [(ngModel)]="selectedSup.ContactPhone" class= "form-control" disabled>        
                            </div> 
                            <div class="col-md-6">
-                                <input type="text" ngModel name = "company" id="company" placeholder="שם חברה" [(ngModel)]="selectedSup.companyName"  class= "form-control" disabled>  <br><br>
-                                <input type="text" ngModel name = "phone" id="phone" placeholder="טלפון" [(ngModel)]="selectedSup.Phone"  class= "form-control" disabled> <br><br>
-                                <input type="text" ngModel name = "fax" id="fax" placeholder="פקס" [(ngModel)]="selectedSup.Fax" class= "form-control" disabled> <br><br>
-                                <input type="text" ngModel name = "goodsType" id="goodsType" placeholder="סוג סחורה" [(ngModel)]="selectedSup.GoodsType" class= "form-control" disabled><br><br>
+                                <input type="text" ngModel name = "companyName" id="companyName" placeholder="שם חברה" [(ngModel)]="selectedSup.companyName"  class= "form-control" disabled>  <br><br>
+                                <input type="text" ngModel name = "Phone" id="Phone" placeholder="טלפון" [(ngModel)]="selectedSup.Phone"  class= "form-control" disabled> <br><br>
+                                <input type="text" ngModel name = "Fax" id="Fax" placeholder="פקס" [(ngModel)]="selectedSup.Fax" class= "form-control" disabled> <br><br>
+                                <input type="text" ngModel name = "GoodsType" id="GoodsType" placeholder="סוג סחורה" [(ngModel)]="selectedSup.GoodsType" class= "form-control" disabled><br><br>
                            </div>
                            <br>       
-                           
                         </div>
                     </form>
     </div>

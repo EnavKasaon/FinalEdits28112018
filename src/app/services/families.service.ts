@@ -45,6 +45,13 @@ export class FamilyService {
     
     }
 
+    // View Family
+    public ViewFamily(family:Family): Observable<any>{
+      const body = JSON.stringify(family);
+      const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+      return this._http.put(`${this._appSettings.serverBaseUrl}/api/Family/View`, body , headerOptions);
+      
+      }
   public insertFamily(family:Family): Observable<any>{
     const body = JSON.stringify(family);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};

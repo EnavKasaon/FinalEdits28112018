@@ -31,6 +31,5 @@ export class FamilyComponent implements OnInit {
         this.ansFromServer = res;
         console.log(this.ansFromServer);
         });
-    
     }
   }

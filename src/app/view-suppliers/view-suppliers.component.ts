@@ -44,20 +44,14 @@ export class ViewSuppliersComponent implements OnInit {
 
   //View
   ViewSupplier(){
-    console.log("Trying to view Supplier...");
-    console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
-    this._supplierService.ViewSupplier(this.selectedSup)
-    .subscribe((res) => {
-      this.ansFromServer = res;
-      if(this.ansFromServer != -1){
-        this.alertType = "success";
-        this.alertMsg ="הספק עודכן בהצלחה!";
-      }
-      else{
-        this.alertType = "danger";
-        this.alertMsg ="עדכון הספק נכשל.";
-      }
-        console.log(this.ansFromServer);
+    //console.log("Trying to view Supplier...");
+   // console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
+   console.log(this.selectedSup);
+
+   this._supplierService.ViewSupplier(this.selectedSup)
+    .subscribe((data) => {
+      this.ansFromServer = data;
+      console.log("success");
  });
   
   }

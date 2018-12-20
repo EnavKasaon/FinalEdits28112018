@@ -8,12 +8,7 @@
  
 <div class="container">
     <div class="col-md-8 col-md-offset-2">
-           
-        <!-- Alert -->
-             <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                    <a href="edit-family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                     <strong>{{ alertMsg }}</strong>
-               </div>
+        
 
        <!-----Choose Familiy form------>
        <div class="row">
@@ -41,14 +36,14 @@
                                 <!-----Date--> 
                                 <div class="form-group">
                                         <label>:תאריך הצטרפות</label>
-                                        <input #joinDate type="date" name = "joinDate" ngModel [(ngModel)]="newFam.joinDate" class= "form-control" disabled>     
+                                        <input #joinDate type="date" name = "joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control" disabled>     
 
                                  </div>
                                <br>
                                 <!-----Familiy type--> 
                                 <div class="form-group">
                                     <label>:סוג משפחה</label>
-                                    <select [(ngModel)]="selectedFam.familyType" dir = "rtl" name="familyType" id="familyType" class= "form-control">
+                                    <select [(ngModel)]="selectedFam.familyType" dir = "rtl" name="familyType" id="familyType" class= "form-control" disabled>
                                             <option value="רווחה" >רווחה</option>
                                             <option value="פרטי" >פרטי</option>
                                      </select>
@@ -57,7 +52,7 @@
                                  <!-----package type-->
                                  <div class="form-group">
                                      <label>:סוג סל</label>
-                                     <select [(ngModel)]="selectedFam.basketType"  dir = "rtl" name="BasketType" id="BasketType" class= "form-control">
+                                     <select [(ngModel)]="selectedFam.basketType"  dir = "rtl" name="BasketType" id="BasketType" class= "form-control" disabled>
                                         <option value="normal">רגיל</option>
                                         <option value="fruit&vegs" >פירות וירקות</option>
                                         </select>
@@ -65,69 +60,68 @@
                                
                                  <!-----appartment-->  
                                 <div  dir = "rtl" class="checkbox">
-                                    <label ><input type="checkbox" ngModel name = "appartment">:דירה בבעלות</label> 
+                                    <label ><input type="checkbox" ngModel name = "house" disabled>:דירה בבעלות</label> 
                                 </div> <br>
-
+ 
                                 <!--car-->
                                 <div class="checkbox">
-                                 <label> <input type="checkbox" ngModel name = "car">:רכב בבעלות</label>
+                                 <label> <input type="checkbox" ngModel name = "car" disabled>:רכב בבעלות</label>
                                 </div> <br>
                                 
                                 <!--debts-->
                                 <div class="checkbox">
-                                    <label> <input type="checkbox" ngModel name = "debts">:חובות </label>
+                                    <label> <input type="checkbox" ngModel name = "debt" disabled>:חובות </label>
                                 </div> <br>
                     
                    <!-- The files -->
 
                     <!--Pay Checks-->
                     <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "debts">:תלושי שכר מן החודשיים האחרונים </label>
+                            <label> <input type="checkbox" ngModel name = "payChecks" disabled>:תלושי שכר מן החודשיים האחרונים </label>
                             </div> <br>
         
                             <!--Social Security-->
                             <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "debts">:מסמכים המוכיחים קבלת תמיכה מביטוח לאומי - אם יש</label>
+                            <label> <input type="checkbox" ngModel name = "bituahLeumi" disabled>:מסמכים המוכיחים קבלת תמיכה מביטוח לאומי - אם יש</label>
                             </div> <br>
         
                             <!--Bank Account-->
                             <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "debts">:פירוט חשבון בנק מן החודשיים האחרונים </label>
+                            <label> <input type="checkbox" ngModel name = "bankAccount" disabled>:פירוט חשבון בנק מן החודשיים האחרונים </label>
                             </div> <br>
         
                             <!--Credit details-->
                             <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "debts">:פירוט אשראי מן החודשיים האחרונים </label>
+                            <label> <input type="checkbox" ngModel name = "creditCard" disabled>:פירוט אשראי מן החודשיים האחרונים </label>
                             </div> <br>
                                                         
                             <!--Id-->
                             <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "debts">:צילום+ ספח של ת.ז </label>
+                            <label> <input type="checkbox" ngModel name = "copyId" disabled>:צילום+ ספח של ת.ז </label>
                             </div> <br>
                                                         
                             <!--Rent Contract-->
                             <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "debts">:חוזה שכר דירה </label>
+                            <label> <input type="checkbox" ngModel name = "rentContract" disabled>:חוזה שכר דירה </label>
                             </div> <br>
                             
                             </div>
                     <div class="col-md-6">
                             
                         <!-- the fields of the form -->
-                        <input #firstName type="text" ngModel [(ngModel)]= "newFam.firstName" placeholder="שם פרטי" class= "form-control form-fields">  <br><br>
-                        <input #lastName type="text" ngModel [(ngModel)] = "newFam.lastName" placeholder="שם משפחה" class= "form-control form-fields"> <br><br>
-                        <input #street type="text" ngModel [(ngModel)]= "newFam.street" placeholder="רחוב" class= "form-control form-fields"><br><br>
-                        <input #houseNum type="text" ngModel [(ngModel)]= "newFam.houseNum" placeholder="מספר בית" class= "form-control form-fields"><br><br>
-                        <input #floor type="text" ngModel [(ngModel)]= "newFam.floor" placeholder="קומה" class= "form-control form-fields"><br><br>
-                        <input #phone type="text" ngModel [(ngModel)]=  "newFam.phone" placeholder="טלפון" class= "form-control form-fields"> <br><br>
-                        <input #peopleNumber type="text" ngModel [(ngModel)]= "newFam.peopleNumber" placeholder="מס' נפשות" class= "form-control form-fields"> <br><br>
-                        <input #howDidYouHear type="text" ngModel [(ngModel)]= "newFam.howDidYouHear" placeholder="איך שמעתם על העמותה" class= "form-control form-fields"> <br><br>
-                        <textarea #reasonForReferral ngModel [(ngModel)]= "newFam.reasonForReferral" placeholder="סיבת הפנייה" class= "form-control"></textarea><br><br> <br>
-                        <textarea #notes ngModel [(ngModel)]= "newFam.notes" placeholder="הערות" class= "form-control"></textarea><br><br>
+                        <input #firstName type="text" ngModel name= "firstName" placeholder="שם פרטי"  [(ngModel)]="selectedFam.firstName" class= "form-control form-fields" disabled>  <br><br>
+                        <input #lastName type="text" ngModel name = "lastName" placeholder="שם משפחה" [(ngModel)]="selectedFam.lastName" class= "form-control form-fields" disabled> <br><br>
+                        <input #street type="text" ngModel name= "street" placeholder="רחוב" [(ngModel)]="selectedFam.street" class= "form-control form-fields" disabled><br><br>
+                        <input #houseNum type="text" ngModel name= "houseNum" placeholder="מספר בית" [(ngModel)]="selectedFam.houseNum" class= "form-control form-fields" disabled><br><br>
+                        <input #floor type="text" ngModel name= "floor" placeholder="קומה" [(ngModel)]="selectedFam.floor" class= "form-control form-fields" disabled><br><br>
+                        <input #phone type="text" ngModel name=  "phone" placeholder="טלפון" [(ngModel)]="selectedFam.phone" class= "form-control form-fields" disabled> <br><br>
+                        <input #peopleNumber type="text" ngModel name= "peopleNumber" [(ngModel)]="selectedFam.peopleNumber" placeholder="מס' נפשות" class= "form-control form-fields" disabled> <br><br>
+                        <input #howDidYouHear type="text" ngModel name= ".howDidYouHear" [(ngModel)]="selectedFam.howDidYouHear" placeholder="איך שמעתם על העמותה" class= "form-control form-fields" disabled> <br><br>
+                        <textarea #reasonForReferral ngModel name= "reasonForReferral" [(ngModel)]="selectedFam.howDidYouHear" placeholder="סיבת הפנייה" class= "form-control" disabled></textarea><br><br> <br>
+                        <textarea #notes ngModel name= "notes" placeholder="הערות" [(ngModel)]="selectedFam.reasonForReferral" class= "form-control" disabled></textarea><br><br>
                     </div>
                     
                 </div>
-        <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button>
     
         </form>
     </div>
