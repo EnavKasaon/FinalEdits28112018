@@ -1,0 +1,49 @@
+/*Google fonts*/
+
+body{
+ padding: 0;
+ margin: 0;
+}
+form{
+ max-width: 30em;
+ margin: 4em auto;
+ position: relative;
+ background: #f4f4f4;
+ padding: 2em 3em;
+}
+
+
+form .data{
+    margin-top: 1em;
+}
+form .data li{
+ background: #fff;
+ border-left: 4px solid #F97300;
+ padding: 1em;
+ margin: 1em auto;
+ color: #666;
+}
+form .data li i{
+    float: right;
+    text-align: right;
+    color: #888;
+    cursor: pointer;
+}
+form .input-group-text{
+    background: #F97300;
+    border-radius: 5px;
+    /* text-align: right; */
+    color: #fff;
+    cursor: pointer;
+}
+form .input-group-text i{
+    font-size: 2em;
+}
+form .form-control{
+ height: 3em;
+ width: 200px;
+ text-align: right;
+}
+form .form-control:focus{
+ box-shadow: 0;
+}

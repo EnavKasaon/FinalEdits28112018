@@ -1,9 +1,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://unpkg.com/bootstrap-css-only@4.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="https://unpkg.com/angular-calendar@0.26.4/css/angular-calendar.css" rel="stylesheet">
+<link href="https://unpkg.com/flatpickr@4.5.2/dist/flatpickr.css" rel="stylesheet">
+<app-header [name]="'ברוך הבא'" [titleIcon]="''"
+[action]="''"></app-header>
+<div class="container">
         <div class="row">
-            <h1>ברוך הבא </h1>
-            <div class="col-md-5">
+
+            <div class="col-md-6">
+                <app-calendar-home-page></app-calendar-home-page>
+            </div>
+            <div class="col-md-6">
+                <app-todolist></app-todolist>
+            </div>
+            
+            <!---
+            <div class="col-md-4">
                 <h2>משימות <i class="fas fa-tasks"></i></h2>
                 <hr>
             <div id="myDIV"  class="header">
@@ -19,8 +34,9 @@
                 <li>העלאת טפסים</li>
                 <li>הכנסת משפחה חדשה</li>
               </ul>
-            </div>
-            <div class="col-md-6"></div>
+              
+            </div>---->
+           </div> 
         </div>
 
 

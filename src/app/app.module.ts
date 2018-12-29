@@ -37,6 +37,13 @@ import { FamilyService } from './services/families.service';
 import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
 import { ViewFamilyComponent } from './view-family/view-family.component';
 import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { AngularCalendarComponent } from './calendar-home-page/calendar-home-page.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { TodolistComponent } from './todolist/todolist.component';
 
 
 @NgModule({
@@ -65,7 +72,12 @@ import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.compo
     ViewSuppliersComponent,
     ViewFamilyComponent,
     ViewVolunteersComponent,
-    RemoveVolunteersComponent
+    RemoveVolunteersComponent,
+    CalendarComponent,
+    AngularCalendarComponent,
+    TodolistComponent,
+    
+    
     
   ],
   
@@ -78,6 +90,12 @@ import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.compo
     MatDatepickerModule,
     DateValueAccessorModule,
     HttpClientModule ,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     RouterModule.forRoot([
    
       // the root path
@@ -110,7 +128,10 @@ import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.compo
         
       // login path
       { path: 'login',
-        component: LoginComponent },  
+        component: LoginComponent }, 
+       //calendar path
+        { path: 'calendar',
+        component: AngularCalendarComponent }, 
         
       // edit-family path
       { path: 'edit-family',
@@ -182,7 +203,7 @@ import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.compo
     appSettings
   ],
   bootstrap: [AppComponent]
-  
+ // exports: [AngularCalendarComponent]
 })
 export class AppModule { }
 
