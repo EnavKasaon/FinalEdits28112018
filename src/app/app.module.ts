@@ -37,13 +37,14 @@ import { FamilyService } from './services/families.service';
 import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
 import { ViewFamilyComponent } from './view-family/view-family.component';
 import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.component';
-import { CalendarComponent } from './calendar/calendar.component';
+
 import { AngularCalendarComponent } from './calendar-home-page/calendar-home-page.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { TodolistComponent } from './todolist/todolist.component';
+import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
 
 
 @NgModule({
@@ -73,9 +74,9 @@ import { TodolistComponent } from './todolist/todolist.component';
     ViewFamilyComponent,
     ViewVolunteersComponent,
     RemoveVolunteersComponent,
-    CalendarComponent,
     AngularCalendarComponent,
     TodolistComponent,
+    ViewOrdersTypesComponent,
     
     
     
@@ -188,6 +189,9 @@ import { TodolistComponent } from './todolist/todolist.component';
     // View-volunteer path
     { path: 'view-volunteers',
     component: ViewVolunteersComponent }, 
+    // View- orders type path
+    { path: 'view-orders',
+    component: ViewOrdersTypesComponent }, 
 
       // home path
       {
