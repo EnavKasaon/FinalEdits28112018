@@ -196,4 +196,10 @@ ul li.checked::before {
 .addBtn:hover {
     background-color: #bbb;
 }
-
+.jumbotron jumbotron-fluid{
+    background-color: rgb(46,184,184);
+    opacity: 80%;
+}
+h3{
+    text-align: center;
+}

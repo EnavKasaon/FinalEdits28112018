@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
 import { Supplier } from '../models/Supplier';
 import { SupplierService } from '../services/suppliers.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-edit-suppliers',
@@ -13,6 +14,7 @@ export class EditSuppliersComponent implements OnInit {
 
   supplierDetails:any =  [];
   ansFromServer: any;
+  public stopLoading = false;
   arr: any = [];
   selectedSup : Supplier = new Supplier;
   alertType: string;
@@ -30,14 +32,17 @@ export class EditSuppliersComponent implements OnInit {
         this.supplierDetails = data;
       });
       console.log(this.supplierDetails.companyName);
+      this.stopLoading = false;
      // this.newSupp.ID= 0;
     }
 
     // choose the drop down
     onChange(supplierId) {
+      this.stopLoading = true;
       console.log(supplierId);
       this._supplierService.getSupplier(supplierId).subscribe((data: {}) => {
          this.selectedSup = new Supplier(data);
+         this.stopLoading = false;
          console.log(this.selectedSup.companyName);      
       });
   }

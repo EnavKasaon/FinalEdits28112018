@@ -26,13 +26,13 @@ import { RemoveSuppliersComponent } from './remove-suppliers/remove-suppliers.co
 import { RemoveVolunteersComponent } from './remove-volunteers/remove-volunteers.component';
 import { MyCommonModule } from './common/mycommon.mudule';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-//import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule} from '@angular/material/menu';
 import {SupplierService} from './services/suppliers.service';
 import {VolunteerService} from './services/volunteers.service';
 import { HttpClientModule  } from '@angular/common/http';
 import { appSettings } from './app.settings';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
-//import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FamilyService } from './services/families.service';
 import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
 import { ViewFamilyComponent } from './view-family/view-family.component';
@@ -45,8 +45,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { TodolistComponent } from './todolist/todolist.component';
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
-import { HelloComponent } from './hello.component';
-import { ExcelService } from './services/excel.service';
+import { AgoraComponent } from './agora/agora.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -78,8 +78,9 @@ import { ExcelService } from './services/excel.service';
     RemoveVolunteersComponent,
     AngularCalendarComponent,
     TodolistComponent,
-    HelloComponent,
+   // HelloComponent,
     ViewOrdersTypesComponent,
+    AgoraComponent,
     
     
     
@@ -90,11 +91,12 @@ import { ExcelService } from './services/excel.service';
     FormsModule,
     MyCommonModule,
     BrowserAnimationsModule,
-   // MatMenuModule,
-   // MatDatepickerModule,
+    MatMenuModule,
+    MatDatepickerModule,
     DateValueAccessorModule,
     HttpClientModule ,
     NgbModalModule,
+    NgxLoadingModule.forRoot({}),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -105,6 +107,9 @@ import { ExcelService } from './services/excel.service';
       // the root path
       {  path: '', 
       component: AppComponent  },
+       // agora path
+       {  path: 'agora', 
+       component: AgoraComponent  },
       
       // family path
       {  path: 'family',
@@ -207,7 +212,7 @@ import { ExcelService } from './services/excel.service';
     SupplierService,
     VolunteerService,
     FamilyService,
-    ExcelService,
+   // ExcelService,
     appSettings
   ],
   bootstrap: [AppComponent]
