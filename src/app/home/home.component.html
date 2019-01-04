@@ -1,42 +1,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://unpkg.com/bootstrap-css-only@4.1.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="https://unpkg.com/angular-calendar@0.26.4/css/angular-calendar.css" rel="stylesheet">
 <link href="https://unpkg.com/flatpickr@4.5.2/dist/flatpickr.css" rel="stylesheet">
-<app-header [name]="'ברוך הבא'" [titleIcon]="''"
-[action]="''"></app-header><br><br><br>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- <div class="jumbotron jumbotron-fluid">
+        
+          <img src="assets/images/Ahva-logo-trans-200-89.png" class="img-responsive center" >
+          <h1 class="display-4" dir= "rtl">אחווה וחסד</h1> 
+</div> -->
+<br>
+        <img src="assets/images/logo-ahva-600_268.png" class="rounded mx-auto d-block" height="200" ><br>
+<hr>
+<br>
 <div class="container">
-        <div class="row">
+    <h3>לוח הזמנים של העמותה</h3><br>
+        <app-calendar-home-page></app-calendar-home-page>
+
+        <app-todolist></app-todolist>
+        <!-- <div class="row">
 
             <div class="col-md-8">
-                <app-calendar-home-page></app-calendar-home-page>
+                
             </div>
             <div class="col-md-4">
                 <app-todolist></app-todolist>
             </div>
-            
-            <!---
-            <div class="col-md-4">
-                <h2>משימות <i class="fas fa-tasks"></i></h2>
-                <hr>
-            <div id="myDIV"  class="header">
-                
-                <span onclick="newElement()" class="addBtn">הוסף</span>
-                <input type="text" id="myInput" placeholder="...שם המשימה" class="form-control form-field">
-                
-              </div>
-              
-              <ul id="myUL" >
-                <li>הוספת סוג חדש של חבילה</li>
-                <li class="checked">קבלת סחורה</li>
-                <li>העלאת טפסים</li>
-                <li>הכנסת משפחה חדשה</li>
-              </ul>
-              
-            </div>---->
-           </div> 
+           
+           </div>  -->
         </div>
 
 

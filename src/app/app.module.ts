@@ -45,6 +45,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { TodolistComponent } from './todolist/todolist.component';
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
+import { AgoraComponent } from './agora/agora.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -77,6 +79,7 @@ import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.
     AngularCalendarComponent,
     TodolistComponent,
     ViewOrdersTypesComponent,
+    AgoraComponent,
     
     
     
@@ -92,6 +95,7 @@ import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.
     DateValueAccessorModule,
     HttpClientModule ,
     NgbModalModule,
+    NgxLoadingModule.forRoot({}),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -102,6 +106,9 @@ import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.
       // the root path
       {  path: '', 
       component: AppComponent  },
+       // agora path
+       {  path: 'agora', 
+       component: AgoraComponent  },
       
       // family path
       {  path: 'family',
