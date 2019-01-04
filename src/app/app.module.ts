@@ -32,7 +32,7 @@ import {VolunteerService} from './services/volunteers.service';
 import { HttpClientModule  } from '@angular/common/http';
 import { appSettings } from './app.settings';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+//import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FamilyService } from './services/families.service';
 import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
 import { ViewFamilyComponent } from './view-family/view-family.component';
@@ -45,6 +45,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { TodolistComponent } from './todolist/todolist.component';
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
+import { HelloComponent } from './hello.component';
+import { ExcelService } from './services/excel.service';
 
 
 @NgModule({
@@ -76,6 +78,7 @@ import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.
     RemoveVolunteersComponent,
     AngularCalendarComponent,
     TodolistComponent,
+    HelloComponent,
     ViewOrdersTypesComponent,
     
     
@@ -204,6 +207,7 @@ import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.
     SupplierService,
     VolunteerService,
     FamilyService,
+    ExcelService,
     appSettings
   ],
   bootstrap: [AppComponent]

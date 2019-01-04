@@ -9,16 +9,16 @@
             
 
             <!-- ngif in case i dont wont it will appeare every time -->
-            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                    <a href="edit-suppliers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>{{ alertMsg }}</strong>
-              </div>
+             <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+                    <a href="edit-suppliers" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                <strong>{{ alertMsg }}</strong> 
+              </div> 
            
             <!-----Choose Suppliers ------>
             <div class="row">
                     <div class="col-md-6 col-md-offset-6">
-                        <form #myForm2 = "ngForm">
-                           
+                        <form #myForm2 = "ngForm" (ngSubmit)= "editSupplier(myForm2)" >
+                            
                             <!-----Choose Supplier --> 
                             <div class="form-group">
                                     <label>:בחר ספק</label>
