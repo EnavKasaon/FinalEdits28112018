@@ -5,7 +5,7 @@
 <!-- Suppliers Form -->
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
 [action]="'הוספה'"></app-header> 
-<div class="container">
+<div class="container"> 
   <div class="col-md-8 col-md-offset-2">
       <form #f = "ngForm" (ngSubmit)= "insertSupplier()" accept-charset="UTF-8" >
         
@@ -38,5 +38,13 @@
         </div>
         <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
     </form>
+    
+     <!-- alert -->
+     <div class = "div-horizontal">
+      <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
+        <a href="suppliers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong > {{ alertMsg }}</strong>
+        </div>
+            </div>
   </div>
 </div>

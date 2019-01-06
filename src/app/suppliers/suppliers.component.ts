@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-suppliers',
   templateUrl: './suppliers.component.html',
-  styleUrls: ['./suppliers.component.css']
+  styleUrls: ['./suppliers.component.css'] 
 })
 export class SuppliersComponent implements OnInit {
 
@@ -15,6 +15,11 @@ supplierDetails:any =  [];
 public newSupp: Supplier = new Supplier;
 ansFromServer: any;
 arr: any = [];
+public stopLoading = false;
+selectedSup : Supplier = new Supplier;
+alertType: string;
+alertMsg: string;
+
   constructor(private _supplierService:SupplierService) { 
     
   }
@@ -31,7 +36,15 @@ arr: any = [];
     this._supplierService.insertSupplier(this.newSupp)
     .subscribe((res) => {
       this.ansFromServer = res;
-                 console.log(this.ansFromServer);
+      if(this.ansFromServer != -1){
+        this.alertType = "success";
+        this.alertMsg ="הספק הוסף בהצלחה!";
+      }
+      else{
+        this.alertType = "danger";
+        this.alertMsg ="הוספת הספק נכשלה.";
+      }
+        console.log(this.ansFromServer);
  });
   
   }

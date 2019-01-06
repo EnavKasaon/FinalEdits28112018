@@ -10,7 +10,7 @@ import { NgxLoadingModule } from 'ngx-loading';
   styleUrls: ['./edit-suppliers.component.css']
 })
 
-export class EditSuppliersComponent implements OnInit {
+export class EditSuppliersComponent implements OnInit { 
 
   supplierDetails:any =  [];
   ansFromServer: any;
@@ -49,7 +49,7 @@ export class EditSuppliersComponent implements OnInit {
 
   //edit
   UpdateSupplier(){
-    console.log("Trying to insert Supplier...");
+    console.log("Trying to update Supplier...");
     console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
     this._supplierService.UpdateSupplier(this.selectedSup)
     .subscribe((res) => {

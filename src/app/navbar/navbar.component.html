@@ -2,15 +2,16 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
 
 
-<div class="topnav">
+<div class="topnav"> 
 
     <!-- logout -->
       <button class="menu-btn" routerLink="login">
       <i class="fas fa-sign-out-alt"></i>יציאה</button> 
       
-
+<!-- Agora -->
       <div class="topnav-right" routerLinkActive="active"> 
           <button class="menu-btn" routerLink="agora">אגורה</button> 
+          
         <!-- Inventory Navbar -->
             <button class="menu-btn" mat-button [matMenuTriggerFor]="inventory">הזמנות</button> 
             <mat-menu #inventory="matMenu">
