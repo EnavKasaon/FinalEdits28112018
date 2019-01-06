@@ -1,15 +1,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
-<ng-template #customLoadingTemplate>
-        <div class="custom-class">
-            <h3>
-                Loading...
-            </h3>
-            <!-- <button (click)="showAlert()">
-                Click me!
-            </button> -->
-        </div>
+   
+    <ng-template #customLoadingTemplate>
+            <div class="custom-class">
+            </div>
     </ng-template>
+    <br>
 <!-- Suppliers Form -->
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'" [action]="'עריכה'"></app-header>
 <div class="container">
@@ -18,16 +14,17 @@
         
 
                 <!-- loading -->
-            <div *ngIf="stopLoading" class="spinner-border text-info" role="status">
-                    <span class="sr-only">Loading...</span>
+            <!-- <div *ngIf="stopLoading" class="spinner-border text-info" role="status">
+                    <span class="sr-only">Loading...</span> -->
 
         
-
-
-            </div>            
+         
             <!-----Choose Suppliers ------>
             <!-- <div class="row"> -->
-                    <div class="col-md-offset-6 col-md-6">
+                    <!-- <div class="col-md-6">
+
+                        </div> -->
+                    <!-- <div class="col-md-6"> -->
                         <form #myForm2 >
                            
                             <!-----Choose Supplier --> 
@@ -40,11 +37,14 @@
                                     </select>
                                 </div>
                         </form>
-                    </div> 
+                    <!-- </div>  -->
+                   
                 <!-- </div> -->
                 <!---END-->
                 <hr>
-                <ngx-loading [show]="stopLoading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+                <!-- <ngx-loading [show]="stopLoading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading> -->
+                <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
+      
                 <form #suppliersForm   (ngSubmit)= "UpdateSupplier()" *ngIf="selectedSup.ID">
                 <!-- <label>סוג ספק:  </label> -->
                      <div class="form-group" *ngIf="selectedSup.ID">
@@ -72,14 +72,14 @@
                         </div>
                         <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button> <br>
                     </form>
-
-                                    <!-- alert -->
-                                    <div class = "div-horizontal">
-                                        <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
-                                                <a href="edit-suppliers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            <strong > {{ alertMsg }}</strong>
-                                        </div>
-                                          </div>
+                    <br>
+                     <!-- alert -->
+                      <div class = "div-horizontal">
+                       <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
+                           <a href="edit-suppliers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                          <strong > {{ alertMsg }}</strong>
+                        </div>
+                      </div>
     </div>
 </div> 
 </div>

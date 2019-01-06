@@ -6,7 +6,19 @@ label {
     float: right;
     width:100%;
  }
-
+/*
+   server-side-angular-way.component.css
+*/
+.no-data-available {
+    text-align: center;
+  }
+  
+  /*
+     src/styles.css (i.e. your global style)
+  */
+  .dataTables_empty {
+    display: none;
+  }
 
 form {
      overflow: hidden;

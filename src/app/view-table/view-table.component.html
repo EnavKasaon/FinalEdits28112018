@@ -1,0 +1,31 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>פעולות</th>
+      <th>סוג ספק</th>
+      <th>סוג סחורה</th>
+      <th>טלפון איש קשר</th>
+      <th>איש קשר</th>
+      <th>פקס</th>
+      <th>טלפון</th>
+      <th>שם החברה</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="suppliers?.length != 0">
+      <tr *ngFor="let sup of suppliers">
+          <td><button class="btn btn-primary btn-sm">עריכה</button></td>
+          <td>{{ sup.SupplierType }}</td>
+          <td>{{ sup.GoodsType }}</td>
+          <td>{{ sup.ContactPhone }}</td>
+          <td>{{ sup.ContactPerson }}</td>
+          <td>{{ sup.Fax }}</td>
+          <td>{{ sup.Phone }}</td>
+          <td>{{ sup.companyName }}</td>
+      </tr>
+  </tbody>
+  <tbody *ngIf="suppliers?.length == 0">
+    <tr>
+      <td colspan="3" class="no-data-available">!אין נתונים</td>
+    </tr>
+  <tbody>
+</table>

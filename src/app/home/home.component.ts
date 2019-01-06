@@ -11,5 +11,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  clickMethod( ) {
+    if(confirm("Welcome!!!!")) {
+      console.log("Implement delete functionality here");
+    }
+  }
 
 }

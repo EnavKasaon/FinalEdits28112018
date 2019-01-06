@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class ViewSuppliersComponent implements OnInit {
 
+  public stopLoading = false;
   supplierDetails:any =  [];
   ansFromServer: any;
   arr: any = [];
@@ -24,6 +25,7 @@ export class ViewSuppliersComponent implements OnInit {
    
     // kind of constructor
     ngOnInit() {
+      this.stopLoading = false;
       this.supplierDetails = [];
       this._supplierService.getSupplierName().subscribe((data: {}) => {
        console.log(data[0].companyName);
@@ -35,8 +37,10 @@ export class ViewSuppliersComponent implements OnInit {
 
     // choose the drop down
     onChange(supplierId) {
+      this.stopLoading = true;
       console.log(supplierId);
       this._supplierService.getSupplier(supplierId).subscribe((data: {}) => {
+        this.stopLoading = false;
          this.selectedSup = new Supplier(data);
          console.log(this.selectedSup.companyName);      
       });
@@ -44,12 +48,14 @@ export class ViewSuppliersComponent implements OnInit {
 
   //View
   ViewSupplier(){
+    
     //console.log("Trying to view Supplier...");
    // console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
    console.log(this.selectedSup);
 
    this._supplierService.ViewSupplier(this.selectedSup)
     .subscribe((data) => {
+      
       this.ansFromServer = data;
       console.log("success");
  });

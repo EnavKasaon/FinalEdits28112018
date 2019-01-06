@@ -47,6 +47,8 @@ import { TodolistComponent } from './todolist/todolist.component';
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
 import { AgoraComponent } from './agora/agora.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { DataTablesModule } from 'angular-datatables';
+import { ViewTableComponent } from './view-table/view-table.component';
 
 
 @NgModule({
@@ -81,6 +83,7 @@ import { NgxLoadingModule } from 'ngx-loading';
    // HelloComponent,
     ViewOrdersTypesComponent,
     AgoraComponent,
+    ViewTableComponent,
     
     
     
@@ -96,6 +99,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     DateValueAccessorModule,
     HttpClientModule ,
     NgbModalModule,
+    DataTablesModule,
     NgxLoadingModule.forRoot({}),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

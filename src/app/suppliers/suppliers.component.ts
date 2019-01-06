@@ -20,12 +20,13 @@ selectedSup : Supplier = new Supplier;
 alertType: string;
 alertMsg: string;
 
+
   constructor(private _supplierService:SupplierService) { 
     
   }
  
   ngOnInit() {
-
+   this.stopLoading=false;
 
     this.newSupp.ID= 0;
   }
@@ -33,12 +34,14 @@ alertMsg: string;
   insertSupplier(){
     console.log("Trying to insert Supplier...");
     console.log("Supplier: "+JSON.stringify(this.newSupp)+" ID: "+this.newSupp.ID);
+    this.stopLoading = true;
     this._supplierService.insertSupplier(this.newSupp)
     .subscribe((res) => {
       this.ansFromServer = res;
+      this.stopLoading = false;
       if(this.ansFromServer != -1){
         this.alertType = "success";
-        this.alertMsg ="הספק הוסף בהצלחה!";
+        this.alertMsg ="הספק הוזן בהצלחה!";
       }
       else{
         this.alertType = "danger";

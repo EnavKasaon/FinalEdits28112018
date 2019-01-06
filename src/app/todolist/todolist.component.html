@@ -8,13 +8,22 @@
      
     </div>
   </div>
-    <div class="data">
+    <!-- <div class="data">
       <ul class="list-instyled">
         <li *ngFor="let todo of todoArray">{{todo}}
           <i class="material-icons" (click)="deleteItem(todo)">delete</i>
           </li>
       </ul>
-      </div>
+      </div> -->
+
+      <div class="list-group">
+          <a *ngFor="let todo of todoArray" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <p class="mb-1">{{todo}}</p>
+              <small><i class="material-icons" (click)="deleteItem(todo)">delete</i></small>
+            </div>
+          </a>
+        </div>
    
   </form>
  </div>
