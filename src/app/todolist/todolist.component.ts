@@ -8,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class TodolistComponent implements OnInit {
 
   todoArray=[];
+  show: boolean = false;
   constructor() { }
 
   ngOnInit() {
+    this.show = false;
+  }
+  clickTodo(){
+    if(!this.show){
+      this.show = true;
+    }
+    else{
+      this.show = false;
+    }
+    
   }
   addTodo(value){
     this.todoArray.push(value)

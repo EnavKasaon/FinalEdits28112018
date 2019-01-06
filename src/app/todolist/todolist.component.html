@@ -1,8 +1,13 @@
-<div class="container">
-  <form #todoForm= "ngForm" (ngSubmit)="todoSubmit(todoForm.value)">
-   <div class="form-group">
+<div class="text-center">
+<button type="button" class="btn btn-primary" (click) = "clickTodo()">
+    משימות <span class="badge badge-light">4</span>
+  </button>
+</div>
+  <form *ngIf="show" #todoForm= "ngForm" (ngSubmit)="todoSubmit(todoForm.value)">
+   
    <h1 class="text-center text-primary">משימות</h1>
-    <div class="input-group-prepend">
+   <div class="form-group">
+   <div class="input-group-prepend">
         <span class="input-group-text" (click)="addTodo(todo.value)"><i class="material-icons">add</i></span>
       <input type="text" #todo class="form-control" placeholder="הוספת משימה" name="todo" ngModel>
      
@@ -26,4 +31,5 @@
         </div>
    
   </form>
- </div>
+  <br>
+ 
