@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodolistComponent implements OnInit {
 
-  todoArray=[];
+  todoArray=[
+    "שליחת הזמנה לשופרסל",
+    "הזנת טפסי משפחות",
+    "שמירת רשימות"
+  ];
   show: boolean = false;
   constructor() { }
 

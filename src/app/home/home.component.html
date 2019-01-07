@@ -18,12 +18,55 @@
 <hr>
 <br>
 <div class="container">
-    <h3>לוח הזמנים של העמותה</h3><br>
-    <app-todolist></app-todolist>
+    <h3>משימות ולוחות זמנים</h3><br>
+    <div id="accordion">
+            <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          משימות
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body">
+                              <app-todolist></app-todolist>
+                      </div>
+                    </div>
+                  </div>
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    לוח שנה
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                        <app-calendar-home-page></app-calendar-home-page>
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+    <!-- <nav class="nav nav-pills nav-fill">
+            <a class="nav-item nav-link active" data-toggle="collapse" href="#calendar" role="button" aria-expanded="false" aria-controls="calendar">לוח שנה</a>
+            <a class="nav-item nav-link" data-toggle="collapse" href="#tasks" role="button" aria-expanded="false" aria-controls="tasks">משימות</a>    
+    </nav>
+    <div class="collapse" id="tasks">
+       <div class="card card-body">
+        <app-todolist></app-todolist>
+        </div>
+    </div>
+    <div class="collapse" id="calendar">
+        <div class="card card-body">
         <app-calendar-home-page></app-calendar-home-page>
-
-        
-       
+        </div>
+    </div> -->
+ 
 </div>
 
 

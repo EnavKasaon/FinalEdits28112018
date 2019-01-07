@@ -82,7 +82,7 @@ export class AngularCalendarComponent {
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      title: 'חלוקת מזון רמות רמז',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -94,21 +94,21 @@ export class AngularCalendarComponent {
     },
     {
       start: startOfDay(new Date()),
-      title: 'An event with no end date',
+      title: 'קבלת סחורה',
       color: colors.yellow,
       actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      title: 'הזנת נתוני משפחות',
       color: colors.blue,
       allDay: true
     },
     {
       start: addHours(startOfDay(new Date()), 2),
       end: new Date(),
-      title: 'A draggable and resizable event',
+      title: 'קבלת תרומות',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
