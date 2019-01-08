@@ -29,15 +29,15 @@
 
            <div class="col-md-6">
                 <input #ContactPerson type="text" ngModel [(ngModel)]="newSupp.ContactPerson" name = "ContactPerson" id="contactName" placeholder="שם איש קשר" class= "form-control"> <br><br>
-                <input #ContactPhone type="text" ngModel [(ngModel)]="newSupp.ContactPhone" name = "ContactPhone" id="contactPhone" placeholder="טלפון איש קשר" class= "form-control">        
+                <input #ContactPhone type="number" ngModel [(ngModel)]="newSupp.ContactPhone" name = "ContactPhone" id="contactPhone" placeholder="טלפון איש קשר" class= "form-control">        
            </div>
 
   
 
            <div class="col-md-6">
-                <input #companyName type="text" ngModel [(ngModel)]="newSupp.companyName" name = "companyName" id="company" placeholder="שם חברה" class= "form-control">  <br><br>
-                <input #Phone type="text" ngModel [(ngModel)]="newSupp.Phone" name = "Phone" id="phone" placeholder="טלפון" class= "form-control"> <br><br>
-                <input #Fax type="text" ngModel [(ngModel)]="newSupp.Fax" name = "Fax" id="fax" placeholder="פקס" class= "form-control"> <br><br>
+                <input #companyName type="text" ngModel [(ngModel)]="newSupp.companyName" name = "companyName" id="company" placeholder="שם חברה" class= "form-control" >  <br><br>
+                <input #Phone type="number" ngModel [(ngModel)]="newSupp.Phone" name = "Phone" id="phone" placeholder="טלפון" class= "form-control" pattern="[0-9]+"> <br><br>
+                <input #Fax type="number" ngModel [(ngModel)]="newSupp.Fax" name = "Fax" id="fax" placeholder="פקס" class= "form-control"> <br><br>
                 <input #GoodsType type="text" ngModel [(ngModel)]="newSupp.GoodsType" name = "GoodsType" id="goodsType" placeholder="סוג סחורה" class= "form-control"><br><br>
            </div>
            <br>       
