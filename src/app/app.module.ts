@@ -51,6 +51,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { ViewTableComponent } from './view-table/view-table.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

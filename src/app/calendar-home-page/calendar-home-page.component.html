@@ -20,10 +20,107 @@
     <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
   </div>
 </ng-template>
+<div class="text-center">
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEvent" aria-expanded="false" aria-controls="collapseExample">
+    ניהול לוח שנה
+  </button>
+  </div>
+<br>
 <div class="container">
-  <div class="row">
+  <br>
+    <div class="collapse" id="collapseEvent">
+        <h3>
+         
+          <button class="btn btn-primary pull-left btn-sm" (click)="addEvent()">
+            הוסף
+          </button>
+          <div class="clearfix"></div>
+          
+        </h3>
       
-  <div class="col-md-6">
+        <table class="table table-bordered">
+      
+          <thead>
+            <tr>
+              <th>הסר</th>
+              <th>ת. סיום</th>
+              <th>ת. התחלה</th>
+              <th>צבע</th>
+              <th>כותרת</th>
+              
+              <!-- <th>Secondary color</th> -->
+      
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr *ngFor="let event of events; let index = index">
+                <td>
+                    <button
+                      class="btn btn-danger"
+                      (click)="events.splice(index, 1); refresh.next()">
+                      מחק
+                    </button>
+                  </td>
+                <td>
+                    <input
+                      class="form-control"
+                      type="text"
+                      mwlFlatpickr
+                      [(ngModel)]="event.end"
+                      (ngModelChange)="refresh.next()"
+                      [altInput]="true"
+                      [convertModelValue]="true"
+                      [enableTime]="true"
+                      dateFormat="Y-m-dTH:i"
+                      altFormat="F j, Y H:i"
+                      placeholder="Not set">
+                  </td>
+                <td>
+                    <input
+                      class="form-control"
+                      type="text"
+                      mwlFlatpickr
+                      [(ngModel)]="event.start"
+                      (ngModelChange)="refresh.next()"
+                      [altInput]="true"
+                      [convertModelValue]="true"
+                      [enableTime]="true"
+                      dateFormat="Y-m-dTH:i"
+                      altFormat="F j, Y H:i"
+                      placeholder="Not set">
+                  </td>
+                <td>
+                    <input
+                      type="color"
+                      [(ngModel)]="event.color.primary"
+                      (change)="refresh.next()">
+                  </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="event.title"
+                  (keyup)="refresh.next()">
+              </td>
+              
+              <!-- <td>
+                <input
+                  type="color"
+                  [(ngModel)]="event.color.secondary"
+                  (change)="refresh.next()">
+              </td> -->
+              
+              
+              
+            </tr>
+          </tbody>
+      
+        </table>
+      </div>
+  <!-- <div class="row"> -->
+      
+  <!-- <div class="col-md-6"> -->
     <div class="row text-center">
       <div class="col-md-4">
         <div class="btn-group">
@@ -106,99 +203,13 @@
       (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-day-view>
   </div>
-  </div>
-  <div class="col-md-6">
+  <!-- </div> -->
+  <!-- <div class="col-md-6"> -->
       <!-- <h5>
           הוספת אירועים
       </h5>   -->
-  <h3>
-   
-    <button class="btn btn-primary pull-left btn-sm" (click)="addEvent()">
-      הוסף
-    </button>
-    <div class="clearfix"></div>
-    
-  </h3>
-
-  <table class="table table-bordered">
-
-    <thead>
-      <tr>
-        <th>הסר</th>
-        <th>ת. סיום</th>
-        <th>ת. התחלה</th>
-        <th>צבע</th>
-        <th>כותרת</th>
-        
-        <!-- <th>Secondary color</th> -->
-
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let event of events; let index = index">
-          <td>
-              <button
-                class="btn btn-danger"
-                (click)="events.splice(index, 1); refresh.next()">
-                מחק
-              </button>
-            </td>
-          <td>
-              <input
-                class="form-control"
-                type="text"
-                mwlFlatpickr
-                [(ngModel)]="event.end"
-                (ngModelChange)="refresh.next()"
-                [altInput]="true"
-                [convertModelValue]="true"
-                [enableTime]="true"
-                dateFormat="Y-m-dTH:i"
-                altFormat="F j, Y H:i"
-                placeholder="Not set">
-            </td>
-          <td>
-              <input
-                class="form-control"
-                type="text"
-                mwlFlatpickr
-                [(ngModel)]="event.start"
-                (ngModelChange)="refresh.next()"
-                [altInput]="true"
-                [convertModelValue]="true"
-                [enableTime]="true"
-                dateFormat="Y-m-dTH:i"
-                altFormat="F j, Y H:i"
-                placeholder="Not set">
-            </td>
-          <td>
-              <input
-                type="color"
-                [(ngModel)]="event.color.primary"
-                (change)="refresh.next()">
-            </td>
-        <td>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="event.title"
-            (keyup)="refresh.next()">
-        </td>
-        
-        <!-- <td>
-          <input
-            type="color"
-            [(ngModel)]="event.color.secondary"
-            (change)="refresh.next()">
-        </td> -->
-        
-        
-        
-      </tr>
-    </tbody>
-
-  </table>
-  </div>
-  </div>
+ 
+  <!-- </div> -->
+  
+  <!-- </div> -->
 </div>
