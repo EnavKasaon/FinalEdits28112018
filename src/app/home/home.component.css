@@ -203,3 +203,10 @@ ul li.checked::before {
 h3{
     text-align: center;
 }
+.col-md-7{
+    display: flex;
+    align-items: center;
+}
+.list-group{
+    margin-right:100px;
+}

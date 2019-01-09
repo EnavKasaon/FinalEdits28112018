@@ -14,11 +14,53 @@
           <h1 class="display-4" dir= "rtl">אחווה וחסד</h1> 
 </div> -->
 <br>
-  <img src="assets/images/logo-ahva-600_268.png" class="rounded mx-auto d-block" height="160" ><br>
+<div class="row">
+    <div class="col-md-2">
+  </div>
+  <div class="col-md-7">
+      <div class="media">
+          <img class="align-self-center mr-3" src="assets/images/logo-ahva-600_268.png" height="70" alt="Generic placeholder image">
+          <div class="media-body">
+            <h1 class="mt-0"> ניהול עמותת אחווה וחסד</h1>
+          </div>
+        </div>
+      <!-- <div class="center">
+          <img src="assets/images/logo-ahva-600_268.png"  height="80" ><h1 style="display: inline;"> ניהול עמותת אחווה וחסד</h1>
+      </div> -->
+        <!-- -->
+</div>
+  <div class="col-md-3">
+      <div class="text-center">
+        <div  class="mb-1">
+          <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">לוח שנה</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">משימות</a>
+          </div>
+        </div>
+      </div>
+   </div>
+</div>
 <hr>
+
 <br>
 <div class="container">
     <h3>משימות ולוחות זמנים</h3><br>
+    <!-- <div class="row"> -->
+        <!-- <div class="col-10"> -->
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                  <app-calendar-home-page></app-calendar-home-page>
+              </div>
+              <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                  <app-todolist></app-todolist>
+              </div>
+              </div>
+          <!-- </div> -->
+      
+      
+    <!-- </div> -->
+
+<!-- 
     <div id="accordion">
             <div class="card">
                     <div class="card-header" id="headingTwo">
@@ -51,7 +93,7 @@
             </div>
             
             
-          </div>
+          </div> -->
     <!-- <nav class="nav nav-pills nav-fill">
             <a class="nav-item nav-link active" data-toggle="collapse" href="#calendar" role="button" aria-expanded="false" aria-controls="calendar">לוח שנה</a>
             <a class="nav-item nav-link" data-toggle="collapse" href="#tasks" role="button" aria-expanded="false" aria-controls="tasks">משימות</a>    

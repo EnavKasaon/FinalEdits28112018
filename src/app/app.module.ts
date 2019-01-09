@@ -49,6 +49,7 @@ import { AgoraComponent } from './agora/agora.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { DataTablesModule } from 'angular-datatables';
 import { ViewTableComponent } from './view-table/view-table.component';
+import {ExcelService} from './services/excel.service';
 
 
 
@@ -115,6 +116,9 @@ import { ViewTableComponent } from './view-table/view-table.component';
        // agora path
        {  path: 'agora', 
        component: AgoraComponent  },
+       
+       {  path: 'view-orders-types', 
+       component: ViewOrdersTypesComponent  },
       
       // family path
       {  path: 'family',
@@ -217,7 +221,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
     SupplierService,
     VolunteerService,
     FamilyService,
-   // ExcelService,
+    ExcelService,
     appSettings
   ],
   bootstrap: [AppComponent]

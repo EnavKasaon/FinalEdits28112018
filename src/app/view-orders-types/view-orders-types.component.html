@@ -1,32 +1,32 @@
-<table mdbTable class="table table-hover">
-    <caption>List of users</caption>
+
+<br><app-header [name]="'ניהול הזמנות'" [titleIcon]="'fa fa-shopping-cart'"
+[action]="''"></app-header>
+
+<div class="container">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-          <th scope="col">פעולות</th>
+      <tr>
+        <th width="40%">פעולות</th>
+        <th width="60%">סוג הזמנה</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="suppliers?.length != 0">
+      <tr>
+        <!-- <tr *ngFor="let sup of suppliers"> -->
+            <td>
+              <button class="btn btn-danger btn-sm">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+              <button class="btn btn btn-primary btn-sm">עריכה <i class="fas fa-edit"></i></button>&nbsp;
+              <button class="btn btn btn-secondary btn-sm">צפייה <i class="far fa-eye"></i></button>&nbsp;
+              <button class="btn btn-success btn-sm">הוספת הזמנה מסוג זה <i class="fas fa-plus"></i></button>
+            </td>
+            <!-- <td>{{ sup.SupplierType }}</td> -->
+            <td>הזמנה קבועה חגים</td>
         </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
+    </tbody>
+    <tbody *ngIf="suppliers?.length == 0">
+      <tr>
+        <td colspan="3" class="no-data-available">!אין נתונים</td>
+      </tr>
+    <tbody>
   </table>
+  </div>

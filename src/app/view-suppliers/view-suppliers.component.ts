@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Supplier } from '../models/Supplier';
 import { SupplierService } from '../services/suppliers.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ExcelService } from '../services/excel.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ViewSuppliersComponent implements OnInit {
   alertType: string;
   alertMsg: string;
   
-    constructor(private _supplierService:SupplierService) { 
+    constructor(private _supplierService:SupplierService, private excelService:ExcelService) { 
       
     }
    
@@ -62,40 +63,10 @@ export class ViewSuppliersComponent implements OnInit {
  });
   
   }
-//   downloadFile(data: any) {
-//     var csvData = this.ConvertToCSV(this.supplierDetails);
-//     var blob = new Blob([csvData], { type: 'text/csv' });
-//     var url = window.URL.createObjectURL(blob);
-  
-//     if(navigator.msSaveOrOpenBlob) {
-//       navigator.msSaveBlob(blob, "suppliers");
-//     } else {
-//       var a = document.createElement("a");
-//       a.href = url;
-//       a.download = 'ETPHoldReview.csv';
-//       document.body.appendChild(a);
-//       a.click();
-//       document.body.removeChild(a);
-//     }
-//     window.URL.revokeObjectURL(url);
-// }
+
 
 downloadFile(data: any) {
-  const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
-  const header = Object.keys(data[0]);
-  let csv = data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
-  csv.unshift(header.join(','));
-  let csvArray = csv.join('\r\n');
-
-  var a = document.createElement('a');
-  var blob = new Blob([csvArray], {type: 'text/csv' }),
-  url = window.URL.createObjectURL(blob);
-
-  a.href = url;
-  a.download = "AllSuppliers.csv";
-  a.click();
-  window.URL.revokeObjectURL(url);
-  a.remove();
+  this.excelService.exportAsExcelFile(data, 'ספקים');
 }
 
 ConvertToCSV(objArray: any): string {
