@@ -1,4 +1,4 @@
-<div class="text-center">
+<!-- <div class="text-center"> -->
 <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     משימות <span class="badge badge-light">3</span>
   </button> -->
@@ -6,8 +6,15 @@
       <div  class="mb-1">
           <!-- class="card card-body" -->
       <form  #todoForm= "ngForm" (ngSubmit)="todoSubmit(todoForm.value)">
+         
           <!-- *ngIf="show" -->
        <h1 class="text-center text-primary">משימות</h1>
+       <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button" (click)="addTodo(todo.value)" id="button-addon1"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+          <input #todo type="text" name="todo" class="form-control" placeholder="משימה חדשה" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
        <div class="list-group">
           <a *ngFor="let todo of todoArray" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
@@ -28,6 +35,6 @@
       </form>
     </div>
     <!-- </div> -->
-</div>
+<!-- </div> -->
 <br>
  
