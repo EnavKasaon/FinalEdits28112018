@@ -26,6 +26,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatMenuModule} from '@angular/material/menu';
 import {SupplierService} from './services/suppliers.service';
 import {VolunteerService} from './services/volunteers.service';
+import {LoginService} from './services/login.service';
 import { HttpClientModule  } from '@angular/common/http';
 import { appSettings } from './app.settings';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
@@ -199,6 +200,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
     SupplierService,
     VolunteerService,
     FamilyService,
+    LoginService,
     // ExcelService,
     appSettings
   ],

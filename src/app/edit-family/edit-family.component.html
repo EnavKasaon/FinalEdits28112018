@@ -1,25 +1,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">  </div>
+</ng-template>
+
+<br>
+
 <!-- Family Form -->
 <app-header [name]="'משפחות נתרמות'" [titleIcon]="'fa fa-address-card-o TitleIcon'"
 [action]="'עריכה'"></app-header>
 
  
-<div class="container">
-    <div class="col-md-8 col-md-offset-2">
-           
-        <!-- Alert -->
-             <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                    <a href="edit-family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                     <strong>{{ alertMsg }}</strong>
-               </div>
+<div class="container"> 
+    <div class="col-md-8 offset-md-2">
+
 
        <!-----Choose Familiy form------>
-       <div class="row">
-           <div class="col-md-6 col-md-offset-6">
-                <form #myForm2 = "ngForm" (ngSubmit) = "ChooseFamiliy(myForm2)">
-                    
+                <form #myForm2 = "ngForm">     
                     
                     <!-----Choose Familiy --> 
                     <div class="form-group">
@@ -30,12 +30,13 @@
                             </select>
                         </div>
                 </form>
-            </div>
-        </div>
         <!---END-->
-        <hr>
-        <form #myForm1 = "ngForm" (ngSubmit)= "editFamily(myForm1)">
-                <div class="row">
+        <hr> <br>
+        <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
+        
+        <form #myForm1 = "ngForm" (ngSubmit)= "EditFamily()" *ngIf="selectedFam.familyId">  
+
+             <div class="row">
                         <div class="col-md-6">
                                 
                                 <!-----Date--> 
@@ -129,6 +130,15 @@
                 </div>
         <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button>
     
-        </form>
+    </form> 
+        <br>
+           
+        <!-- Alert -->
+        <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+            <a href="edit-family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             <strong>{{ alertMsg }}</strong>
+      
+             
+            </div>
+        </div>
     </div>
-</div>
