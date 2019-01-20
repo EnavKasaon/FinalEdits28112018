@@ -14,15 +14,15 @@ export class Family {
     joinDate: Date;
     familyType: string;
     basketType: string;
-    house: boolean;
-    car: boolean;
-    debt: boolean; 
-    payChecks: boolean;
-    bituahLeumi: boolean;
-    bankAccount: boolean; 
-    creditCard: boolean;
-    copyId: boolean;
-    rentContract: boolean; 
+    house: Boolean;
+    car: Boolean;
+    debt: Boolean; 
+    payChecks: Boolean;
+    bituahLeumi: Boolean;
+    bankAccount: Boolean; 
+    creditCard: Boolean;
+    copyId: Boolean;
+    rentContract: Boolean; 
 
 
     public constructor(init?: Partial< Family >) {

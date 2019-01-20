@@ -1,19 +1,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">  </div>
+</ng-template>
+
+<br> 
+
 <!-- Family Form -->
 <app-header [name]="'משפחות נתרמות'" [titleIcon]="'fa fa-address-card-o TitleIcon'"
 [action]="'צפיה'"></app-header>
 
  
 <div class="container">
-    <div class="col-md-8 col-md-offset-2">
-        
+    <div class="col-md-8 offset-md-2">
+         
 
        <!-----Choose Familiy form------>
-       <div class="row">
-           <div class="col-md-6 col-md-offset-6">
-                <form #myForm2 = "ngForm" (ngSubmit) = "ChooseFamiliy(myForm2)">
+                <form #myForm2 = "ngForm">
                     
                     
                     <!-----Choose Familiy --> 
@@ -24,20 +29,23 @@
                                             {{fam.firstName}}</option>
                             </select>
                         </div>
-                </form>
-            </div>
-        </div>
+                </form>   
         <!---END-->
+
+
         <hr>
-        <form #myForm1 = "ngForm" (ngSubmit)= "editFamily(myForm1)">
-                <div class="row">
+        <br>
+         <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
+       
+         <!-- The form -->
+         <form #myForm1 = "ngForm" (ngSubmit)= "viewFamily()" *ngIf="selectedFam.familyId">  
+            <div class="row">
                         <div class="col-md-6">
                                 
                                 <!-----Date--> 
                                 <div class="form-group">
                                         <label>:תאריך הצטרפות</label>
-                                        <input #joinDate type="date" name = "joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control" disabled>     
-
+                                        <input #joinDate type="date" name = "joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control" disabled>     
                                  </div>
                                <br>
                                 <!-----Familiy type--> 

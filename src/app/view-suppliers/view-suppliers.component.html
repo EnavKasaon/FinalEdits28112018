@@ -8,12 +8,14 @@
 <br>
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
 [action]="'צפייה'"></app-header>
-<div class="container">   
+<div class="container"> 
+
         <!-- <app-view-table></app-view-table>     -->
+        <!-- Excel -->
         <div class="col-md-6 offset-md-3">
-            
            <button class="btn btn-primary" (click)= "downloadFile(supplierDetails)">ייצוא כל הספקים לאקסל</button>
-            <!-----Choose Suppliers ------>
+           
+           <!-----Choose Suppliers ------>
             <!-- <div class="row"> -->
                     <!-- <div class="col-md-6"> -->
                         <form #vf = "ngForm">

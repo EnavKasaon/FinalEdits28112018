@@ -29,14 +29,14 @@ export class FamilyService {
 
   public getFamily (id:number): Observable<Family>{  
    console.log("Family ID: "+id);
-    return this._http.get<Family>(`${this._appSettings.serverBaseUrl}/api/Family/GetFamilyrByID/?id=${id}`);
+    return this._http.get<Family>(`${this._appSettings.serverBaseUrl}/api/Family/GetFamilyByID/?id=${id}`);
  
    };
 
    public deleteFamily (id:number): Observable<any>{  
     console.log("Family ID: "+id);
      return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Family/Delete/?id=${id}`);
-  
+   
     };
     public UpdateFamily(family:Family): Observable<any>{
     const body = JSON.stringify(family);

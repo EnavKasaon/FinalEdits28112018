@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FamilyService } from '../services/families.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-remove-family',
@@ -9,8 +11,12 @@ import { FamilyService } from '../services/families.service';
 export class RemoveFamilyComponent implements OnInit {
 
   familyDetails:any =  [];
-  selectedFamily: number;
   ansFromServer: any;
+  arr: any = [];
+  public stopLoading = false;
+  selectedFamily: number;
+  alertType: string;
+  alertMsg: string;
 
   constructor(private _familyService:FamilyService) { }
 
@@ -26,10 +32,21 @@ export class RemoveFamilyComponent implements OnInit {
     // Delete family
     DeleteFamily(form){
       console.log(this.selectedFamily);
+      this.stopLoading = true;
       this._familyService.deleteFamily(this.selectedFamily)
-      .subscribe((data)=>{
-        this.ansFromServer = data;
-        console.log("success");
-        });
-    } 
-}
+      .subscribe((result)=>{
+        this.ansFromServer = result;
+        this.stopLoading = false;
+        if(this.ansFromServer != -1){
+          this.alertType = "success";
+          this.alertMsg ="המשפחה נמחקה בהצלחה!";
+        } 
+        else {
+          this.alertType = "danger";
+          this.alertMsg ="מחיקת המשפחה נכשלה.";
+        }
+          console.log(this.ansFromServer);
+   }); 
+    }
+  }
+  

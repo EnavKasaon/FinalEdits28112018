@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Supplier } from '../models/Supplier';
 import { SupplierService } from '../services/suppliers.service';
-import { Router, RouterModule } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-suppliers',
@@ -42,7 +40,7 @@ alertMsg: string;
       if(this.ansFromServer != -1){
         this.alertType = "success";
         this.alertMsg ="הספק הוזן בהצלחה!";
-      }
+      } 
       else{
         this.alertType = "danger";
         this.alertMsg ="הוספת הספק נכשלה.";

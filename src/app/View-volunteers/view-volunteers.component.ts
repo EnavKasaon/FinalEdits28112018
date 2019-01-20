@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Volunteer } from '../models/Volunteer';
 import { VolunteerService } from '../services/volunteers.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-view-volunteers',
@@ -13,6 +15,7 @@ export class ViewVolunteersComponent implements OnInit {
   volunteerDetails:any =  [];
   ansFromServer: any;
   arr: any = []; 
+  public stopLoading = false;
   selectedVol : Volunteer = new Volunteer;
   alertType: string;
   alertMsg: string;
@@ -20,20 +23,25 @@ export class ViewVolunteersComponent implements OnInit {
   constructor(private _volunteerService:VolunteerService) { }
 
   ngOnInit() { 
+    this.stopLoading=false;
     this.volunteerDetails = [];
     this._volunteerService.getVolunteerName().subscribe((data: {}) => {
      console.log(data[0].VolunteerFName);
       this.volunteerDetails = data;
     });
     console.log(this.volunteerDetails.VolunteerFName);
+    this.stopLoading = false;
+
    // this.newSupp.ID= 0;
   }
 
       // choose the drop down
       onChange(VolunteerId) {
+        this.stopLoading = true;
         console.log(VolunteerId);
         this._volunteerService.getVolunteer(VolunteerId).subscribe((data: {}) => {
            this.selectedVol = new Volunteer(data);
+           this.stopLoading = false;
            console.log(this.selectedVol.VolunteerFName);      
         });
     }

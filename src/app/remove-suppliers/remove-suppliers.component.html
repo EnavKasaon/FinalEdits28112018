@@ -1,14 +1,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">  </div>
+</ng-template>
+
+<br><br>
+
 <!-- Supplier Form --> 
 <br>
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
 [action]="'מחיקה'"></app-header>
 
-<!-----Remove Familiy form------>
+<!-----Remove Familiy form------> 
 <div class="container">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 offset-md-3"> 
              <form  #myForm2 = "ngForm" (ngSubmit) = "DeleteSupplier(myForm2)">
                  
                  <!-----Choose Familiy --> 
@@ -23,6 +30,9 @@
                 <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>
         </form>
 
+        <!-- loading -->
+        <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
+<br>
                 <!-- alert -->
                 <div class = "div-horizontal">
                     <div *ngIf="ansFromServerRemoveSup"  class="alert alert-{{ alertType }} alert-dismissible">

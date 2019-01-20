@@ -7,7 +7,7 @@ label {
     width:100%;
  }
 
-
+ 
 form {
      overflow: hidden;
 }
@@ -37,3 +37,8 @@ textarea{
 
 }
 
+
+.div-horizontal * {
+    text-align: right;
+    direction: rtl;
+}

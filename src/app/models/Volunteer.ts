@@ -5,7 +5,7 @@ export class Volunteer {
     VolunteerLName:string;
     vPhone:string;
     BirthDate:Date;
-    VolunteerType: string;
+    VolunteerType: string; 
    
 
     public constructor(init?: Partial< Volunteer >) {

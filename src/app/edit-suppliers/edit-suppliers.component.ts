@@ -25,7 +25,7 @@ export class EditSuppliersComponent implements OnInit {
     }
    
     // kind of constructor
-    ngOnInit() {
+    ngOnInit() { 
       this.supplierDetails = [];
       this._supplierService.getSupplierName().subscribe((data: {}) => {
        console.log(data[0].companyName);

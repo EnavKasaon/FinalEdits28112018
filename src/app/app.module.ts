@@ -9,19 +9,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { VolunteersComponent } from './volunteers/volunteers.component';
 import { InventoryManagementComponent } from './inventory-management/inventory-management.component';
-import { PackagesComponent } from './packages/packages.component';
 import { FilesComponent } from './files/files.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { EditFamilyComponent } from './edit-family/edit-family.component';
 import { EditInventoryComponent } from './edit-inventory/edit-inventory.component';
-import { EditPackagesComponent } from './edit-packages/edit-packages.component';
 import { EditSuppliersComponent } from './edit-suppliers/edit-suppliers.component';
 import { EditVolunteersComponent } from './edit-volunteers/edit-volunteers.component';
 import { RemoveFamilyComponent } from './remove-family/remove-family.component';
 import { RemoveFilesComponent } from './remove-files/remove-files.component';
 import { RemoveInventoryComponent } from './remove-inventory/remove-inventory.component';
-import { RemovePackagesComponent } from './remove-packages/remove-packages.component';
 import { RemoveSuppliersComponent } from './remove-suppliers/remove-suppliers.component';
 import { RemoveVolunteersComponent } from './remove-volunteers/remove-volunteers.component';
 import { MyCommonModule } from './common/mycommon.mudule';
@@ -61,19 +58,16 @@ import { ViewTableComponent } from './view-table/view-table.component';
     SuppliersComponent,
     VolunteersComponent,
     InventoryManagementComponent,
-    PackagesComponent,
     FilesComponent,
     LoginComponent,
     FooterComponent,
     EditFamilyComponent,
     EditInventoryComponent,
-    EditPackagesComponent,
     EditSuppliersComponent,
     EditVolunteersComponent,
     RemoveFamilyComponent,
     RemoveFilesComponent,
     RemoveInventoryComponent,
-    RemovePackagesComponent,
     RemoveSuppliersComponent,
     ViewSuppliersComponent,
     ViewFamilyComponent,
@@ -81,7 +75,6 @@ import { ViewTableComponent } from './view-table/view-table.component';
     RemoveVolunteersComponent,
     AngularCalendarComponent,
     TodolistComponent,
-   // HelloComponent,
     ViewOrdersTypesComponent,
     AgoraComponent,
     ViewTableComponent,
@@ -130,11 +123,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
          
       // inventory-management path
       { path: 'inventory-management',
-        component: InventoryManagementComponent },        
-        
-      // Packages path
-      { path: 'packages',
-        component: PackagesComponent }, 
+        component: InventoryManagementComponent },       
         
       // files path
       { path: 'files',
@@ -154,10 +143,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
       // edit-inventory path
       {  path: 'edit-inventory',
         component: EditInventoryComponent  }, 
-        
-      // edit-packages path
-      { path: 'edit-packages',
-        component: EditPackagesComponent }, 
+
         
       // edit-suppliers path
       { path: 'edit-suppliers',
@@ -178,10 +164,6 @@ import { ViewTableComponent } from './view-table/view-table.component';
       // remove-inventory path
       { path: 'remove-inventory',
         component: RemoveInventoryComponent },
-        
-      // remove-packages path
-      { path: 'remove-packages',
-        component: RemovePackagesComponent },
         
       // remove-suppliers path
       { path: 'remove-suppliers',
@@ -217,7 +199,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
     SupplierService,
     VolunteerService,
     FamilyService,
-   // ExcelService,
+    // ExcelService,
     appSettings
   ],
   bootstrap: [AppComponent]
