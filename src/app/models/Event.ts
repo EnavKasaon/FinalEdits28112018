@@ -1,5 +1,7 @@
 export class Event {
-    task_id: number;
-    task_desc:string;
-    task_status:boolean;
+    event_id: number;
+    event_desc:string;
+    start_date:Date;
+    end_date:Date;
+    color: string;
 }
