@@ -3,6 +3,7 @@ import { Volunteer } from '../models/Volunteer';
 import { VolunteerService } from '../services/volunteers.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
+import { ExcelService } from '../services/excel.service'; 
 
 @Component({
   selector: 'app-view-volunteers',
@@ -20,7 +21,7 @@ export class ViewVolunteersComponent implements OnInit {
   alertType: string;
   alertMsg: string;
 
-  constructor(private _volunteerService:VolunteerService) { }
+  constructor(private _volunteerService:VolunteerService, private excelService:ExcelService) { }
 
   ngOnInit() { 
     this.stopLoading=false;
@@ -57,6 +58,34 @@ export class ViewVolunteersComponent implements OnInit {
       this.ansFromServer = data;
         console.log("success"); 
  });
-  
   }
+  
+downloadFile(data: any) {
+  this.excelService.exportAsExcelFile(data, 'מתנדבים');
+}
+
+ConvertToCSV(objArray: any): string {
+  var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+  var str = '';
+  var row = "";
+
+  for (var index in objArray[0]) {
+      //Now convert each value to string and comma-separated
+      row += index + ',';
+  }
+  row = row.slice(0, -1);
+  //append Label row with line break
+  str += row + '\r\n';
+
+  for (var i = 0; i < array.length; i++) {
+      var line = '';
+      for (var index in array[i]) {
+          if (line != '') line += ','
+
+          line += array[i][index];
+      }
+      str += line + '\r\n';
+  }
+  return str;
+}
 }

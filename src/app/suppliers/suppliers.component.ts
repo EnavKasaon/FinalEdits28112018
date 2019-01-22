@@ -39,7 +39,7 @@ alertMsg: string;
       this.stopLoading = false;
       if(this.ansFromServer != -1){
         this.alertType = "success";
-        this.alertMsg ="הספק הוזן בהצלחה!";
+        this.alertMsg ="הספק הוזן בהצלחה!"; 
       } 
       else{
         this.alertType = "danger";

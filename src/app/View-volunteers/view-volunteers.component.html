@@ -14,6 +14,9 @@
     <div class="container">
             <div class="col-md-8 offset-md-2">
 
+                <!-- Excel -->
+                <button class="btn btn-primary" (click)= "downloadFile(volunteerDetails)">ייצוא כל המתנדבים לאקסל</button>
+
                 <!-----Choose Volunteer form------>
                          <form #myForm1 = "ngForm" >
 
@@ -27,7 +30,7 @@
                                  </div>
                          </form>
                  <!---END-->
-
+ 
                  <hr>
                  <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
  
