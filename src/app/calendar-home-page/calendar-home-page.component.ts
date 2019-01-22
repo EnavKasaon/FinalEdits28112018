@@ -23,6 +23,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+import { EventsService } from '../services/events.service';
 
 const colors: any = {
   red: {
@@ -121,7 +122,33 @@ export class AngularCalendarComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private _eventService : EventsService) {}
+
+  loadDataFromServer(){
+
+    this._eventService.loadAll().subscribe((data: {}) => {
+     
+      //  for(let i=0; i< data.; i++){
+        console.log(data[0].event_desc);
+        this.events.push( {
+          start: data[0].start_date,
+          end: data[0].end_date,
+          title: data[0].event_desc,
+          color: colors.yellow,
+          actions: this.actions,
+          allDay: true,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true
+          },
+          draggable: true
+         });
+      // }
+      
+     });
+   }
+
+   
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -135,6 +162,12 @@ export class AngularCalendarComponent {
         this.activeDayIsOpen = true;
       }
     }
+  }
+  ngOnInit(){
+    this.loadDataFromServer();
+  }
+  trackByFn(index, item) {
+    return index; // or item.id
   }
 
   eventTimesChanged({

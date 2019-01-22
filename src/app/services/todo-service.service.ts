@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
+// import { BehaviorSubject } from 'rxjs';
+import { HttpResponse, HttpClient, HttpHeaders, HttpHeaderResponse} from '@angular/common/http';
+import { Observable } from "rxjs/Observable";
+import {appSettings} from '../app.settings';
+
+
+import {Task} from '../models/Task' 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { catchError, retry, map } from 'rxjs/operators';
 
 @Injectable() 
 export class TodoService {
-  private _todos: BehaviorSubject<string[]>; 
+  // private _todos: BehaviorSubject<string[]>; 
   private baseUrl: string;
   private dataStore: {  // This is where we will store our data in memory
     todos: string[]
   };
     
   // Using Angular DI we use the HTTP service
-  constructor(private http: HttpClient) {
-    this.baseUrl  = "http://localhost:4200";
-    this.dataStore = { todos: [] };
-    this._todos = <BehaviorSubject<string[]>>new BehaviorSubject([]);
+  constructor(private _http: HttpClient, private _appSettings: appSettings) {
   }
   
-  get todos() {
-    return this._todos.asObservable();
+  public insertTask(task:Task): Observable<any>{
+    const body = JSON.stringify(task);
+    const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+    return this._http.post(`${this._appSettings.serverBaseUrl}/api/Task/Insert`, body , headerOptions);
+}
+  public loadAll(): Observable<Task> {
+    return this._http.get<Task>(`${this._appSettings.serverBaseUrl}/api/Task/GetAllTasks`);
   }
-    
-  loadAll() {
-    this.http.get(`${this.baseUrl}/todos`).subscribe(data => {
-      this.dataStore.todos = String.arguments(data);
-      this._todos.next(Object.assign({}, this.dataStore).todos);
-    }, error => console.log('Could not load todos.'));
-  }
-  saveAll( updated :string[]){
-    this.http.post(`${this.baseUrl}/todos`, JSON.stringify(updated)).subscribe(data => {
-      this.dataStore.todos = updated;
-      this._todos.next(Object.assign({}, this.dataStore).todos);
-    }, error => console.log('Could not create todo.'));
-  }
+  public deleteTask (id:number): Observable<any>{  
+    console.log("Task ID: "+id);
+     return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Task/Delete/?id=${id}`);
+    }
 }

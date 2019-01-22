@@ -32,6 +32,7 @@ import { appSettings } from './app.settings';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FamilyService } from './services/families.service';
+import { TodoService } from './services/todo-service.service';
 import { ViewSuppliersComponent } from './view-suppliers/view-suppliers.component';
 import { ViewFamilyComponent } from './view-family/view-family.component';
 import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.component';
@@ -201,7 +202,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
     VolunteerService,
     FamilyService,
     LoginService,
-    // ExcelService,
+    TodoService,
     appSettings
   ],
   bootstrap: [AppComponent]

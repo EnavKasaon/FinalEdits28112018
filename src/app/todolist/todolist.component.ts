@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../services/todo-service.service';
+import { Task } from '../models/Task';
 
 @Component({
   selector: 'app-todolist',
@@ -7,46 +9,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodolistComponent implements OnInit {
 
-  todoArray=[
-    "שליחת הזמנה לשופרסל",
-    "הזנת טפסי משפחות",
-    "שמירת רשימות"
-  ];
+ 
+  todoArray: any =[];
   show: boolean = false;
-  constructor() { }
-
-  ngOnInit() {
-    this.show = false;
-  }
-  clickTodo(){
-    if(!this.show){
-      this.show = true;
-    }
-    else{
-      this.show = false;
-    }
+  constructor(private _todoService:TodoService) { 
     
   }
-  addTodo(value){
-    this.todoArray.push(value)
-    console.log(this.todoArray)
+  trackByFn(index, item) {
+    return index; // or item.id
+  }
+ loadData(){
+  this._todoService.loadAll().subscribe((data: {}) => {
+     this.todoArray = data;
+   });
+ }
+  ngOnInit() {
+    this.show = false;
+    this.loadData();
+  }
+  
+  addTodo(todo){
+    var task = new Task();
+    task.task_id=0;
+    task.task_desc=todo;
+    var ans: any;
+    this._todoService.insertTask(task)
+    .subscribe((res)=>{
+      ans = res;
+      console.log(ans);
+    });
+    this.loadData();
+    
   }
   /*delete item*/
   deleteItem(todo){
-    for(let i=0 ;i<= this.todoArray.length ;i++){
-     if(todo== this.todoArray[i]){
-      this.todoArray.splice(i,1)
-     }
-    }
+    var ans: any;
+    this._todoService.deleteTask(todo.task_id)
+    .subscribe((res)=>{
+      ans= res;
+      console.log(ans);
+    });
+    this.loadData();
    }
- // submit Form
- todoSubmit(value:any){
-  if(value!==""){
- this.todoArray.push(value.todo)
-  //this.todoForm.reset()
- }else{
-   alert('Field required **')
- }
- 
-}
+
 }
