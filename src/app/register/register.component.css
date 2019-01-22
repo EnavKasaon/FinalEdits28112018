@@ -91,7 +91,6 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
-
 /* body { */
   /* background: #76b852; fallback for old browsers */
   /* background: -webkit-linear-gradient(right, #76b852, #8DC26F); */
@@ -101,7 +100,6 @@
   /* -webkit-font-smoothing: antialiased; */
   /* -moz-osx-font-smoothing: grayscale;       */
 /* } */
-
 .form-fields{
     width: 200px;
     text-align: right;
@@ -125,10 +123,9 @@ h2 {
   font-size: 30px;
 }
 
-
-#moveToRegister {
+#backToLogin {
   position: absolute;
-  left: 155px;
+  left: 165px;
   /* text-align: center; */
   color:black;
   font-family: 'Varela Round', sans-serif ;

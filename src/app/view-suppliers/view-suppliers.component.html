@@ -1,5 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
+
 <ng-template #customLoadingTemplate>
         <div class="custom-class">
         </div>
@@ -10,14 +11,12 @@
 [action]="'צפייה'"></app-header>
 <div class="container"> 
 
-        <!-- <app-view-table></app-view-table>     -->
         <!-- Excel -->
         <div class="col-md-6 offset-md-3">
            <button class="btn btn-primary" (click)= "downloadFile(supplierDetails)">ייצוא כל הספקים לאקסל</button>
            
            <!-----Choose Suppliers ------>
-            <!-- <div class="row"> -->
-                    <!-- <div class="col-md-6"> -->
+           
                         <form #vf = "ngForm">
                            
                             <!-----Choose Supplier --> 
@@ -30,14 +29,10 @@
                                     </select>
                                 </div>
                         </form>
-                    <!-- </div> -->
-                    <!-- <div class="col-md-6"></div> -->
-                <!-- </div> -->
+                
                 <!---END-->
                 <hr>
-
                 
-                <!-- <label>סוג ספק:  </label> -->
                 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
       
                 <div class="form-group" *ngIf="selectedSup.ID">
