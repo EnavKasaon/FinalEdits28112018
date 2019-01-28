@@ -61,6 +61,8 @@ import { ViewFamilyComponent } from './view-family/view-family.component';
 import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.component';
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
 import { ViewTableComponent } from './view-table/view-table.component';
+import { OrderTypeComponent } from './order-type/order-type.component';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -93,6 +95,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
     ViewOrdersTypesComponent,
     AgoraComponent,
     ViewTableComponent,
+    OrderTypeComponent,
     
   ],
   
@@ -100,6 +103,8 @@ import { ViewTableComponent } from './view-table/view-table.component';
     BrowserModule,
     FormsModule,
     MyCommonModule,
+    //FormBuilder,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatDatepickerModule,
@@ -122,6 +127,9 @@ import { ViewTableComponent } from './view-table/view-table.component';
        // agora path
        {  path: 'agora', 
        component: AgoraComponent  },
+        // agora path
+        {  path: 'order-type', 
+        component: OrderTypeComponent  },
       
       // family path
       {  path: 'family',
