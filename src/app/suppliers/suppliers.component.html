@@ -10,42 +10,90 @@
 <br>
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
 [action]="'הוספה'"></app-header> 
+
 <div class="container"> 
   <div class="col-md-8 offset-md-2">
 
     <!-- Loading -->
         <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
               
-      <form #f = "ngForm" (ngSubmit)= "insertSupplier()" accept-charset="UTF-8" >
-        
+      <form [formGroup]="registerForm" #f = "ngForm" (ngSubmit)= "insertSupplier()" accept-charset="UTF-8" >
+
         <!-- Dropdown -->
           <div class="form-group">
               <label>:ספק</label>
-              <select #Type dir= "rtl" name="SupplierChooseType" ngModel [(ngModel)]="newSupp.SupplierType" name= "Type" class= "form-control">
+              <select #Type dir= "rtl" name="SupplierType" id="SupplierType" formControlName="SupplierType"  class= "form-control"  [ngClass]="{ 'is-invalid': submitted && f.SupplierType.errors }" aria-describedby="inputGroupPrepend2">
                   <option value="רגיל" >רגיל</option>
                   <option value="תורם" >תורם</option>
+                  <div *ngIf="submitted && f.SupplierType.errors" class="invalid-feedback">
+                      <div *ngIf="f.SupplierType.errors.required">Contact Phone is required</div></div>
               </select>
             </div>
             
         <div class="row">
 
            <div class="col-md-6">
-                <input #ContactPerson type="text" ngModel [(ngModel)]="newSupp.ContactPerson" name = "ContactPerson" id="contactName" placeholder="שם איש קשר" class= "form-control"> <br><br>
-                <input #ContactPhone type="number" ngModel [(ngModel)]="newSupp.ContactPhone" name = "ContactPhone" id="contactPhone" placeholder="טלפון איש קשר" class= "form-control">        
-           </div>
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                  </div>
+
+                  <div class="form-group">
+                <input #ContactPerson type="text" formControlName="ContactPerson" name = "ContactPerson" id="contactName" placeholder="שם איש קשר" class= "form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPerson.errors }" aria-describedby="inputGroupPrepend2" > </div>
+                <div *ngIf="submitted && f.ContactPerson.errors" class="invalid-feedback">
+                    <div *ngIf="f.ContactPerson.errors.required">Contact Person is required</div>
+                </div>
+              </div>
+                <small dir= "rtl" id="passwordHelpBlock" class="form-text text-muted">
+                  אנא הכנס את שם איש הקשר
+                </small><br><br>
+                <div class="form-group">
+                <input #ContactPhone type="number" formControlName="ContactPhone" name = "ContactPhone" id="contactPhone" placeholder="טלפון איש קשר" class= "form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPhone.errors }" aria-describedby="inputGroupPrepend2" >        
+                <div *ngIf="submitted && f.ContactPhone.errors" class="invalid-feedback">
+                    <div *ngIf="f.ContactPhone.errors.required">Contact Phone is required</div>
+                </div>
+              </div>
+              </div>
+
 
   
 
            <div class="col-md-6">
-                <input #companyName type="text" ngModel [(ngModel)]="newSupp.companyName" name = "companyName" id="company" placeholder="שם חברה" class= "form-control">  <br><br>
-                <input #Phone type="number" ngModel [(ngModel)]="newSupp.Phone" name = "Phone" id="phone" placeholder="טלפון" class= "form-control"> <br><br>
-                <input #Fax type="number" ngModel [(ngModel)]="newSupp.Fax" name = "Fax" id="fax" placeholder="פקס" class= "form-control"> <br><br>
-                <input #GoodsType type="text" ngModel [(ngModel)]="newSupp.GoodsType" name = "GoodsType" id="goodsType" placeholder="סוג סחורה" class= "form-control"><br><br>
-           </div>
+                <input #companyName type="text" formControlName="companyName" 
+                name = "companyName" id="company" placeholder="שם חברה" class= "form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" aria-describedby="inputGroupPrepend2">  <br><br>
+                <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                    <div *ngIf="f.companyName.errors.required">Contact Phone is required</div>
+                </div>
+              </div>
+
+                <div class="form-group">
+                <input #Phone type="number" formControlName="Phone" name = "Phone" id="phone" placeholder="טלפון" class= "form-control"  [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }" aria-describedby="inputGroupPrepend2" > <br><br>
+                <div *ngIf="submitted && f.Phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.Phone.errors.required">Contact Phone is required</div>
+                </div>
+              </div>
+
+                <div class="form-group">
+                <input #Fax type="number" formControlName="Fax" name = "Fax" id="fax" placeholder="פקס" class= "form-control"  [ngClass]="{ 'is-invalid': submitted && f.Fax.errors }" aria-describedby="inputGroupPrepend2" > <br><br>
+                <div *ngIf="submitted && f.Fax.errors" class="invalid-feedback">
+                    <div *ngIf="f.Fax.errors.required">Contact Phone is required</div>
+                </div>
+              </div>
+
+                <div class="form-group">
+                <input #GoodsType type="text" formControlName="GoodsType" name = "GoodsType" id="goodsType" placeholder="סוג סחורה" class= "form-control"  [ngClass]="{ 'is-invalid': submitted && f.GoodsType.errors }" aria-describedby="inputGroupPrepend2" ><br><br>
+                <div *ngIf="submitted && f.GoodsType.errors" class="invalid-feedback">
+                    <div *ngIf="f.GoodsType.errors.required">Contact Phone is required</div>
+                </div>
+              </div>
            <br>       
              
         </div>
-        <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
+        <div class="form-group">
+          <button  class="btn btn-primary"  type= "submit">הוסף</button>
+      </div>
+        <!-- <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button> -->
     </form>
     <br>
      <!-- alert -->
@@ -57,3 +105,4 @@
      </div>
   </div>
 </div> 
+

@@ -21,6 +21,7 @@ import { TodolistComponent } from './todolist/todolist.component';
 import { AgoraComponent } from './agora/agora.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { DataTablesModule } from 'angular-datatables';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // inserts
 import { HomeComponent } from './home/home.component';
@@ -106,6 +107,7 @@ import { ViewTableComponent } from './view-table/view-table.component';
     DateValueAccessorModule,
     HttpClientModule,
     HttpModule,
+    ReactiveFormsModule,
     NgbModalModule,
     DataTablesModule,
     NgxLoadingModule.forRoot({}),
