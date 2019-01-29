@@ -1,4 +1,5 @@
 export class Product {   
+    order_type_id:number;
     product_name:string;
     amount: number; 
     comments: string;
