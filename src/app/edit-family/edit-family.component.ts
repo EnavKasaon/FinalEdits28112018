@@ -50,7 +50,7 @@ export class EditFamilyComponent implements OnInit {
     this.stopLoading = true;
     this._familyService.UpdateFamily(this.selectedFam)
     .subscribe((result) => {
-      this.ansFromServer = result;
+      this.ansFromServer = result.SuccesMsg;
       this.stopLoading = false;
       if(this.ansFromServer != -1){
         this.alertType = "success";

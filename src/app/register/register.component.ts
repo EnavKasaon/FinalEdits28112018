@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     this.stopLoading = true;
     this._registerService.insertUser(this.newUser)
     .subscribe((res) => {
-      this.ansFromServer = res;
+      this.ansFromServer = res.SuccesMsg;
       this.stopLoading = false;
       if(this.ansFromServer != -1){
         this.alertType = "success";

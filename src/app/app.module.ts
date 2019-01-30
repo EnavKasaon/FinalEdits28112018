@@ -21,6 +21,7 @@ import { TodolistComponent } from './todolist/todolist.component';
 import { AgoraComponent } from './agora/agora.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { DataTablesModule } from 'angular-datatables';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // inserts
 import { HomeComponent } from './home/home.component';
@@ -28,21 +29,18 @@ import { FamilyComponent } from './family/family.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { VolunteersComponent } from './volunteers/volunteers.component';
-import { InventoryManagementComponent } from './inventory-management/inventory-management.component';
 import { FilesComponent } from './files/files.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 // edit
 import { EditFamilyComponent } from './edit-family/edit-family.component';
-import { EditInventoryComponent } from './edit-inventory/edit-inventory.component';
 import { EditSuppliersComponent } from './edit-suppliers/edit-suppliers.component';
 import { EditVolunteersComponent } from './edit-volunteers/edit-volunteers.component';
 
 // remove
 import { RemoveFamilyComponent } from './remove-family/remove-family.component';
 import { RemoveFilesComponent } from './remove-files/remove-files.component';
-import { RemoveInventoryComponent } from './remove-inventory/remove-inventory.component';
 import { RemoveSuppliersComponent } from './remove-suppliers/remove-suppliers.component';
 import { RemoveVolunteersComponent } from './remove-volunteers/remove-volunteers.component';
 
@@ -62,7 +60,7 @@ import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.compo
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
 import { ViewTableComponent } from './view-table/view-table.component';
 import { OrderTypeComponent } from './order-type/order-type.component';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 
 @NgModule({
@@ -73,18 +71,15 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
     NavbarComponent,
     SuppliersComponent,
     VolunteersComponent,
-    InventoryManagementComponent,
     FilesComponent,
     LoginComponent,
     RegisterComponent,
     FooterComponent,
     EditFamilyComponent,
-    EditInventoryComponent,
     EditSuppliersComponent,
     EditVolunteersComponent,
     RemoveFamilyComponent,
     RemoveFilesComponent,
-    RemoveInventoryComponent,
     RemoveSuppliersComponent,
     ViewSuppliersComponent,
     ViewFamilyComponent,
@@ -104,13 +99,13 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
     FormsModule,
     MyCommonModule,
     //FormBuilder,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatDatepickerModule,
     DateValueAccessorModule,
     HttpClientModule,
     HttpModule,
+    ReactiveFormsModule,
     NgbModalModule,
     DataTablesModule,
     NgxLoadingModule.forRoot({}),
@@ -142,11 +137,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
       // Volunteers path
       { path: 'volunteers',
         component: VolunteersComponent },
-         
-      // inventory-management path
-      { path: 'inventory-management',
-        component: InventoryManagementComponent },       
-        
+          
       // files path
       { path: 'files',
         component: FilesComponent  },  
@@ -166,12 +157,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
       // edit-family path
       { path: 'edit-family',
         component: EditFamilyComponent }, 
-        
-      // edit-inventory path
-      {  path: 'edit-inventory',
-        component: EditInventoryComponent  }, 
-
-        
+       
       // edit-suppliers path
       { path: 'edit-suppliers',
         component: EditSuppliersComponent  }, 
@@ -187,11 +173,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
       // remove-files path
       { path: 'remove-files',
         component: RemoveFilesComponent },
-        
-      // remove-inventory path
-      { path: 'remove-inventory',
-        component: RemoveInventoryComponent },
-        
+    
       // remove-suppliers path
       { path: 'remove-suppliers',
         component: RemoveSuppliersComponent }, 

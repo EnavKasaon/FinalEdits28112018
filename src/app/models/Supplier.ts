@@ -10,9 +10,10 @@ export class Supplier {
     SupplierType: string;
    
 
-    public constructor(init?: Partial<Supplier>) {
+    public constructor(init?: Partial<Supplier>) { 
         Object.assign(this, init);
     }
+    
     deserialize(input: any): this {
         Object.assign(this, input);
         return this;
