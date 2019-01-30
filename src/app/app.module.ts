@@ -63,7 +63,8 @@ import { ViewVolunteersComponent } from './view-volunteers/view-volunteers.compo
 import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.component';
 import { ViewTableComponent } from './view-table/view-table.component';
 import { OrderTypeComponent } from './order-type/order-type.component';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { CustomValidatorComponent } from './custom-validator/custom-validator.component';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
     AgoraComponent,
     ViewTableComponent,
     OrderTypeComponent,
+    CustomValidatorComponent,
     
   ],
   
@@ -105,7 +107,6 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ReactiveFor
     FormsModule,
     MyCommonModule,
     //FormBuilder,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatDatepickerModule,

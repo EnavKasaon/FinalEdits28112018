@@ -41,3 +41,12 @@ textarea{
     text-align: right;
     direction: rtl;
 }
+
+.error1, #passwordHelpBlock {
+    text-align: right;
+    direction: rtl;
+    font-size: 12px;
+    color: gray;
+}
+
+
