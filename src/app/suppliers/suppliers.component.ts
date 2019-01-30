@@ -30,7 +30,7 @@ export class SuppliersComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
   constructor(private _supplierService: SupplierService, private formBuilder: FormBuilder) {
-
+   // Object.assign(this, init);
   }
 
   ngOnInit() {
@@ -58,19 +58,36 @@ export class SuppliersComponent implements OnInit {
 
   //  this.alertType = "success";
     //this.alertMsg ="המתנדב הוזן בהצלחה!";
+   // this.newSupp = <Supplier> this.registerForm.value;
+  // this.newSupp = new Supplier(this.registerForm.value);
 
     this._supplierService.insertSupplier(this.newSupp)
-      .subscribe((res) => {
-        this.ansFromServer = res;
+    .subscribe((res) => {
+   // this._supplierService.insertSupplier(this.newSupp)
+
+   this.ansFromServer = res.SuccesMsg;
         this.stopLoading = false; 
         
-        if (this.registerForm.invalid) {
+      //  if (this.registerForm.invalid) {
           //  this.alertType = "danger";
             //this.alertMsg ="הוספת המתנדב נכשלה.";
-            return;
-          }
-          this.stopLoading = true;
-           alert('SUCCESS!! :-)')
+       //     return;
+     //     }
+          //  alert('SUCCESS!! :-)')
+      //    this.alertType = "success";
+       //   this.alertMsg = "הספק הוזן בהצלחה!";
+        //  console.log(this.ansFromServer);
+
+          if (this.ansFromServer != -1) {
+          
+            this.alertType = "success";
+          this.alertMsg = "הספק הוזן בהצלחה!";
+        }
+        else {
+          this.alertType = "danger";
+          this.alertMsg = "הוספת הספק נכשלה.";
+        }
+        console.log(this.ansFromServer);
    });
   }
   

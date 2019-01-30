@@ -36,7 +36,7 @@ export class VolunteersComponent implements OnInit {
     this.stopLoading = true;
     this._volunteerService.insertVolunteer(this.newVol)
       .subscribe((res) => {
-        this.ansFromServer = res;
+        this.ansFromServer = res.SuccesMsg;
         this.stopLoading = false;
         if(this.ansFromServer != -1){
           this.alertType = "success";

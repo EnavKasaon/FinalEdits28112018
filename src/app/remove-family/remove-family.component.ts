@@ -35,7 +35,7 @@ export class RemoveFamilyComponent implements OnInit {
       this.stopLoading = true;
       this._familyService.deleteFamily(this.selectedFamily)
       .subscribe((result)=>{
-        this.ansFromServer = result;
+        this.ansFromServer = result.SuccesMsg;
         this.stopLoading = false;
         if(this.ansFromServer != -1){
           this.alertType = "success";

@@ -28,7 +28,7 @@ export class FamilyComponent implements OnInit {
       console.log("Trying to insert family...");
       console.log("Family: "+JSON.stringify(this.newFam)+" ID: "+this.newFam.familyId);
       this._familyService.insertFamily(this.newFam).subscribe((res) => {
-        this.ansFromServer = res;
+        this.ansFromServer = res.SuccesMsg;
         console.log(this.ansFromServer);
         });
     }

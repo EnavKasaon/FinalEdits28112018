@@ -53,7 +53,7 @@ export class EditSuppliersComponent implements OnInit {
     console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
     this._supplierService.UpdateSupplier(this.selectedSup)
     .subscribe((res) => {
-      this.ansFromServer = res;
+      this.ansFromServer = res.SuccesMsg;
       if(this.ansFromServer != -1){
         this.alertType = "success";
         this.alertMsg ="הספק עודכן בהצלחה!";
