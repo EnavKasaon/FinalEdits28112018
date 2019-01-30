@@ -3,31 +3,73 @@
 [action]="''"></app-header>
 
 <div class="container">
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+
+<!-------------------------------------------------->
+<table class="table">
     <thead>
       <tr>
-        <th width="40%">פעולות</th>
-        <th width="60%">סוג הזמנה</th>
+        <th scope="col" width="40%">פעולות</th>
+        <th scope="col" width="60%">סוג הזמנה</th>
       </tr>
     </thead>
-    <tbody *ngIf="suppliers?.length != 0">
-      <tr>
-        <!-- <tr *ngFor="let sup of suppliers"> -->
-            <td>
+    <tbody>
+      <tr  *ngFor="let t of allTypes;trackBy: trackByFn">
+          <td>
               <button class="btn btn-danger btn-sm">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
               <button class="btn btn btn-primary btn-sm">עריכה <i class="fas fa-edit"></i></button>&nbsp;
               <button class="btn btn btn-secondary btn-sm">צפייה <i class="far fa-eye"></i></button>&nbsp;
-              <button class="btn btn-success btn-sm">הוספת הזמנה מסוג זה <i class="fas fa-plus"></i></button>
+              <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddOrderModal" (click)="GetTypeData(t.order_type_id)">הוספת הזמנה מסוג זה <i class="fas fa-plus"></i></button>
             </td>
-            <!-- <td>{{ sup.SupplierType }}</td> -->
-            <td>הזמנה קבועה חגים</td>
-        </tr>
-    </tbody>
-    <tbody *ngIf="suppliers?.length == 0">
-      <tr>
-        <td colspan="3" class="no-data-available">!אין נתונים</td>
+      <td>{{ t.order_type_name }}</td>
       </tr>
-    <tbody>
-  </table>
+    </tbody>
+ </table>
+
+  
+  <!--Add New order Modal -->
+  <div class="modal fade" id="AddOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="AddOrderModalModalLabel">הוספת הזמנה חדשה</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+         
+        </div>
+        <div *ngIf="selectedType" class="modal-body">
+          <!----Order Type details ---->
+          <div class="row">
+              <div class="col-md-6 offset-md-3">
+                  <label>{{ selectedType.order_type_name }}</label>
+                  <label>{{ selectedType.supplier.companyName }}</label>
+                </div>
+          </div>
+          
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">הערות</th>
+                    <th scope="col">כמות</th>
+                    <th scope="col">שם מוצר</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of selectedType.products">
+                    <td>{{ p.comments }}</td>
+                    <td>{{ p.amount }}</td>
+                    <td>{{ p.product_name }}</td>                  
+                  </tr>      
+                </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+          <button type="button" class="btn btn-success" (click)="addOrder()">הוספת הזמנה מסוג זה</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <button  class = "btn btn-primary submitBtn" routerLink ="/order-type" type= "submit">  הוסף סוג הזמנה חדש </button>
   </div>

@@ -1,9 +1,10 @@
 import { Product } from "./Product";
+import { Supplier } from "./Supplier";
 
 export class OrderType {   
     order_type_id:number;
     order_type_name:string;
-    supplier_id:number;
+    supplier:Supplier;
     products: Product[] = [];
 
     public constructor(init?: Partial<OrderType>) {
