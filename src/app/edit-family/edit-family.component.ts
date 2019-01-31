@@ -54,7 +54,7 @@ export class EditFamilyComponent implements OnInit {
       this.stopLoading = false;
       if(this.ansFromServer != -1){
         this.alertType = "success";
-        this.alertMsg ="המשפחה עודכנה בהצלחה!";
+        this.alertMsg ="המשפחה עודכנה בהצלחה!"; 
       }
 
       else{

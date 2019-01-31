@@ -41,3 +41,11 @@ textarea{
     text-align: right;
     direction: rtl;
 }
+
+
+.error1, #passwordHelpBlock, #bdate {
+    text-align: right;
+    direction: rtl;
+    font-size: 12px;
+    color: gray;
+}

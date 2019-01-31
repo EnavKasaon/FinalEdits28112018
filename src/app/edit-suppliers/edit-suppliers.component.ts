@@ -3,6 +3,7 @@ import { Supplier } from '../models/Supplier';
 import { SupplierService } from '../services/suppliers.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-suppliers',
@@ -17,10 +18,13 @@ export class EditSuppliersComponent implements OnInit {
   public stopLoading = false;
   arr: any = [];
   selectedSup : Supplier = new Supplier;
-  alertType: string;
   alertMsg: string;
-  
-    constructor(private _supplierService:SupplierService) { 
+  alertType: string;
+  registerForm: FormGroup;
+  submitted = false;
+  form: FormGroup = new FormGroup({});
+
+    constructor(private _supplierService:SupplierService, private formBuilder: FormBuilder) { 
       
     }
    
@@ -33,8 +37,20 @@ export class EditSuppliersComponent implements OnInit {
       });
       console.log(this.supplierDetails.companyName);
       this.stopLoading = false;
-     // this.newSupp.ID= 0;
+
+     this.registerForm = this.formBuilder.group({
+       ContactPerson: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+       ContactPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
+       SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+       companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+       Phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
+       Fax: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(9)]],
+       GoodsType:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]]
+     }); 
     }
+
+    get f() { return this.registerForm.controls; }
+
 
     // choose the drop down
     onChange(supplierId) {
@@ -46,11 +62,13 @@ export class EditSuppliersComponent implements OnInit {
          console.log(this.selectedSup.companyName);      
       });
   }
-
+ 
   //edit
   UpdateSupplier(){
+    this.submitted = true;
     console.log("Trying to update Supplier...");
     console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
+    this.selectedSup = <Supplier> this.registerForm.value;
     this._supplierService.UpdateSupplier(this.selectedSup)
     .subscribe((res) => {
       this.ansFromServer = res.SuccesMsg;
@@ -64,7 +82,5 @@ export class EditSuppliersComponent implements OnInit {
       }
         console.log(this.ansFromServer);
  });
-  
-  }
-  
+  } 
 }

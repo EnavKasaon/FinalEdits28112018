@@ -39,9 +39,9 @@ textarea{
 
 .div-horizontal {
     text-align: right;
-    direction: rtl;
+    direction: rtl; 
 }
-
+ 
 .error1, #passwordHelpBlock {
     text-align: right;
     direction: rtl;

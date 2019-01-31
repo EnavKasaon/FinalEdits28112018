@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './suppliers.component.html',
   styleUrls: ['./suppliers.component.css']
 })
+
 export class SuppliersComponent implements OnInit {
 
   supplierDetails: any = [];
@@ -19,18 +20,15 @@ export class SuppliersComponent implements OnInit {
   selectedSup: Supplier = new Supplier;
   private _alertType: string;
   public get alertType(): string {
-    return this._alertType;
-  }
+    return this._alertType; }
   public set alertType(value: string) {
-    this._alertType = value;
-  }
+    this._alertType = value;  }
   alertMsg: string;
   registerForm: FormGroup;
   submitted = false;
   form: FormGroup = new FormGroup({});
 
   constructor(private _supplierService: SupplierService, private formBuilder: FormBuilder) {
-   // Object.assign(this, init);
   }
 
   ngOnInit() {
@@ -55,80 +53,21 @@ export class SuppliersComponent implements OnInit {
     console.log("Trying to insert Supplier...");
     console.log("Supplier: " + JSON.stringify(this.newSupp) + " ID: " + this.newSupp.ID);
     this.stopLoading = true;
-
-  //  this.alertType = "success";
-    //this.alertMsg ="המתנדב הוזן בהצלחה!";
-   // this.newSupp = <Supplier> this.registerForm.value;
-  // this.newSupp = new Supplier(this.registerForm.value);
-
+    this.newSupp = <Supplier> this.registerForm.value;
     this._supplierService.insertSupplier(this.newSupp)
     .subscribe((res) => {
-   // this._supplierService.insertSupplier(this.newSupp)
-
    this.ansFromServer = res.SuccesMsg;
-        this.stopLoading = false; 
-        
-      //  if (this.registerForm.invalid) {
-          //  this.alertType = "danger";
-            //this.alertMsg ="הוספת המתנדב נכשלה.";
-       //     return;
-     //     }
-          //  alert('SUCCESS!! :-)')
-      //    this.alertType = "success";
-       //   this.alertMsg = "הספק הוזן בהצלחה!";
-        //  console.log(this.ansFromServer);
-
+        this.stopLoading = false;   
           if (this.ansFromServer != -1) {
-          
             this.alertType = "success";
           this.alertMsg = "הספק הוזן בהצלחה!";
-        }
+        } 
         else {
           this.alertType = "danger";
           this.alertMsg = "הוספת הספק נכשלה.";
         }
         console.log(this.ansFromServer);
    });
-  }
-  
-     
-  //  if(this.ansFromServer != -1){
-  //    this.alertType = "success";
-  //   this.alertMsg ="הספק הוזן בהצלחה!";
-  //   }
-  //    else{
-  //      this.alertType = "danger";
-  //     this.alertMsg ="הוספת הספק נכשלה.";
-  //   }
-  //   console.log(this.ansFromServer);
-
-  // stop here if form is invalid
-  //   if (this.registerForm.invalid) {
-  //      return;
-  // }
-  //  else {this.alertType = "danger";}
-
-  //  alert('SUCCESS!! :-)')}
-
-  insertSupplier1() {
-
-    console.log("Trying to insert Supplier...");
-    console.log("Supplier: " + JSON.stringify(this.newSupp) + " ID: " + this.newSupp.ID);
-    this.stopLoading = true;
-    this._supplierService.insertSupplier(this.newSupp)
-      .subscribe((res) => {
-        this.ansFromServer = res;
-        this.stopLoading = false;
-        if (this.ansFromServer != -1) {
-          this.alertType = "success";
-          this.alertMsg = "הספק הוזן בהצלחה!";
-        }
-        else {
-          this.alertType = "danger";
-          this.alertMsg = "הוספת הספק נכשלה.";
-        }
-        console.log(this.ansFromServer);
-      });
   }
 }
 
