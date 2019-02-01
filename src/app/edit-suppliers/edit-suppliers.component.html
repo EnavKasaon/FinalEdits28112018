@@ -33,14 +33,15 @@
         <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
             [template]="customLoadingTemplate"></ngx-loading>
 
-        <form [formGroup]="registerForm" (ngSubmit)="UpdateSupplier()" *ngIf="selectedSup.ID" accept-charset="UTF-8">
+        <form #supplierForm = "ngForm" [formGroup]="registerForm" (ngSubmit)="UpdateSupplier()" *ngIf="selectedSup.ID" accept-charset="UTF-8">
 
             <!-- Dropdown Supplier Type -->
             <div class="form-group" *ngIf="selectedSup.ID">
                 <label>:ספק</label>
-                <select #Type dir="rtl" name="SupplierType" id="SupplierType" formControlName="SupplierType"  class="form-control"
+                <select [(ngModel)]="selectedSup.SupplierType" #Type dir="rtl" ngModel name="SupplierType" id="SupplierType" formControlName="SupplierType"  class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.SupplierType?.errors }" aria-describedby="inputGroupPrepend2">
-                    <option value="רגיל">רגיל</option>
+    
+                <option value="רגיל">רגיל</option>
                     <option value="תורם">תורם</option>
                     <div *ngIf="submitted && f.SupplierType?.errors" class="invalid-feedback">
                         <div class= "error1" *ngIf="f.SupplierType.errors.required">אנא בחר סוג ספק</div>
@@ -53,7 +54,7 @@
       <div class="form-row">
         <div class="col-md-6">
           <div class="form-group">
-            <input #ContactPerson type="text" formControlName="ContactPerson" name="ContactPerson" id="contactName"
+            <input #ContactPerson type="text" formControlName="ContactPerson" ngModel name="ContactPerson" id="contactName" [(ngModel)]="selectedSup.ContactPerson"
               placeholder="שם איש קשר" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPerson?.errors }"> 
               <div *ngIf="submitted && f.ContactPerson?.errors" class="invalid-feedback">
                 <div class= "error1" *ngIf="f.ContactPerson.errors.required">אנא הכנס את שם איש הקשר</div>
@@ -65,7 +66,7 @@
         <!-- Compny Name Field -->
         <div class="col-md-6">
           <div class="form-group">
-            <input #companyName type="text" formControlName="companyName" name="companyName" id="company" placeholder="שם חברה"
+            <input #companyName type="text" formControlName="companyName" ngModel  name="companyName" id="company" [(ngModel)]="selectedSup.companyName" placeholder="שם חברה"
             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName?.errors }" aria-describedby="inputGroupPrepend2">
             <div *ngIf="submitted && f.companyName?.errors" class="invalid-feedback">
               <div class= "error1" *ngIf="f.companyName.errors.required">אנא הכנס שם חברה</div>
@@ -79,7 +80,7 @@
       <div class="form-row">
         <div class="col-md-6">
           <div class="form-group">
-            <input #ContactPhone type="text" formControlName="ContactPhone" name="ContactPhone" id="contactPhone"
+            <input #ContactPhone type="text" formControlName="ContactPhone" ngModel name="ContactPhone" id="contactPhone" [(ngModel)]="selectedSup.ContactPhone"
             placeholder="טלפון איש קשר" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPhone?.errors }"
             aria-describedby="inputGroupPrepend2">
             <div *ngIf="submitted && f.ContactPhone?.errors" class="invalid-feedback">
@@ -93,7 +94,7 @@
         <!-- Phone Field -->
         <div class="col-md-6">
             <div class="form-group">
-                <input #Phone type="text" formControlName="Phone" name="Phone" id="phone" placeholder="טלפון" class="form-control"
+                <input #Phone type="text" formControlName="Phone" ngModel name="Phone" id="phone" [(ngModel)]="selectedSup.Phone" placeholder="טלפון" class="form-control"
                 aria-describedby="inputGroupPrepend2" [ngClass]="{ 'is-invalid': submitted && f.Phone?.errors }"> <br>
                 <div *ngIf="submitted && f.Phone?.errors" class="invalid-feedback">
                   <div  class= "error1" *ngIf="f.Phone.errors.required">אנא הכנס מספר טלפון</div>
@@ -110,7 +111,7 @@
           <div class="form-row">
             <div class="col-12" >
               <div class="form-group">
-                <input #Fax type="text" formControlName="Fax" name="Fax" id="fax" placeholder="פקס" class="form-control"
+                <input #Fax type="text" formControlName="Fax" ngModel name="Fax" id="Fax" [(ngModel)]="selectedSup.Fax" placeholder="פקס" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.Fax?.errors }" aria-describedby="inputGroupPrepend2"> 
                 <div *ngIf="submitted && f.Fax?.errors" class="invalid-feedback">
                     <div  class= "error1" *ngIf="f.Fax.errors.required">אנא הכנס מספר פקס</div>
@@ -125,7 +126,7 @@
           <div class="form-row">
               <div class="col-12">
                 <div class="form-group">
-                  <input #GoodsType type="text" formControlName="GoodsType" name="GoodsType" id="goodsType" placeholder="סוג סחורה"
+                  <input #GoodsType type="text" formControlName="GoodsType" ngModel name="GoodsType" id="GoodsType" [(ngModel)]="selectedSup.GoodsType" placeholder="סוג סחורה"
                   class="form-control" [ngClass]="{ 'is-invalid': submitted && f.GoodsType?.errors }" aria-describedby="inputGroupPrepend2">
                   <div *ngIf="submitted && f.GoodsType?.errors" class="invalid-feedback">
                     <div  class= "error1" *ngIf="f.GoodsType.errors.required">אנא הכנס את סוג הסחורה</div>
