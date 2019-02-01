@@ -8,41 +8,50 @@
 
 <!-- volunteers Form -->
 <br>
-<app-header [name]="'הזמנות'" [titleIcon]="'fas fa-hand-holding-heart'"
+<app-header [name]="'ניהול הזמנות'" [titleIcon]="'fa fa-shopping-cart'"
 [action]="'הוספה'"></app-header>
 <div class="container">
-        <div class="col-md-8 offset-md-2"> 
+        <div class="col-md-8 offset-md-2">
 
  <!-- Loading -->
- 
-    <form #v = "ngForm" (ngSubmit)= "insertOrderType()" accept-charset="UTF-8">
-        
-    <!-- the fields of the form -->
-    <div class="form-group">
-      <label>:בחר ספק </label>
-      <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)" dir= "rtl" class= "form-control">
-          <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
-          {{sup.companyName}} 
-         </option>  
-     </select>
-      <br>
-      <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
-      <div class="card text-center"  *ngIf="selectedSup.ID">
-          <div class="card-header">
-            פרטי ספק {{ selectedSup.companyName }} |   ספק {{ selectedSup.SupplierType }}
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"> :טלפון {{ selectedSup.Phone }} |  :פקס {{ selectedSup.Fax }} </h5>
-            <p class="card-text">:פרטי איש קשר
-              <br>
-              {{ selectedSup.ContactPerson }} | {{ selectedSup.ContactPhone }}</p>
-            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-          </div>
-          <div class="card-footer text-muted">
-                  <b>סוג סחורה </b>{{ selectedSup.GoodsType }}
-          </div>
+
+    <form #v = "ngForm" accept-charset="UTF-8">
+    <div class="row">
+
+    <div class="col-md-6">
+        <div class="form-group">
+          <label>:בחר ספק </label>
+          <select [(ngModel)]="orderTypeInsert.supplier_id" [ngModelOptions]="{standalone: true}" (change)="onChange($event.target.value)" dir= "rtl" class= "form-control">
+            <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
+              {{sup.companyName}}
+            </option>
+        </select>
         </div>
+     </div>
+     <div class="col-md-6">
+        <label>:שם סוג ההזמנה </label>
+          <input #OrderTypeName type="text"  [(ngModel)]="orderTypeInsert.order_type_name"  [ngModelOptions]="{standalone: true}" required  id="OrderTypeName" placeholder="שם סוג ההזמנה"  input pattern="[a-zA-Z ]*" class= "form-control">
+     </div>
+
+
   </div>
+  <br>
+  <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
+  <div class="card text-center"  *ngIf="selectedSup.ID">
+      <div class="card-header">
+        פרטי ספק {{ selectedSup.companyName }} |   ספק {{ selectedSup.SupplierType }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"> :טלפון {{ selectedSup.Phone }} |  :פקס {{ selectedSup.Fax }} </h5>
+        <p class="card-text">:פרטי איש קשר
+          <br>
+          {{ selectedSup.ContactPerson }} | {{ selectedSup.ContactPhone }}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+      <div class="card-footer text-muted">
+              <b>סוג סחורה </b>{{ selectedSup.GoodsType }}
+      </div>
+    </div>
 
     <table class="table">
       <thead>
@@ -51,50 +60,33 @@
           <th scope="col">הערות</th>
           <th scope="col">כמות</th>
           <th scope="col">שם מוצר</th>
-          <th scope="col"></th>
+          <!-- <th scope="col"></th> -->
         </tr>
       </thead>
       <tbody>
-        <tr  *ngFor="let p of products"> 
-          <td><button class="btn btn-success btn-md" (click)="addProduct()"><i class="fas fa-plus"></i></button></td>
-          <td><input #ProductComments type="text" [(ngModel)]="p.comments" ngModel name = "comments" id="ProductComments" placeholder="הערות"  input pattern="[a-zA-Z ]*" class= "form-control"> </td>
-          <td><input #ProductAmount type="number" ngModel [(ngModel)]="p.amount" required name = "amount" id="ProductAmount" placeholder="כמות" class= "form-control"></td>
-          <td><input #ProductName type="text" ngModel [(ngModel)]="p.product_name" required name = "product_name" id="ProductName" placeholder="שם מוצר"  input pattern="[a-zA-Z ]*" class= "form-control">  
+        <tr  *ngFor="let p of products;trackBy: trackByFn">
+            <td><button class="btn btn-danger btn-md" (click)="removeProduct(p)"><i class="fas fa-trash-alt"></i></button></td>
+          <!-- <td><button class="btn btn-success btn-md" (click)="addProduct()"><i class="fas fa-plus"></i></button></td> -->
+          <td><input #ProductComments type="text"  [(ngModel)]="p.comments" [name] = "p.comments" [ngModelOptions]="{standalone: true}" id="ProductComments" placeholder="הערות"  input pattern="[a-zA-Z ]*" class= "form-control"> </td>
+          <td><input #ProductAmount type="number"  [(ngModel)]="p.amount" [name] = "p.amount" [ngModelOptions]="{standalone: true}" required  id="ProductAmount" placeholder="כמות" class= "form-control"></td>
+          <td><input #ProductName type="text"  [(ngModel)]="p.product_name" [name] = "p.product_name" [ngModelOptions]="{standalone: true}" required  id="ProductName" placeholder="שם מוצר"  input pattern="[a-zA-Z ]*" class= "form-control">
           </td>
-          <td><button class="btn btn-danger btn-md" ><i class="fas fa-trash-alt"></i></button></td>
+
         </tr>
+
       </tbody>
+      <button class="btn btn-success btn-md" (click)="addProduct()"><i class="fas fa-plus"></i></button>
     </table>
     <!-- <button class="btn btn-success btn-sm">הוספת מוצר <i class="fas fa-plus"></i></button><br><br> -->
-        <button  class = "btn btn-primary submitBtn" type= "submit">  הוסף סוג הזמנה חדש </button>
-        
+        <button  class = "btn btn-primary submitBtn" (click)="insertOrderType()" type= "submit">  הוסף סוג הזמנה חדש </button>
+
     </form>
     <br>
-  <hr>
-  <form [formGroup]="productForm" >
-      <!-- (ngSubmit)="saveIntergration()" -->
-      <div formArrayName="details" class="form-group" *ngFor="let field of productForm.get('details').controls; let ind = index;">
-          <div [formGroupName]="ind">
-              Type:
-              <input type="text" formControlName="productName">
-  
-              model:
-              <input type="number" formControlName="amount">
-  
-              year:
-              <input type="text" formControlName="comments">
-  
-              <hr>
-          </div>
-      </div>
-  </form>
 
-  <button (click)="addRow()">Add New</button>
-  
     <!-- alert -->
     <div class = "div-horizontal">
      <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
-       <a href="volunteers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+       <a href="/order-type"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
        <strong > {{ alertMsg }}</strong>
        </div>
     </div>
