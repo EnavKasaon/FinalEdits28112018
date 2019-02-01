@@ -51,7 +51,6 @@ export class EditSuppliersComponent implements OnInit {
 
     get f() { return this.registerForm.controls; }
 
-
     // choose the drop down
     onChange(supplierId) {
       this.stopLoading = true;
@@ -59,7 +58,7 @@ export class EditSuppliersComponent implements OnInit {
       this._supplierService.getSupplier(supplierId).subscribe((data: {}) => {
          this.selectedSup = new Supplier(data);
          this.stopLoading = false;
-         console.log(this.selectedSup.companyName);      
+         console.log(this.selectedSup.companyName); 
       });
   }
  
@@ -68,22 +67,31 @@ export class EditSuppliersComponent implements OnInit {
     this.submitted = true;
     console.log("Trying to update Supplier...");
     console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
- //   this.selectedSup = <Supplier> this.registerForm.value;
-  // this._supplierService.UpdateSupplier(this.registerForm.value)
-  //this.selectedSup = <Supplier> (this.registerForm.value);
-
+ //   this.selectedSup = <Supplier> this.registerForm.value;this.selectedSup = <Supplier> this.registerForm.value;
+ //  this._supplierService.UpdateSupplier(this.registerForm.value)
+ // this.selectedSup = <Supplier> (this.registerForm.value);
+if (!this.registerForm.invalid){
   this._supplierService.UpdateSupplier( this.selectedSup)
     .subscribe((result) => {
       this.ansFromServer = result.SuccesMsg;
-      if(this.ansFromServer != -1){
+      if(this.ansFromServer != -1 && !this.registerForm.invalid){
         this.alertType = "success";
         this.alertMsg ="הספק עודכן בהצלחה!";
       }
       else{
         this.alertType = "danger";
         this.alertMsg ="עדכון הספק נכשל.";
+       
+      
       }
         console.log(this.ansFromServer);
+
+        
  });
-  } 
+  }
+  else{
+    this.alertType = "danger";
+    this.alertMsg ="עדכון הספק נכשל.";} 
+}
+ 
 }
