@@ -61,6 +61,8 @@ import { ViewOrdersTypesComponent } from './view-orders-types/view-orders-types.
 import { ViewTableComponent } from './view-table/view-table.component';
 import { OrderTypeComponent } from './order-type/order-type.component';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { ViewOrdersByTypeComponent } from './view-orders-by-type/view-orders-by-type.component';
+import { EditOrderTypeComponent } from './edit-order-type/edit-order-type.component';
 
 
 @NgModule({
@@ -91,6 +93,8 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
     AgoraComponent,
     ViewTableComponent,
     OrderTypeComponent,
+    ViewOrdersByTypeComponent,
+    EditOrderTypeComponent,
     
   ],
   
@@ -157,6 +161,10 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
       // edit-family path
       { path: 'edit-family',
         component: EditFamilyComponent }, 
+
+        // edit-order type path
+      { path: 'edit-type',
+      component: EditOrderTypeComponent }, 
        
       // edit-suppliers path
       { path: 'edit-suppliers',
@@ -189,6 +197,10 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
   // View-Family path
   { path: 'view-family',
   component: ViewFamilyComponent }, 
+
+  // View-orders by type path
+  { path: 'view-orders-type',
+  component: ViewOrdersByTypeComponent }, 
 
     // View-volunteer path
     { path: 'view-volunteers',
