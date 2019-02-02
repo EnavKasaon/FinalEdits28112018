@@ -4,6 +4,7 @@ import { OrdersService } from '../services/orders.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { identifierModuleUrl, identifierName } from '@angular/compiler';
 import { Order } from '../models/Order';
+import { ExcelService } from '../services/excel.service'; 
 
 @Component({
   selector: 'app-view-orders-by-type',
@@ -17,8 +18,9 @@ export class ViewOrdersByTypeComponent implements OnInit {
   private sub: any;
   currentType: number;
 
+
   constructor(private _ordersService:OrdersService, private router: Router,
-    private route: ActivatedRoute, private changeDetectorRefs: ChangeDetectorRef) { }
+    private route: ActivatedRoute, private changeDetectorRefs: ChangeDetectorRef, private excelService:ExcelService) { }
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
@@ -62,6 +64,9 @@ export class ViewOrdersByTypeComponent implements OnInit {
     //this.teachDS = new LanguageDataSource(this.user.profile.languages.teach);
     this.changeDetectorRefs.detectChanges();
   });
+}
+downloadFile(data: any) {
+  this.excelService.exportAsExcelFile(data, 'הזמנות');
 }
   checkOrders(){
     let keys = Object.keys(this.allOrders)
