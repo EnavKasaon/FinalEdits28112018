@@ -27,7 +27,7 @@ input {
 }
 
 input[type=checkbox]{
-    width:auto;
+    width:30px;
 }
 
 textarea{
@@ -37,3 +37,14 @@ textarea{
 
 }
 
+.div-horizontal {
+    text-align: right;
+    direction: rtl;
+}
+
+.error1, #passwordHelpBlock, #bdate {
+    text-align: right;
+    direction: rtl;
+    font-size: 12px;
+    color: gray;
+}

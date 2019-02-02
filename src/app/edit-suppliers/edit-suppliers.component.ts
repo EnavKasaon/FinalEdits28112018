@@ -81,17 +81,12 @@ if (!this.registerForm.invalid){
       else{
         this.alertType = "danger";
         this.alertMsg ="עדכון הספק נכשל.";
-       
-      
       }
-        console.log(this.ansFromServer);
-
-        
+        console.log(this.ansFromServer);      
  });
   }
   else{
     this.alertType = "danger";
     this.alertMsg ="עדכון הספק נכשל.";} 
-}
- 
+} 
 }

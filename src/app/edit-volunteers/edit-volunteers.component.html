@@ -11,7 +11,7 @@
 
 
 <!-- volunteers Form -->
-<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'"
+<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'" 
 [action]="'עריכה'"></app-header>
     <div class="container">
             <div class="col-md-8 offset-md-2">
@@ -22,7 +22,7 @@
                              <!-----Choose volunteer --> 
                              <div class="form-group">
                                     <label>:בחר מתנדב</label>
-                                    <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir= "rtl" class= "form-control">
+                                    <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir= "rtl" name= "edvol" class= "form-control">
                                             <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
                                                 {{vol.VolunteerFName}}</option>
                                     </select> 
@@ -44,7 +44,7 @@
                 </select> </div>
 
                 <!-- The form -->
-                <form #volunteerForm = "ngForm" (ngSubmit)= "UpdateVolunteer()" *ngIf="selectedVol.VolunteerId" accept-charset="UTF-8">
+                <form #volunteerForm = "ngForm" (ngSubmit)= "UpdateVolunteer()" *ngIf="selectedVol.VolunteerId" accept-charset="UTF-8" name="edit-volu">
 
                 <!-- Fields -->
                 <input type="text" ngModel name = "VolunteerFName" id="VolunteerFName" placeholder="שם פרטי" ngModel [(ngModel)]="selectedVol.VolunteerFName" class= "form-control">  <br><br>
@@ -61,7 +61,7 @@
                 <!-- alert -->
                 <div class = "div-horizontal">
                  <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
-                   <a href="edit-volunteersl"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                   <a href="edit-volunteers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
                    <strong > {{ alertMsg }}</strong>
                    </div>
                 </div>

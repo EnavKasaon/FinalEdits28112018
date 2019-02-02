@@ -7,7 +7,7 @@ export class Family {
     houseNum: string;
     floor: number;
     phone: number;
-    peopleNumber: number;
+    peopleNumber: number; 
     notes: string;
     howDidYouHear: string;
     reasonForReferral: string;

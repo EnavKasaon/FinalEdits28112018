@@ -17,9 +17,9 @@
         <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
             [template]="customLoadingTemplate"></ngx-loading>
 
-        <form [formGroup]="registerForm" (ngSubmit)="insertVolunteer()" accept-charset="UTF-8">
+        <form [formGroup]="registerForm" (ngSubmit)="insertVolunteer()" accept-charset="UTF-8" name="form">
 
-            <!-- the fields of the form -->
+            <!-- Dropdown Volunteer Type -->
             <div class="form-group">
                 <label>:סוג מתנדב</label>
                 <select #VolunteerType dir="rtl" name="VolunteerType" id="VolunteerType" formControlName="VolunteerType" class="form-control"
@@ -78,7 +78,7 @@
           </div> <br> <br>
         </div> 
 
-    <!-- Last Name Field -->
+    <!-- Birth Date Field -->
     <div class="form-row">
             <div class= "col-12">
             <div class="form-group">

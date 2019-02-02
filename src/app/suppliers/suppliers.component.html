@@ -36,7 +36,7 @@
 
       <!-- Contact Person Field -->
       <div class="form-row">
-        <div class="col-md-6">
+        <div class="col-md-12 ">
           <div class="form-group">
             <input #ContactPerson type="text" formControlName="ContactPerson" name="ContactPerson" id="contactName"
               placeholder="שם איש קשר" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPerson?.errors }"> 
@@ -48,7 +48,7 @@
             </div>
 
         <!-- Compny Name Field -->
-        <div class="col-md-6">
+        <div class="col-md-12" >
           <div class="form-group">
             <input #companyName type="text" formControlName="companyName" name="companyName" id="company" placeholder="שם חברה"
             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName?.errors }" aria-describedby="inputGroupPrepend2">
