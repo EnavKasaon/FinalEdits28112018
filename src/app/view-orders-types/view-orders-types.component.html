@@ -8,18 +8,39 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col" width="40%">פעולות</th>
-        <th scope="col" width="60%">סוג הזמנה</th>
+        <th scope="col" width="60%">פעולות</th>
+        <th scope="col" width="40%">סוג הזמנה</th>
       </tr>
     </thead>
     <tbody>
       <tr  *ngFor="let t of allTypes;trackBy: trackByFn">
           <td>
-              <button class="btn btn-danger btn-sm">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
-              <button class="btn btn btn-primary btn-sm">עריכה <i class="fas fa-edit"></i></button>&nbsp;
-              <button class="btn btn btn-secondary btn-sm">צפייה <i class="far fa-eye"></i></button>&nbsp;
+              <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete" >מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+              <button class="btn btn btn-primary btn-sm" (click)="EditType(t)">עריכה <i class="fas fa-edit"></i></button>&nbsp;
+              <button class="btn btn btn-secondary btn-sm" (click)="GetOrdersByType(t)"> צפייה בהזמנות מסוג זה <i class="far fa-eye"></i></button>&nbsp;
               <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddOrderModal" (click)="GetTypeData(t.order_type_id)">הוספת הזמנה מסוג זה <i class="fas fa-plus"></i></button>
             </td>
+            <!-- Modal -->
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">מחיקת הזמנה</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                  <p>?האם אתה בטוח שאתה רוצה למחוק את סוג ההזמנה</p>
+                 <p> מחיקה זו תמחק גם את כל ההזמנות הקשורות לסוג זה. </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteType(t.order_type_id)">מחיקה </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
       <td>{{ t.order_type_name }}</td>
       </tr>
     </tbody>
@@ -67,9 +88,25 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
           <button type="button" class="btn btn-success" (click)="addOrder()">הוספת הזמנה מסוג זה</button>
         </div>
+         <!-- Small modal -->
+         <button type="button" [hidden]="true" id="OpenAnswer" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+         <!---Answer From Server--->
+         <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-sm">
+             <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">הודעה</h5>
+                  </div>
+               <label>{{ messageServer }}</label>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" routerLink="/view-orders" data-dismiss="modal" >חזרה להזמנות</button>
+                </div>
+             </div>
+           </div>
+         </div>
       </div>
     </div>
   </div>
 
-  <button  class = "btn btn-primary submitBtn" routerLink ="/order-type" type= "submit">  הוסף סוג הזמנה חדש </button>
+  <button  class = "btn btn-primary submitBtn" routerLink ="/order-type" >  הוסף סוג הזמנה חדש </button>
   </div>

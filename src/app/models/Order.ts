@@ -5,6 +5,7 @@ export class Order {
     order_type:OrderType;
     order_date:Date;
     received_date: Date;
+    received: boolean;
 
     public constructor(init?: Partial<Order>) {
         Object.assign(this, init);
