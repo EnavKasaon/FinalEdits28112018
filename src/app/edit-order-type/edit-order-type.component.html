@@ -12,6 +12,7 @@
 [action]="'עריכה'"></app-header>
 <div class="container">
         <div class="col-md-8 offset-md-2">
+            <button class="btn btn-primary" routerLink= "/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
 
  <!-- Loading -->
 
@@ -75,10 +76,10 @@
         </tr>
 
       </tbody>
-      <button class="btn btn-success btn-md" (click)="addProduct()"><i class="fas fa-plus"></i></button>
+      <button class="btn btn-success btn-md right" (click)="addProduct()"> הוספת מוצר <i class="fas fa-plus"></i></button>
     </table>
     <!-- <button class="btn btn-success btn-sm">הוספת מוצר <i class="fas fa-plus"></i></button><br><br> -->
-        <button  class = "btn btn-primary submitBtn" (click)="updateOrderType()" type= "submit">  הוסף סוג הזמנה חדש </button>
+        <button  class = "btn btn-primary submitBtn" (click)="updateOrderType()" type= "submit">  ערוך </button>
 
     </form>
     <br>

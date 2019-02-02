@@ -26,6 +26,6 @@ input {
     position: relative;
     background-color: rgb(46,184,184);
 }
-th{
+th, td{
     text-align: right;
 }
