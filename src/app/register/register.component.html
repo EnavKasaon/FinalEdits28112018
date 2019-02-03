@@ -1,47 +1,71 @@
-
 <!-- Loading -->
 <ng-template #customLoadingTemplate>
-    <div class="custom-class">  </div>
+  <div class="custom-class"> </div>
 </ng-template>
 
-    <!-- loading -->
-<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
-        
-<form #f = "ngForm" (ngSubmit)= "insertUser()" accept-charset="UTF-8" >
+<!-- loading -->
+<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+  [template]="customLoadingTemplate"></ngx-loading>
 
-<div class="login-page">
-  <div class="form">
-      <img src="assets/images/logoAhva.png" class="img-logo" >
+  <div class="register-page">
+    <div class="form">
+      <img src="assets/images/logoAhva.png" class="img-logo">
       <h1>ברוך הבא</h1>
       <h2>הרשמה</h2>
+<br>
+      <form [formGroup]="registerForm" (ngSubmit)="insertUser()" accept-charset="UTF-8">
 
       <!-- Fields -->
-    <form class="registration-form">
-      <input type="text" ngModel [(ngModel)]="newUser.userName" name = "UserName" id="UserName" placeholder="הזן שם משתמש" class= "form-control form-fields"/>
-      <input type="password" ngModel [(ngModel)]="newUser.Password" name = "Password" id="Password"  placeholder="הזן סיסמה" class= "form-control form-fields"/>
-      <input type="email" ngModel [(ngModel)]="newUser.Email" name = "Email" id="Email"  placeholder="הזן כתובת אימייל" class= "form-control form-fields"/>
-
-      <body>
-
-<!-- submit button and going to login page -->
-<!-- <button type=button class="btn btn-primary"  (click)="clickMethod('')"> <a href="login">כניסה</a></button> -->
-<button type= button  class = "btn btn-primary submitBtn" type= "submit"> כניסה </button>
-<br><br>
-      <!-- back to login page without registration -->
-      <a href="login" id= "backToLogin">חזרה</a>
-
-</body>
-    </form>
-    
-  </div>
-</div>
-  </form> <br>
-
-     <!-- alert -->
-     <div class = "div-horizontal">
-        <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
-          <a href="register"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong > {{ alertMsg }}</strong>
+      <!-- <form class="registration-form"> -->
+        <div class="form-group">
+          <input #userName type="text" formControlName="userName" name="userName" id="userName" placeholder="הזן שם משתמש"
+            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }">
+          <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
+            <div class="error1" *ngIf="f.userName.errors.required">אנא הכנס שם משתמש</div>
           </div>
-       </div>
+        </div>
+
+        <div class="form-group">
+          <input #Password type="Password" formControlName="Password" name="Password" id="Password" placeholder="הזן סיסמה"
+            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.Password?.errors }">
+          <div *ngIf="submitted && f.Password?.errors" class="invalid-feedback">
+            <div class="error1" *ngIf="f.Password.errors.required">אנא הכנס סיסמה</div>
+            <div class="error1" *ngIf="f.Password.errors.minlength">הסיסמא חייבת להכיל לפחות 6 תווים</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input #Email type="email" formControlName="Email" name="Email" id="Email" placeholder="הזן כתובת אימייל"
+            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.Email?.errors }">
+          <div *ngIf="submitted && f.Email?.errors" class="invalid-feedback">
+            <div class="error1" *ngIf="f.Email.errors.required">אנא הכנס אימייל</div>
+            <div class="error1" *ngIf="f.Email.errors.email"> כתובת האימייל חייבת להיות כתובת דוא"ל חוקית</div>
+          </div>
+        </div>
+
+        <body>
+
+          <!-- submit button and going to login page -->
+          <!-- <button type=button class="btn btn-primary"  (click)="clickMethod('')"> <a href="login">כניסה</a></button> -->
+          <button class="btn btn-primary" type="submit"> כניסה </button>
+          <br><br>
+          <!-- back to login page without registration -->
+          <a href="login" id="backToLogin">חזרה</a>
+
+        </body>
+      <!-- </form> -->
+    </form> <br>
+
+    
+<!-- alert -->
+<div class="div-horizontal">
+    <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+      <a href="register" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong> {{ alertMsg }}</strong>
+    </div>
+  </div>
+
+
+    </div>
+  </div>
 

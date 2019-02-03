@@ -1,22 +1,53 @@
-
 <div class="login-page">
   <div class="form">
-      <img src="assets/images/logoAhva.png" class="img-logo" >
-      <h1>ברוך הבא</h1>
-      <h2>התחברות</h2>
+    <img src="assets/images/logoAhva.png" class="img-logo">
+    <h1>ברוך הבא</h1>
+    <h2>התחברות</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="logInto()" accept-charset="UTF-8">
+
 
       <!-- Fields -->
-    <form class="login-form">
-      <input type="text" ngModel name = "UserName" id="UserName" placeholder="שם משתמש" class= "form-control form-fields"/>
-      <input type="password" ngModel name = "password" id="password"  placeholder="סיסמא" class= "form-control form-fields"/>
+      <!-- <form class="login-form"> -->
 
-      <body>
-<!-- submit button -->
-<button type=button class="btn btn-primary"  (click)="clickMethod('')"> <a href="home">כניסה</a></button>
-      <!-- <button class = "btn btn-primary submitBtn" type= "submit">כניסה</button> -->
-      <br><br><a href="register" id= "moveToRegister">הרשמה</a>
-</body>
+        <div class="form-group">
+          <input #userName type="text" formControlName="userName" name="userName" id="userName" placeholder="שם משתמש"
+            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }">
+          <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
+            <div class="error1" *ngIf="f.userName.errors.required">אנא הכנס שם משתמש</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input #password type="password" formControlName="password" name="password" id="password" placeholder="סיסמה"
+            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.password?.errors }">
+          <div *ngIf="submitted && f.password?.errors" class="invalid-feedback">
+            <div class="error1" *ngIf="f.password.errors.required">אנא הכנס סיסמה</div>
+            <div class= "error1" *ngIf="f.password.errors.minlength">הסיסמא חייבת להכיל לפחות 6 תווים</div>
+          </div>
+        </div>
+
+
+        <body>
+          <!-- submit button -->
+          <!-- <button type=button class="btn btn-primary"> <a href="home">כניסה</a></button> -->
+          <!-- <button class = "btn btn-primary submitBtn" type= "submit">כניסה</button> -->
+          <button type=submit class="btn btn-primary"> כניסה</button> 
+
+          <br><br><a href="register" id="moveToRegister">הרשמה</a>
+        </body>
+      <!-- </form> -->
     </form>
+
+    
+<!-- alert -->
+<div class="div-horizontal">
+    <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+      <a href="register" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong> {{ alertMsg }}</strong>
+    </div>
+  </div>
+
+  
   </div>
 </div>
-
