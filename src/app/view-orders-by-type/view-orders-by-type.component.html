@@ -1,12 +1,19 @@
-<br><app-header [name]="'הזמנות'" [titleIcon]="'fa fa-shopping-cart'"
-[action]="''"></app-header>
+<br>
+<app-header [name]="'הזמנות'" [titleIcon]="'fa fa-shopping-cart'" [action]="''"></app-header>
 <h2> סוג {{ allOrders[0].order_type.order_type_name }}</h2>
+
 <div class="container">
-    <button class="btn btn-primary" routerLink= "/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
-    &nbsp;
-    <button class="btn btn-primary" (click)= "downloadFile(allOrders)">ייצוא כל ההזמנות לאקסל</button>
-    <br><br>
-    <table class="table">
+
+  <!-- Botton of returning to orders -->
+  <button class="btn btn-primary" routerLink="/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
+  &nbsp;
+
+  <!-- Excel's Botton -->
+  <button class="btn btn-primary" (click)="downloadFile(allOrders)">ייצוא כל ההזמנות לאקסל</button>
+  <br><br>
+
+  <!-- The table for View orders -->
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">פעולות</th>
@@ -17,47 +24,52 @@
       </tr>
     </thead>
     <tbody>
+
       <!-- <tr *ngIf="checkOrders() <= 0">
               <td colspan="5"> אין הזמנות לסוג זה</td>
       </tr> -->
-      <tr *ngFor="let o of allOrders;trackBy: trackByFn">
-       
-          <td>
-              <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete" >מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
-              <button *ngIf="!o.received" class="btn btn btn-success btn-sm" (click) = "MarkReceived(o)">סימון קבלה <i class="fas fa-check"></i></button>
-              <button *ngIf="o.received" class="btn btn btn-secondary btn-sm" (click) = "MarkReceived(o)" > ביטול קבלה <i class="fas fa-minus"></i></button>&nbsp;
-              <!-- <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddOrderModal" (click)="GetTypeData(t.order_type_id)">הוספת הזמנה מסוג זה <i class="fas fa-plus"></i></button> -->
-            </td>
-            <td *ngIf="o.received">{{ o.received_date }}</td>
-            <td *ngIf="!o.received">לא התקבלה</td>
-            <td>{{ o.order_type.order_type_name }}</td>
-            <td>{{ o.order_date }}</td>
-            <td>{{ o.order_id }}</td>
-              <!-- Modal -->
-                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">מחיקת הזמנה</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                      <p>?האם אתה בטוח שאתה רוצה למחוק את ההזמנה</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteOrder(o.order_id)">מחיקה </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                
-      </tr>
-      
-    </tbody>
- </table>
 
+      <!-- The botton of delete, mark of order -->
+      <tr *ngFor="let o of allOrders;trackBy: trackByFn">
+        <td>
+          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+          <button *ngIf="!o.received" class="btn btn btn-success btn-sm" (click)="MarkReceived(o)">סימון קבלה <i class="fas fa-check"></i></button>
+          <button *ngIf="o.received" class="btn btn btn-secondary btn-sm" (click)="MarkReceived(o)"> ביטול קבלה <i
+              class="fas fa-minus"></i></button>&nbsp;
+          <!-- <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddOrderModal" (click)="GetTypeData(t.order_type_id)">הוספת הזמנה מסוג זה <i class="fas fa-plus"></i></button> -->
+     
+          <!-- Filling orders fields -->
+        </td>
+        <td *ngIf="o.received">{{ o.received_date }}</td>
+        <td *ngIf="!o.received">לא התקבלה</td>
+        <td>{{ o.order_type.order_type_name }}</td>
+        <td>{{ o.order_date }}</td>
+        <td>{{ o.order_id }}</td>
+
+        <!-- Modal -->
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">מחיקת הזמנה</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <!-- Deleting order dialog -->
+              <div class="modal-body">
+                <p>האם אתה בטוח שאתה רוצה למחוק את ההזמנה?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteOrder(o.order_id)">מחיקה
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tr>
+    </tbody>
+  </table>
 </div>
-  

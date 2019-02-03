@@ -14,7 +14,7 @@
 <div class="container">
   <div class="col-md-8 offset-md-2">
 
-    <!-- Loading -->
+    <!-- Loading --> 
     <ngx-loading [show]="submitted && stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
       [template]="customLoadingTemplate"></ngx-loading>
 
@@ -36,7 +36,7 @@
 
       <!-- Contact Person Field -->
       <div class="form-row">
-        <div class="col-md-12 ">
+        <div class="col-md-6 ">
           <div class="form-group">
             <input #ContactPerson type="text" formControlName="ContactPerson" name="ContactPerson" id="contactName"
               placeholder="שם איש קשר" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPerson?.errors }"> 
@@ -48,7 +48,7 @@
             </div>
 
         <!-- Compny Name Field -->
-        <div class="col-md-12" >
+        <div class="col-md-6" >
           <div class="form-group">
             <input #companyName type="text" formControlName="companyName" name="companyName" id="company" placeholder="שם חברה"
             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName?.errors }" aria-describedby="inputGroupPrepend2">

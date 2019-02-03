@@ -26,9 +26,30 @@ input {
     position: relative;
     background-color: rgb(46,184,184);
 }
-/* th{
-    text-align: right;
-} */
+
+
 th, td, tr{
     text-align: right;
+}
+
+/* Alert Message style */
+h5 {
+    text-align: right;
+    direction: rtl;
+    position: absolute;
+    left: 190px;
+}
+
+/* Alert style */
+.div-horizontal {
+    text-align: right;
+    direction: rtl;
+}
+
+/* fields errors style */
+.error1, #passwordHelpBlock, #bdate {
+    text-align: right;
+    direction: rtl;
+    font-size: 12px;
+    color: gray;
 }

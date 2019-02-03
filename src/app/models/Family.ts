@@ -6,7 +6,7 @@ export class Family {
     street:string; 
     houseNum: string;
     floor: number;
-    phone: number;
+    phone: string;
     peopleNumber: number; 
     notes: string;
     howDidYouHear: string;

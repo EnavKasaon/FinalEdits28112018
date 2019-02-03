@@ -45,7 +45,7 @@ export class SuppliersComponent implements OnInit {
       GoodsType:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]]
     }); 
   }
-
+ 
   get f() { return this.registerForm.controls; }
 
   insertSupplier() {

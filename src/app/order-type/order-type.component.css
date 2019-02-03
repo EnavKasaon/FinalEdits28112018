@@ -20,6 +20,19 @@ input {
       text-align: right;
 }
 
+/* Alert style */
+.div-horizontal {
+    text-align: right;
+    direction: rtl;
+}
+
+/* fields errors style */
+.error1, #passwordHelpBlock, #bdate {
+    text-align: right;
+    direction: rtl;
+    font-size: 12px;
+    color: gray;
+}
 
 /* button style */
 .submitBtn{

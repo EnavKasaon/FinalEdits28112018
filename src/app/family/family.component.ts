@@ -41,7 +41,20 @@ export class FamilyComponent implements OnInit {
       houseNum: ['', Validators.required],
       floor: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]],
-      peopleNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+      peopleNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      notes: ['',],
+      howDidYouHear: ['',],
+      reasonForReferral: ['',],
+      house: ['',],
+      car: ['',],
+      debt: ['',],
+      payChecks: ['',],
+      bituahLeumi: ['',],
+      bankAccount: ['',],
+      creditCard: ['',],
+      copyId: ['',],
+      rentContract: ['',]
+
     });
   }
 
@@ -59,18 +72,18 @@ export class FamilyComponent implements OnInit {
         this.stopLoading = false;
         if (this.ansFromServer != -1 && !this.registerForm.invalid) {
           this.alertType = "success";
-          this.alertMsg = "הספק עודכן בהצלחה!";
+          this.alertMsg = "המשפחה נוספה בהצלחה!";
         }
         else {
           this.alertType = "danger";
-          this.alertMsg = "עדכון הספק נכשל.";
+          this.alertMsg = "הוספת המשפחה נכשלה.";
         }
         console.log(this.ansFromServer);
       });
     }
     else {
       this.alertType = "danger";
-      this.alertMsg = "עדכון הספק נכשל.";
+      this.alertMsg = "הוספת המשפחה נכשלה.";
     }
   }
 }

@@ -39,7 +39,7 @@ export class RemoveSuppliersComponent implements OnInit {
       this.stopLoading = true;
       this._supplierService.deleteSupplier(this.selectedSupplier)
       .subscribe((res)=>{
-        this.ansFromServerRemoveSup = res.SuccesMsg;
+        this.ansFromServerRemoveSup = res;
         this.stopLoading = false;
         if(this.ansFromServerRemoveSup != -1){
           this.alertType = "success";

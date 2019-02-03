@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FamilyService } from '../services/families.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-remove-family',
@@ -35,7 +33,7 @@ export class RemoveFamilyComponent implements OnInit {
       this.stopLoading = true;
       this._familyService.deleteFamily(this.selectedFamily)
       .subscribe((result)=>{
-        this.ansFromServer = result.SuccesMsg;
+        this.ansFromServer = result;
         this.stopLoading = false;
         if(this.ansFromServer != -1){
           this.alertType = "success";
