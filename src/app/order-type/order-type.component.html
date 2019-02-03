@@ -13,7 +13,7 @@
   <div class="col-md-8 offset-md-2">
     <button class="btn btn-primary" routerLink="/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
 
-    <form #v="ngForm" accept-charset="UTF-8">
+    <form #f="ngForm"  accept-charset="UTF-8">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -21,7 +21,7 @@
             <!-- Choosing Supplier -->
             <label>:בחר ספק </label>
             <select [(ngModel)]="orderTypeInsert.supplier_id" [ngModelOptions]="{standalone: true}" (change)="onChange($event.target.value)"
-              dir="rtl" class="form-control">
+            dir="rtl" class="form-control">
               <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
                 {{sup.companyName}}
               </option>
@@ -32,10 +32,17 @@
 
         <!-- Order's Name -->
         <div class="col-md-6">
-          <label>:שם סוג ההזמנה </label>
-          <input #OrderTypeName type="text" [(ngModel)]="orderTypeInsert.order_type_name" [ngModelOptions]="{standalone: true}"
-            required id="OrderTypeName" placeholder="שם סוג ההזמנה" input pattern="[a-zA-Z ]*" class="form-control">
-        </div>
+            <div class="form-group">
+              <label for="OrderTypeName">:שם סוג ההזמנה </label>
+              <input #OrderTypeName = "ngModel" type="text" [(ngModel)]="orderTypeInsert.order_type_name" [ngModelOptions]="{standalone: true}"
+                id="OrderTypeName" placeholder="שם סוג ההזמנה"  class="form-control"
+                name = "OrderTypeName"  required>
+                <!-- [ngClass]="{ 'is-invalid': f.submitted && OrderTypeName.invalid }" input pattern="[a-zA-Z ]*"
+                <div *ngIf="f.submitted && OrderTypeName.invalid" class="invalid-feedback">
+                    <div *ngIf="OrderTypeName.errors.required">Order Type Name is required</div>
+                </div> -->
+            </div>
+          </div>
       </div>
       <br>
 
@@ -95,11 +102,15 @@
         <button class="btn btn-success btn-md right" (click)="addProduct()"> הוספת מוצר <i class="fas fa-plus"></i></button>
       </table>
       <br>
+      <div class="form-group">
+          <button class="btn btn-primary submitBtn" (click)="insertOrderType()" type="submit"> הוסף סוג הזמנה חדש </button>
+      </div>
       <!-- <button class="btn btn-success btn-sm">הוספת מוצר <i class="fas fa-plus"></i></button><br><br> -->
-      <button class="btn btn-primary submitBtn" (click)="insertOrderType()" type="submit"> הוסף סוג הזמנה חדש </button>
-
+      <!-- (click)="insertOrderType()"  -->
     </form>
     <br>
+
+
 
     <!-- alert -->
     <div class="div-horizontal">

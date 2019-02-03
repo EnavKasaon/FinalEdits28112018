@@ -24,6 +24,7 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { EventsService } from '../services/events.service';
+import { CalendarEventActionsComponent } from 'angular-calendar/modules/common/calendar-event-actions.component';
 
 const colors: any = {
   red: {
@@ -44,6 +45,7 @@ const colors: any = {
   selector: 'app-calendar-home-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './calendar-home-page.component.html',
+  host: {'window:beforeunload':'saveChanges()'}
  // styleUrls: ['./calendar-home-page.component.css']
 })
 export class AngularCalendarComponent {
@@ -78,46 +80,40 @@ export class AngularCalendarComponent {
   ];
 
   refresh: Subject<any> = new Subject();
-
+  eventsFromServer: any = [];
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'חלוקת מזון רמות רמז',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'קבלת סחורה',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'הזנת נתוני משפחות',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'קבלת תרומות',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
+    // {
+    //   start: subDays(startOfDay(new Date()), 1),
+    //   end: addDays(new Date(), 1),
+    //   title: 'חלוקת מזון רמות רמז',
+    //   color: colors.red,
+    //   actions: this.actions,
+    //   allDay: true,
+    //   resizable: {
+    //     beforeStart: true,
+    //     afterEnd: true
+    //   },
+    //   draggable: true
+    // },
+    // {
+    //   start: subDays(endOfMonth(new Date()), 3),
+    //   end: addDays(endOfMonth(new Date()), 3),
+    //   title: 'הזנת נתוני משפחות',
+    //   color: colors.blue,
+    //   allDay: true
+    // },
+    // {
+    //   start: addHours(startOfDay(new Date()), 2),
+    //   end: new Date(),
+    //   title: 'קבלת תרומות',
+    //   color: colors.yellow,
+    //   actions: this.actions,
+    //   resizable: {
+    //     beforeStart: true,
+    //     afterEnd: true
+    //   },
+    //   draggable: true
+    // }
   ];
 
   activeDayIsOpen: boolean = true;
@@ -125,27 +121,29 @@ export class AngularCalendarComponent {
   constructor(private modal: NgbModal, private _eventService : EventsService) {}
 
   loadDataFromServer(){
-
+    
     this._eventService.loadAll().subscribe((data: {}) => {
-     
-      //  for(let i=0; i< data.; i++){
-        console.log(data[0].event_desc);
-        this.events.push( {
-          start: data[0].start_date,
-          end: data[0].end_date,
-          title: data[0].event_desc,
-          color: colors.yellow,
-          actions: this.actions,
-          allDay: true,
-          resizable: {
-            beforeStart: true,
-            afterEnd: true
-          },
-          draggable: true
-         });
-      // }
-      
+     this.eventsFromServer = data;
+     this.eventsFromServer.forEach(element => {
+      this.events.push( {
+        start: subDays(startOfDay(new Date(element.start_date)), 1),
+        end: addDays(new Date(element.end_date), 1),
+        title: element.event_desc,
+        color: colors.yellow,
+        actions: this.actions,
+        allDay: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        draggable: true
+       });
+
+      console.log("Date format:"+new Date(element.start_date));
+      });
+   
      });
+  
    }
 
    
@@ -200,4 +198,29 @@ export class AngularCalendarComponent {
     });
     this.refresh.next();
   }
+  saveChanges(){
+    this.events.forEach(element => {
+      let event = {
+        event_id: 0,
+        event_desc : element.title,
+        start_date : element.start,
+        end_date : element.end,
+        color : element.color.primary.toString()
+      };
+      //let e = new Event(0,,element.start, element.end,element.color.primary.toString());
+      var object = {};
+      object['event_id'] = "0";
+      object['event_desc'] = element.title;
+      object['start_date'] = element.start;
+      object['end_date'] = element.end;
+      object['color'] = element.color.primary.toString();
+
+      console.log("JSON obj "+ object);
+      console.log("before convert "+event);
+     // let e = new Event(object);
+    //   this._eventService.insertEvent( )
+    // });
+  });
+}
+
 }

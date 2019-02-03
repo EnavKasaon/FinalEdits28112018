@@ -23,6 +23,7 @@ export class OrderTypeComponent implements OnInit {
   alertType: string;
   alertMsg: string;
   products: Product[] = [];
+  isNameExist: boolean; // check if name exist.
   orderTypeInsert: OrderType = new OrderType;
   public newSupp: Supplier = new Supplier;
   private _alertType: string;
@@ -81,6 +82,14 @@ export class OrderTypeComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+  checkName(name): boolean{
+    var ans = false;
+    this._ordersService.CheckIfTypeNameExist(name).subscribe((data) =>{
+        ans = data.SuccesMsg;
+    });
+    return ans;
+  }
+
 
   onChange(supplierId) {
     this.stopLoading = true;
@@ -102,6 +111,10 @@ removeProduct(p: Product){
 } 
 
 insertOrderType(){
+  // console.log("Form validation:"+this.f.form.valid);
+  // if(this.f.form.valid ){
+  // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.orderTypeInsert));
+  // }
   this.orderTypeInsert.products = this.products;
   this.orderTypeInsert.supplier= this.selectedSup;
   console.log(this.orderTypeInsert);
@@ -110,7 +123,8 @@ insertOrderType(){
     .subscribe((res) => {
       this.ansFromServer = res.SuccesMsg;
       this.stopLoading = false;
-      if(this.ansFromServer != -1 && !this.registerForm.invalid){
+      // if(this.ansFromServer != -1 && !this.registerForm.invalid){
+        if(this.ansFromServer != -1){
         this.alertType = "success";
         this.alertMsg ="סוג ההזמנה הוזן בהצלחה!"; 
       } 

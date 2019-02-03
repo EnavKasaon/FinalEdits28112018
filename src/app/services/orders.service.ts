@@ -48,6 +48,11 @@ export class OrdersService {
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
     return this._http.put(`${this._appSettings.serverBaseUrl}/api/Orders/MarkOrderReceived`, body , headerOptions);
  }
+ public CheckIfTypeNameExist(name: string): Observable<any>{
+  const body = JSON.stringify(name);
+  const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+  return this._http.put(`${this._appSettings.serverBaseUrl}/api/Orders/CheckIfTypeNameExists`, body , headerOptions);
+}
  public deleteOrder (id:number): Observable<any>{  
   console.log("Order ID: "+id);
    return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Orders/DeleteOrder/?id=${id}`);
