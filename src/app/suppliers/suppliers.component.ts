@@ -24,7 +24,7 @@ export class SuppliersComponent implements OnInit {
   public set alertType(value: string) {
     this._alertType = value;  }
   alertMsg: string;
-  registerForm: FormGroup;
+  registerForm: FormGroup; 
   submitted = false;
   form: FormGroup = new FormGroup({});
 
@@ -49,7 +49,7 @@ export class SuppliersComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   insertSupplier() {
-    this.submitted = true;
+    this.submitted = true; 
     console.log("Trying to insert Supplier...");
     console.log("Supplier: " + JSON.stringify(this.newSupp) + " ID: " + this.newSupp.ID);
     this.stopLoading = true;

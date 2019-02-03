@@ -22,19 +22,19 @@ export class RegisterService {
   }
 
   public getUserName(): Observable<User>{  
-   return this._http.get<User>(`${this._appSettings.serverBaseUrl}/api/User/GetAllUsers`);
+   return this._http.get<User>(`${this._appSettings.serverBaseUrl}/api/Register/GetAllUsers`);
   };
 
   public getUser (id:number): Observable<User>{  
    console.log("User ID: "+id);
-    return this._http.get<User>(`${this._appSettings.serverBaseUrl}/api/User/GetUserByID/?id=${id}`);
+    return this._http.get<User>(`${this._appSettings.serverBaseUrl}/api/Register/GetUserByID/?id=${id}`);
    };
 
 
    public insertUser(user:User): Observable<any>{
      const body = JSON.stringify(user);
      const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-     return this._http.post(`${this._appSettings.serverBaseUrl}/api/User/Insert`, body , headerOptions);
+     return this._http.post(`${this._appSettings.serverBaseUrl}/api/Register/Insert`, body , headerOptions);
  }
   
 }
