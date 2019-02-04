@@ -22,6 +22,7 @@ import { AgoraComponent } from './agora/agora.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MustMatch } from './_helpers/must-match.validator';
 
 // inserts
 import { HomeComponent } from './home/home.component';
@@ -64,6 +65,9 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
 import { ViewOrdersByTypeComponent } from './view-orders-by-type/view-orders-by-type.component';
 import { EditOrderTypeComponent } from './edit-order-type/edit-order-type.component';
 
+//login and register
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -102,7 +106,6 @@ import { EditOrderTypeComponent } from './edit-order-type/edit-order-type.compon
     BrowserModule,
     FormsModule,
     MyCommonModule,
-    //FormBuilder,
     BrowserAnimationsModule,
     MatMenuModule,
     MatDatepickerModule,
@@ -224,6 +227,7 @@ import { EditOrderTypeComponent } from './edit-order-type/edit-order-type.compon
     TodoService,
     RegisterService,
     ExcelService,
+    AuthenticationService,
     appSettings
   ],
   bootstrap: [AppComponent]

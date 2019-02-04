@@ -47,7 +47,7 @@
                                 <!-----Date--> 
                                 <div class="form-group">
                                         <label>:תאריך הצטרפות</label>
-                                        <input #joinDate type="date" name = "joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control" disabled>     
+                                        <input #joinDate type="text" name = "joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control" disabled>     
                                  </div>
                                <br>
                                 <!-----Familiy type--> 
@@ -63,8 +63,8 @@
                                  <div class="form-group">
                                      <label>:סוג סל</label>
                                      <select [(ngModel)]="selectedFam.basketType"  dir = "rtl" name="BasketType" id="BasketType" class= "form-control" disabled>
-                                        <option value="normal">רגיל</option>
-                                        <option value="fruit&vegs" >פירות וירקות</option>
+                                        <option value="רגיל">רגיל</option>
+                                        <option value="פירות וירקות" >פירות וירקות</option>
                                         </select>
                                  </div>
                                

@@ -39,8 +39,8 @@
                 <div class="form-group" *ngIf="selectedVol.VolunteerId">
                 <label>:סוג מתנדב</label>
                 <select [(ngModel)]="selectedVol.VolunteerType" dir= "rtl" name="VolunteerType"  class= "form-control">
-                    <option value="Permanent">מתנדב קבוע</option>
-                        <option value="holidays">בחגים</option>
+                    <option value="קבוע">מתנדב קבוע</option>
+                        <option value="חגים">בחגים</option>
                 </select> </div>
 
                 <!-- The form -->
@@ -52,6 +52,9 @@
                 <input type="text" ngModel name = "vPhone" id="vPhone" placeholder="טלפון" ngModel [(ngModel)]="selectedVol.vPhone" class= "form-control"> <br><br><br>
                 
                 <label>:תאריך לידה</label>
+                <input #BirthDate type="text" name = "BirthDate" id="BirthDate" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control" disabled> <br> <br><br>  <br>      
+                
+                <label>:אנא בחר תאריך לידה חדש</label>
                 <input #BirthDate type="date" name = "BirthDate" id="BirthDate" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control"> <br> <br><br>  <br>      
 
                 <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button>
