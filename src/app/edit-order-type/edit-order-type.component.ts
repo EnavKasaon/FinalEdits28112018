@@ -24,6 +24,15 @@ export class EditOrderTypeComponent implements OnInit {
   alertType: string;
   alertMsg: string;
 
+  /********Error Messages********* */
+  NameError: string="";
+  NoValue: string="שדה זה הינו שדה חובה";
+  SupplierError :string ="אנא בחר ספק";
+  AmountError: string="אנא בחר כמות";
+  ProductError: string="אנא הכנס שם מוצר";
+  NameVaild: boolean = false;
+
+
 
   constructor(private _ordersService:OrdersService, private router: Router,
     private route: ActivatedRoute, private changeDetectorRefs: ChangeDetectorRef, private _supplierService:SupplierService) { }
@@ -53,6 +62,35 @@ export class EditOrderTypeComponent implements OnInit {
     });
     
   }
+
+  checkName(){
+    // let element = document.getElementById('validationName');
+    this.NameError = "";
+    var ans = false;
+    if(this.type.order_type_name == ""){
+      this.NameError = this.NoValue;
+      this.NameVaild = false;
+      console.log(this.NameError);
+    }
+    else{
+      this.NameVaild = true;
+      this.NameError = "";
+    this._ordersService.CheckIfTypeNameExist(this.type.order_type_name).subscribe((data) =>{
+        ans = data.SuccesMsg;
+        if(ans){
+          this.NameError ="שם קיים";
+          console.log(this.NameError);
+          this.NameVaild = false;
+        }
+        else{
+          this.NameError = "";
+          this.NameVaild = true;
+        }   
+       });
+    }
+  
+  }
+
   onChange(supplierId) {
     this.stopLoading = true;
     console.log(supplierId);

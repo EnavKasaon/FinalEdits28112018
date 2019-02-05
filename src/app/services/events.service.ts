@@ -29,4 +29,10 @@ export class EventsService {
     console.log("Event ID: "+id);
      return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Event/Delete/?id=${id}`);
   }
+  public UpdateEvent(event:Event): Observable<any>{
+    const body = JSON.stringify(event);
+    const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+    return this._http.put(`${this._appSettings.serverBaseUrl}/api/Event/UpdateEvent`, body , headerOptions);
+    }
+
 }
