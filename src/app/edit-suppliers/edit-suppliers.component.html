@@ -6,9 +6,9 @@
 <ng-template #customLoadingTemplate>
     <div class="custom-class"> </div>
 </ng-template>
-
-<!-- Suppliers Form -->
 <br>
+
+<!-- Headers -->
 <app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'" [action]="'עריכה'"></app-header>
 
 <div class="container">
@@ -40,7 +40,6 @@
                 <label>:ספק</label>
                 <select [(ngModel)]="selectedSup.SupplierType" #Type dir="rtl" ngModel name="SupplierType" id="SupplierType" formControlName="SupplierType"  class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.SupplierType?.errors }" aria-describedby="inputGroupPrepend2">
-    
                 <option value="רגיל">רגיל</option>
                     <option value="תורם">תורם</option>
                     <div *ngIf="submitted && f.SupplierType?.errors" class="invalid-feedback">

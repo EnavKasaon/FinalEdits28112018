@@ -3,46 +3,48 @@
 
 <!-- Loading -->
 <ng-template #customLoadingTemplate>
-        <div class="custom-class">  </div>
+        <div class="custom-class"> </div>
 </ng-template>
 
 <br> <br>
 <!-- volunteer Form -->
-<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'"
-[action]="'מחיקה'"></app-header>
+<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'" [action]="'מחיקה'"></app-header>
 
 <!-----Remove Familiy form------>
 <div class="container">
         <div class="col-md-8 offset-md-2">
-             <form #myForm2 = "ngForm" (ngSubmit) = "DeleteVolunteer(myForm2)">
 
-
-                 <!-----Choose Familiy --> 
-                 <div class="form-group">
-                        <label>:בחר מתנדב</label>
-                        <select #VolunteerId [(ngModel)]="selectedVolunteer"  dir= "rtl" name="volunteersType" id="volunteersType" class= "form-control">
-                                <option *ngFor="let vol of volunteerDetails" [ngValue]="vol.VolunteerId">
-                                {{vol.VolunteerFName}}
-                        </option>
-                        </select> 
-                     </div>
-                     <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>
-             </form>
-             <br>
-
-             <!-- loading -->
-             <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
-
-
-             <!-- alert -->
-             <div class = "div-horizontal">
-              <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
-                <a href="remove-volunteers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong > {{ alertMsg }}</strong>
+                <!-- alert -->
+                <div class="div-horizontal">
+                        <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+                                <a href="remove-volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong> {{ alertMsg }}</strong>
+                        </div>
                 </div>
-             </div>
 
-         </div> 
-     </div>
-     <!---END-->
-    
+
+                <form #myForm2="ngForm" (ngSubmit)="DeleteVolunteer(myForm2)">
+
+
+                        <!-----Choose Familiy -->
+                        <div class="form-group">
+                                <label>:בחר מתנדב</label>
+                                <select #VolunteerId [(ngModel)]="selectedVolunteer" dir="rtl" name="volunteersType" id="volunteersType"
+                                        class="form-control">
+                                        <option *ngFor="let vol of volunteerDetails" [ngValue]="vol.VolunteerId">
+                                                {{vol.VolunteerFName}}
+                                        </option>
+                                </select>
+                        </div>
+                        <button class="btn btn-primary submitBtn" type="submit"> מחק </button>
+                </form>
+                <br>
+
+                <!-- loading -->
+                <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+                        [template]="customLoadingTemplate"></ngx-loading>
+
+
+        </div>
+</div>
+<!---END-->

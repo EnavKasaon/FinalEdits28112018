@@ -60,6 +60,7 @@ export class FamilyComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+
   insertFamily() {
     this.submitted = true;
     console.log("Trying to insert family...");

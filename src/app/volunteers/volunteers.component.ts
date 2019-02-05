@@ -40,7 +40,7 @@ export class VolunteersComponent implements OnInit {
       BirthDate: ['', Validators.required]
 
     }); 
-  }
+  } 
 
   get f() { return this.registerForm.controls; }
 
@@ -49,13 +49,14 @@ export class VolunteersComponent implements OnInit {
     this.submitted = true;
     console.log("Trying to insert Volunteer...");
     console.log("Volunteer: "+JSON.stringify(this.newVol)+" ID: "+this.newVol.VolunteerId);
+    if (!this.registerForm.invalid) {
     this.stopLoading = true;
     this.newVol = <Volunteer> this.registerForm.value;
     this._volunteerService.insertVolunteer(this.newVol)
       .subscribe((res) => {
         this.ansFromServer = res.SuccesMsg;
         this.stopLoading = false;
-        if(this.ansFromServer != -1){
+        if(this.ansFromServer != -1  && !this.registerForm.invalid){
           this.alertType = "success";
           this.alertMsg ="המתנדב הוזן בהצלחה!";
         } 
@@ -64,6 +65,11 @@ export class VolunteersComponent implements OnInit {
           this.alertMsg ="הוספת המתנדב נכשלה.";
         }
           console.log(this.ansFromServer);
-   });  
-    }
+   }); 
+  } 
+   else {
+    this.alertType = "danger";
+    this.alertMsg = "עדכון הספק נכשל.";
   }
+}
+}
