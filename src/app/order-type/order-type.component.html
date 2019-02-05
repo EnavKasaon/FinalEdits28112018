@@ -21,11 +21,15 @@
             <!-- Choosing Supplier -->
             <label>:בחר ספק </label>
             <select [(ngModel)]="orderTypeInsert.supplier_id" [ngModelOptions]="{standalone: true}" (change)="onChange($event.target.value)"
-            dir="rtl" class="form-control">
+            dir="rtl" [className]="orderTypeInsert.supplier_id != -1 ? 'form-control is-valid' : 'form-control is-invalid'" required>
+              <option [value] ="-1">בחר ספק</option>
               <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
                 {{sup.companyName}}
               </option>
             </select>
+            <div [className]="orderTypeInsert.supplier_id > 0 ? 'valid-feedback' : 'invalid-feedback'">
+              <div *ngIf="orderTypeInsert.supplier_id == -1">{{ SupplierError }}</div>
+            </div>
           </div>
         </div>
 
@@ -35,12 +39,14 @@
             <div class="form-group">
               <label for="OrderTypeName">:שם סוג ההזמנה </label>
               <input #OrderTypeName = "ngModel" type="text" [(ngModel)]="orderTypeInsert.order_type_name" [ngModelOptions]="{standalone: true}"
-                id="OrderTypeName" placeholder="שם סוג ההזמנה"  class="form-control"
-                name = "OrderTypeName"  required>
-                <!-- [ngClass]="{ 'is-invalid': f.submitted && OrderTypeName.invalid }" input pattern="[a-zA-Z ]*"
-                <div *ngIf="f.submitted && OrderTypeName.invalid" class="invalid-feedback">
-                    <div *ngIf="OrderTypeName.errors.required">Order Type Name is required</div>
-                </div> -->
+                id="OrderTypeName" placeholder="שם סוג ההזמנה"  [className]="NameVaild ? 'form-control is-valid' : 'form-control is-invalid'" 
+                
+                name = "OrderTypeName" (ngModelChange) = "checkName()" required>
+                <!-- class="invalid-feedback"  class="form-control is-invalid"-->
+                <div [className]="NameVaild ? 'valid-feedback' : 'invalid-feedback'" id="validationName">            
+                    <div>{{ NameError }}</div>
+                </div>
+                
             </div>
           </div>
       </div>
@@ -88,12 +94,19 @@
             
             
                         <!-- Quantity -->
-                <td><input #ProductAmount type="number" [(ngModel)]="p.amount" [name]="p.amount" [ngModelOptions]="{standalone: true}"
-                required id="ProductAmount" placeholder="כמות" class="form-control"></td>
+              <td><input #ProductAmount type="number" [(ngModel)]="p.amount" [name]="p.amount" [ngModelOptions]="{standalone: true}"
+                id="ProductAmount" placeholder="כמות" [className]="p.amount > 0 ? 'form-control is-valid' : 'form-control is-invalid'" required>
+                <div [className]="p.amount > 0 ? 'valid-feedback' : 'invalid-feedback'" >
+                  <div *ngIf="p.amount < 1">{{ AmountError }}</div>
+                </div>
+              </td>
             
             <!-- Product's name -->
                 <td><input #ProductName type="text" [(ngModel)]="p.product_name" [name]="p.product_name" [ngModelOptions]="{standalone: true}"
-                required id="ProductName" placeholder="שם מוצר" input pattern="[a-zA-Z ]*" class="form-control">
+                 id="ProductName" placeholder="שם מוצר" input pattern="[a-zA-Z ]*" [className]="p.product_name ? 'form-control is-valid' : 'form-control is-invalid'">
+                <div [className]="p.product_name ? 'valid-feedback' : 'invalid-feedback'" required>
+                  <div *ngIf="!p.product_name">{{ ProductError }}</div>
+                </div>
             </td>
 
           </tr>
@@ -103,7 +116,7 @@
       </table>
       <br>
       <div class="form-group">
-          <button class="btn btn-primary submitBtn" (click)="insertOrderType()" type="submit"> הוסף סוג הזמנה חדש </button>
+          <button id="submitType" [disabled] = "!NameVaild" class="btn btn-primary submitBtn" (click)="insertOrderType()" type="submit"> הוסף סוג הזמנה חדש </button>
       </div>
       <!-- <button class="btn btn-success btn-sm">הוספת מוצר <i class="fas fa-plus"></i></button><br><br> -->
       <!-- (click)="insertOrderType()"  -->
@@ -115,7 +128,7 @@
     <!-- alert -->
     <div class="div-horizontal">
       <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-        <a href="/order-type" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a routerLink="/view-orders" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong> {{ alertMsg }}</strong>
       </div>
     </div>

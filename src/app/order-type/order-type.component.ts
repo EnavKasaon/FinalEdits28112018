@@ -57,17 +57,18 @@ export class OrderTypeComponent implements OnInit {
 
   ngOnInit() {
     this.orderTypeInsert.order_type_id=0;
+    // this.orderTypeInsert.supplier_id = -1;
     this.supplierDetails = [];
  
-    this.registerForm = this.formBuilder.group({
-      //    ContactPerson: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-      //    ContactPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
-      //    SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-        //  companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-          amount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]], 
-       //   Fax: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(9)]],
-       product_name:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+")]]
-        }); 
+    // this.registerForm = this.formBuilder.group({
+    //   //    ContactPerson: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+    //   //    ContactPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
+    //   //    SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+    //     //  companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+    //       amount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]], 
+    //    //   Fax: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(9)]],
+    //    product_name:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+")]]
+    //     }); 
 
 
     this.products.push(new Product({product_name:'',amount:0,comments:''}));
@@ -82,13 +83,44 @@ export class OrderTypeComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  checkName(name): boolean{
+/********Error Messages********* */
+  NameError: string="";
+  NoValue: string="שדה זה הינו שדה חובה";
+  SupplierError :string ="אנא בחר ספק";
+  AmountError: string="אנא בחר כמות";
+  ProductError: string="אנא הכנס שם מוצר";
+  NameVaild: boolean = false;
+
+  checkName(){
+    // let element = document.getElementById('validationName');
+    this.NameError = "";
     var ans = false;
-    this._ordersService.CheckIfTypeNameExist(name).subscribe((data) =>{
+    if(this.orderTypeInsert.order_type_name == ""){
+      this.NameError = this.NoValue;
+      this.NameVaild = false;
+      console.log(this.NameError);
+    }
+    else{
+      this.NameVaild = true;
+      this.NameError = "";
+    this._ordersService.CheckIfTypeNameExist(this.orderTypeInsert.order_type_name).subscribe((data) =>{
         ans = data.SuccesMsg;
-    });
-    return ans;
+        if(ans){
+          this.NameError ="שם קיים";
+          console.log(this.NameError);
+          this.NameVaild = false;
+        }
+        else{
+          this.NameError = "";
+          this.NameVaild = true;
+        }   
+       });
+    }
+  
   }
+
+  
+
 
 
   onChange(supplierId) {

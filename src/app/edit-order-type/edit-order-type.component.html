@@ -22,16 +22,22 @@
     <div class="col-md-6">
         <div class="form-group">
           <label>:בחר ספק </label>
-          <select [(ngModel)]="type.supplier.ID" [ngModelOptions]="{standalone: true}" (change)="onChange($event.target.value)" dir= "rtl" class= "form-control">
+          <select [(ngModel)]="type.supplier.ID" [ngModelOptions]="{standalone: true}" (change)="onChange($event.target.value)" 
+          dir= "rtl" [className]="type.supplier.ID != -1 ? 'form-control is-valid' : 'form-control is-invalid'" required>
+          <option [value] ="-1">בחר ספק</option>
             <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
               {{sup.companyName}}
             </option>
         </select>
+        <div [className]="type.supplier.ID  > 0 ? 'valid-feedback' : 'invalid-feedback'">
+            <div *ngIf="type.supplier.ID  == -1">{{ SupplierError }}</div>
+          </div>
         </div>
      </div>
      <div class="col-md-6">
         <label>:שם סוג ההזמנה </label>
-          <input #OrderTypeName type="text"  [(ngModel)]="type.order_type_name"  [ngModelOptions]="{standalone: true}" required  id="OrderTypeName" placeholder="שם סוג ההזמנה"  input pattern="[a-zA-Z ]*" class= "form-control">
+          <input #OrderTypeName type="text"  [(ngModel)]="type.order_type_name"  [ngModelOptions]="{standalone: true}" required  id="OrderTypeName" placeholder="שם סוג ההזמנה"  input pattern="[a-zA-Z ]*"
+           class= "form-control">
      </div>
 
 
@@ -69,8 +75,19 @@
             <td><button class="btn btn-danger btn-md" (click)="removeProduct(p)"><i class="fas fa-trash-alt"></i></button></td>
           <!-- <td><button class="btn btn-success btn-md" (click)="addProduct()"><i class="fas fa-plus"></i></button></td> -->
           <td><input #ProductComments type="text"  [(ngModel)]="p.comments" [name] = "p.comments" [ngModelOptions]="{standalone: true}" id="ProductComments" placeholder="הערות"  input pattern="[a-zA-Z ]*" class= "form-control"> </td>
-          <td><input #ProductAmount type="number"  [(ngModel)]="p.amount" [name] = "p.amount" [ngModelOptions]="{standalone: true}" required  id="ProductAmount" placeholder="כמות" class= "form-control"></td>
-          <td><input #ProductName type="text"  [(ngModel)]="p.product_name" [name] = "p.product_name" [ngModelOptions]="{standalone: true}" required  id="ProductName" placeholder="שם מוצר"  input pattern="[a-zA-Z ]*" class= "form-control">
+      
+          <td><input #ProductAmount type="number"  [(ngModel)]="p.amount" [name] = "p.amount" [ngModelOptions]="{standalone: true}"  
+             id="ProductAmount" placeholder="כמות" [className]="p.amount > 0 ? 'form-control is-valid' : 'form-control is-invalid'" required>
+             <div [className]="p.amount > 0 ? 'valid-feedback' : 'invalid-feedback'" >
+               <div *ngIf="p.amount < 1">{{ AmountError }}</div>
+             </div>
+            </td>
+
+          <td><input #ProductName type="text"  [(ngModel)]="p.product_name" [name] = "p.product_name" [ngModelOptions]="{standalone: true}" 
+              id="ProductName" placeholder="שם מוצר"  input pattern="[a-zA-Z ]*" [className]="p.product_name ? 'form-control is-valid' : 'form-control is-invalid'" required>
+              <div [className]="p.product_name ? 'valid-feedback' : 'invalid-feedback'" >
+                <div *ngIf="!p.product_name">{{ ProductError }}</div>
+              </div>
           </td>
 
         </tr>

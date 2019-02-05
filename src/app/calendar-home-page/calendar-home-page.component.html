@@ -20,13 +20,40 @@
     <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
   </div>
 </ng-template>
+<!-------inside the box date temp-------->
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+    <div class="cal-cell-top">
+      <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
+        >{{ day.badgeTotal }}</span
+      >
+      <span class="cal-day-number"
+        >{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+        
+    </div>
+    <div class="cell-totals">
+        <!-- <span
+          *ngFor="let group of day.eventGroups"
+          class="badge badge-{{ group[0] }}"
+        >
+          {{ group[1].length }}
+        </span> -->
+        <div class="d-inline-flex p-2"><i class="fas fa-birthday-cake"></i></div>
+      </div>
+    
+    <!-- <small style="margin: 5px">{{ volName }}</small> -->
+    
+    <!-- <small style="margin: 5px">There are {{ day.events.length }} events on this day</small> -->
+  </ng-template>
+
+
 <div class="text-center">
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEvent" aria-expanded="false" aria-controls="collapseExample">
     ניהול לוח שנה
-  </button> &nbsp;
+  </button> 
+  <!-- &nbsp;
   <button class="btn btn-primary" type="button" (click)="saveChanges()">
       שמירת שינויים
-    </button>
+    </button> -->
   </div>
 <br>
 <div class="container">
@@ -57,17 +84,24 @@
           </thead>
       
           <tbody>
+          
+
             <tr *ngFor="let event of events; let index = index">
-                <td>
+                <td *ngIf="!event.meta.isBirthday">      
                     <button
                       class="btn btn-danger"
-                      (click)="events.splice(index, 1); refresh.next()">
+                      (click)="DeleteEvent(event.meta.id, index)">
                       מחק
+                    </button> &nbsp;
+                    <button
+                      class="btn btn-success"
+                      (click)="saveChanges(event)">
+                      שמור
                     </button>
                   </td>
-                <td>
+                <td *ngIf="!event.meta.isBirthday">
                     <input
-                      class="form-control"
+                    class="form-control"
                       type="text"
                       mwlFlatpickr
                       [(ngModel)]="event.end"
@@ -79,7 +113,7 @@
                       altFormat="F j, Y H:i"
                       placeholder="Not set">
                   </td>
-                <td>
+                <td *ngIf="!event.meta.isBirthday">
                     <input
                       class="form-control"
                       type="text"
@@ -93,13 +127,13 @@
                       altFormat="F j, Y H:i"
                       placeholder="Not set">
                   </td>
-                <td>
+                <td *ngIf="!event.meta.isBirthday">
                     <input
                       type="color"
                       [(ngModel)]="event.color.primary"
                       (change)="refresh.next()">
                   </td>
-              <td>
+              <td *ngIf="!event.meta.isBirthday">
                 <input
                   type="text"
                   class="form-control"
@@ -107,20 +141,13 @@
                   (keyup)="refresh.next()">
               </td>
               
-              <!-- <td>
-                <input
-                  type="color"
-                  [(ngModel)]="event.color.secondary"
-                  (change)="refresh.next()">
-              </td> -->
-              
-              
-              
             </tr>
+           
           </tbody>
       
         </table>
       </div>
+      <br>
   <!-- <div class="row"> -->
       
   <!-- <div class="col-md-6"> -->
@@ -189,6 +216,7 @@
       (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-month-view>
+   
     <mwl-calendar-week-view
       *ngSwitchCase="CalendarView.Week"
       [viewDate]="viewDate"

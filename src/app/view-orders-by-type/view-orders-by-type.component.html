@@ -1,18 +1,19 @@
 <br>
 <app-header [name]="'הזמנות'" [titleIcon]="'fa fa-shopping-cart'" [action]="''"></app-header>
-<h2> סוג {{ allOrders[0].order_type.order_type_name }}</h2>
+<h2 *ngIf="allOrders?.length > 0"> סוג {{ allOrders[0].order_type.order_type_name }}</h2>
 
 <div class="container">
 
   <!-- Botton of returning to orders -->
-  <button class="btn btn-primary" routerLink="/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
+  <button  class="btn btn-primary" routerLink="/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
   &nbsp;
 
   <!-- Excel's Botton -->
-  <button class="btn btn-primary" (click)="downloadFile(allOrders)">ייצוא כל ההזמנות לאקסל</button>
+  <button *ngIf="allOrders?.length > 0" class="btn btn-primary" (click)="downloadFile(allOrders)">ייצוא כל ההזמנות לאקסל</button>
   <br><br>
 
   <!-- The table for View orders -->
+  <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
@@ -25,9 +26,9 @@
     </thead>
     <tbody>
 
-      <!-- <tr *ngIf="checkOrders() <= 0">
-              <td colspan="5"> אין הזמנות לסוג זה</td>
-      </tr> -->
+      <tr *ngIf="!allOrders?.length > 0" class="table-info">
+              <td colspan="5" class="table-info"> אין הזמנות לסוג זה</td>
+      </tr>
 
       <!-- The botton of delete, mark of order -->
       <tr *ngFor="let o of allOrders;trackBy: trackByFn">
@@ -72,4 +73,5 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>

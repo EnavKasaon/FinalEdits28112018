@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectorRef 
 } from '@angular/core';
 import {
   startOfDay,
@@ -53,8 +54,10 @@ export class AngularCalendarComponent {
   modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
+  //view = CalendarView
 
   CalendarView = CalendarView;
+  vis: boolean = false;
 
   viewDate: Date = new Date();
 
@@ -78,70 +81,57 @@ export class AngularCalendarComponent {
       }
     }
   ];
-
+  volName: string = "יעקב";
   refresh: Subject<any> = new Subject();
   eventsFromServer: any = [];
-  events: CalendarEvent[] = [
-    // {
-    //   start: subDays(startOfDay(new Date()), 1),
-    //   end: addDays(new Date(), 1),
-    //   title: 'חלוקת מזון רמות רמז',
-    //   color: colors.red,
-    //   actions: this.actions,
-    //   allDay: true,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true
-    //   },
-    //   draggable: true
-    // },
-    // {
-    //   start: subDays(endOfMonth(new Date()), 3),
-    //   end: addDays(endOfMonth(new Date()), 3),
-    //   title: 'הזנת נתוני משפחות',
-    //   color: colors.blue,
-    //   allDay: true
-    // },
-    // {
-    //   start: addHours(startOfDay(new Date()), 2),
-    //   end: new Date(),
-    //   title: 'קבלת תרומות',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true
-    //   },
-    //   draggable: true
-    // }
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private _eventService : EventsService) {}
+  constructor(private modal: NgbModal, private _eventService : EventsService, private changeDetectorRefs: ChangeDetectorRef) {}
 
   loadDataFromServer(){
-    
+    this.events = [];
     this._eventService.loadAll().subscribe((data: {}) => {
      this.eventsFromServer = data;
      this.eventsFromServer.forEach(element => {
+       if(element.color == "red"){ //birthday case
+        this.events.push( {
+          start: subDays(startOfDay(new Date(element.start_date)), 0),
+          end: addDays(new Date(element.end_date), 0),
+          title: element.event_desc,
+          color: colors.red,
+          cssClass: 'Birthday',
+         allDay: true,
+         meta:{
+           id: 0,
+           isBirthday: true
+         }
+         });
+       }
+       else{
       this.events.push( {
-        start: subDays(startOfDay(new Date(element.start_date)), 1),
-        end: addDays(new Date(element.end_date), 1),
+        start: subDays(startOfDay(new Date(element.start_date)), 0),
+        end: addDays(new Date(element.end_date), 0),
         title: element.event_desc,
         color: colors.yellow,
-        actions: this.actions,
-        allDay: true,
+        
+       meta:{
+        id: element.event_id,
+        isBirthday: false
+      },
         resizable: {
           beforeStart: true,
           afterEnd: true
         },
         draggable: true
        });
+      }
 
-      console.log("Date format:"+new Date(element.start_date));
+      // console.log("Date format:"+new Date(element.start_date));
       });
-   
+      this.changeDetectorRefs.detectChanges();
+      this.refresh.next();
      });
   
    }
@@ -180,8 +170,8 @@ export class AngularCalendarComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    // this.modalData = { event, action };
+    // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
@@ -190,6 +180,10 @@ export class AngularCalendarComponent {
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),
       color: colors.red,
+      meta: {
+        id: 0,
+        isBirthday: false
+      },
       draggable: true,
       resizable: {
         beforeStart: true,
@@ -198,29 +192,54 @@ export class AngularCalendarComponent {
     });
     this.refresh.next();
   }
-  saveChanges(){
-    this.events.forEach(element => {
+
+  DeleteEvent(id, index): void {
+    if(id == 0){
+      this.events.splice(index, 1);
+      this.refresh.next();
+    }
+    else{
+    console.log("Before delete ID:"+id);
+    this._eventService.deleteEvent(id).subscribe((data) => {
+      this.loadDataFromServer();
+      console.log(data);
+    });
+    }
+  }
+
+  UpdateOrInsert(event){
+    console.log(event.event_id);
+    if(event.event_id == 0){
+      // insert
+      this._eventService.insertEvent(event).subscribe((data) => {
+        this.loadDataFromServer();
+        console.log(data);
+      });
+    }
+    else{
+      // update
+      this._eventService.UpdateEvent(event).subscribe((data) =>{
+        console.log(data);
+        this.loadDataFromServer();
+      })
+      
+    }
+  }
+
+
+
+
+  saveChanges(element){
+    console.log("inside of SAVE");
       let event = {
-        event_id: 0,
+        event_id: element.meta.id,
         event_desc : element.title,
         start_date : element.start,
         end_date : element.end,
         color : element.color.primary.toString()
-      };
-      //let e = new Event(0,,element.start, element.end,element.color.primary.toString());
-      var object = {};
-      object['event_id'] = "0";
-      object['event_desc'] = element.title;
-      object['start_date'] = element.start;
-      object['end_date'] = element.end;
-      object['color'] = element.color.primary.toString();
-
-      console.log("JSON obj "+ object);
+      }; 
       console.log("before convert "+event);
-     // let e = new Event(object);
-    //   this._eventService.insertEvent( )
-    // });
-  });
-}
+      this.UpdateOrInsert(event);
+  }
 
 }
