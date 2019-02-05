@@ -87,4 +87,4 @@ export class FamilyComponent implements OnInit {
       this.alertMsg = "הוספת המשפחה נכשלה.";
     }
   }
-}
+} 

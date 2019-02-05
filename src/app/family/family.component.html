@@ -17,14 +17,14 @@
 <div class="container">
     <div class="col-lg-8 offset-md-2 ">
 
-        
+
         <!-- alert -->
         <div class="div-horizontal">
-                <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                    <a href="family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong> {{ alertMsg }}</strong>
-                </div>
+            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+                <a href="family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> {{ alertMsg }}</strong>
             </div>
+        </div>
 
 
         <!-- Loading -->
@@ -34,7 +34,7 @@
         <form [formGroup]="registerForm" (ngSubmit)="insertFamily()" accept-charset="UTF-8" name="editv">
 
 
-            <!-----Dropdown Package type-->
+            <!-----Dropdown Bascket type-->
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -165,6 +165,7 @@
                     </div>
                 </div> <br> <br>
 
+
                 <!-- Number of people in the family Field -->
                 <div class="col-md-6">
                     <div class="form-group">
@@ -209,42 +210,33 @@
                         <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הצטרפות </small>
                     </div>
                 </div>
-            </div> <br>
+            </div>
 
-    
+
             <!-- Checkboxes -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin:50px 0">
-                        <div class="card-header" id= "headerStyle" style="text-align: center">מסמכים</div>
+                        <div class="card-header" id="headerStyle" style="text-align: center">מסמכים</div>
 
                         <!-- Appartment -->
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"> 
-                                <label class="checkbox">
-                                    <input #house type="checkbox" name="house" class="input" formControlName="house"/>
-                                    <span class="default"></span>
-                                   <label style="position: absolute; top:0.8em; left: -65px"> דירה בבעלות</label> 
-                                </label> 
-                                </li>
-
-                <!-- <label><input #house type="checkbox" name="house" class="input" formControlName="house">:דירה -->
-                    <!-- בבעלות</label> -->
-            <!-- </div> <br> -->
-
-
-                                <!-- Car -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #car type="checkbox"  name="car" class="input" formControlName="car" />
-                                    <span class="primary"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px"> רכב בבעלות</label> 
+                                    <input #house type="checkbox" name="house" class="input" formControlName="house" />
+                                    <span class="default"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px"> דירה בבעלות</label>
                                 </label>
                             </li>
 
-                <!-- <label><input #house type="checkbox" name="car" class="input" formControlName="car">:רכב בבעלות</label> -->
-            <!-- </div><br> -->
-
+                            <!-- Car -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #car type="checkbox" name="car" class="input" formControlName="car" />
+                                    <span class="primary"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px"> רכב בבעלות</label>
+                                </label>
+                            </li>
 
 
                             <!-- Debts -->
@@ -252,110 +244,78 @@
                                 <label class="checkbox">
                                     <input #debts type="checkbox" name="debt" class="input" formControlName="debt" />
                                     <span class="success"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">חובות</label> 
+                                    <label style="position: absolute; top:0.8em; left: -65px">חובות</label>
                                 </label>
                             </li>
-      <!--debts-->
-            <!-- <div class="checkbox"> -->
-                <!-- <label><input #house type="checkbox" name="debt" class="input" formControlName="debt">:חובות -->
-                <!-- </label> -->
-            <!-- </div> -->
 
                             <!-- Pay Checks -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #payChecks type="checkbox"  name="payChecks" class="input" formControlName="payChecks" />
+                                    <input #payChecks type="checkbox" name="payChecks" class="input" formControlName="payChecks" />
                                     <span class="info"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים האחרונים</label> 
+                                    <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים האחרונים</label>
                                 </label>
                             </li>
-
-                <!-- <label><input #house type="checkbox" name="payChecks" class="input" formControlName="payChecks">:תלושי -->
-                    <!-- שכר מן החודשיים האחרונים </label> -->
-
 
                             <!-- Social Security -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #bituahLeumi type="checkbox" name="bituahLeumi" class="input" formControlName="bituahLeumi" />
+                                    <input #bituahLeumi type="checkbox" name="bituahLeumi" class="input"
+                                        formControlName="bituahLeumi" />
                                     <span class="warning"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">מסמכים המוכיחים קבלת תמיכה מביטוח לאומי - אם יש</label> 
+                                    <label style="position: absolute; top:0.8em; left: -65px">מסמכים המוכיחים קבלת
+                                        תמיכה מביטוח לאומי - אם יש</label>
                                 </label>
                             </li>
-
-                                   <!--Social Security-->
-            <!-- <div class="checkbox"> -->
-                <!-- <label><input #house type="checkbox" name="bituahLeumi" class="input" formControlName="bituahLeumi">:מסמכים -->
-                    <!-- המוכיחים קבלת תמיכה מביטוח לאומי - אם יש</label> -->
-            <!-- </div> <br> -->
 
 
                             <!-- Bank Account -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #bankAccount type="checkbox" name="bankAccount" class="input" formControlName="bankAccount" />
+                                    <input #bankAccount type="checkbox" name="bankAccount" class="input"
+                                        formControlName="bankAccount" />
                                     <span class="danger"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט חשבון בנק מן החודשיים האחרונים</label> 
+                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט חשבון בנק מן
+                                        החודשיים האחרונים</label>
                                 </label>
                             </li>
-  <!--Bank Account-->
-            <!-- <div class="checkbox"> -->
-                <!-- <label><input #house type="checkbox" name="bankAccount" class="input" formControlName="bankAccount">:פירוט -->
-                    <!-- חשבון בנק מן החודשיים האחרונים </label> -->
-            <!-- </div> <br> -->
-
-               <!-- Credit details -->
-               <li class="list-group-item">
-                    <label class="checkbox">
-                        <input  #creditCard type="checkbox"  name="creditCard" class="input" formControlName="creditCard" />
-                        <span class="danger"></span>
-                        <label style="position: absolute; top:0.8em; left: -65px">פירוט אשראי מן החודשיים האחרונים</label> 
-                    </label>
-                </li>
-                          
-                      <!--Credit details-->
-            <!-- <div class="checkbox"> -->
-                <!-- <label><input #house type="checkbox" name="creditCard" class="input" formControlName="creditCard">:פירוט -->
-                    <!-- אשראי מן החודשיים האחרונים </label> -->
-            <!-- </div> <br> -->
 
 
-                                 <!-- Id -->
-                               <li class="list-group-item">
-                                    <label class="checkbox">
-                                        <input #copyId type="checkbox" name="copyId" class="input" formControlName="copyId" />
-                                        <span class="danger"></span>
-                                        <label style="position: absolute; top:0.8em; left: -65px">צילום+ ספח של ת.ז </label> 
-                                    </label>
-                                </li>
-
-                                
-            <!--Id-->
-            <!-- <div class="checkbox"> -->
-                <!-- <label><input #house type="checkbox" name="copyId" class="input" formControlName="copyId">:צילום+ ספח -->
-                    <!-- של ת.ז </label> -->
-            <!-- </div> <br> -->
-
-            <!-- Rent Contract -->
-            <li class="list-group-item">
-                    <label class="checkbox">
-                        <input #rentContract type="checkbox" name="rentContract" class="input" formControlName="rentContract" />
-                        <span class="danger"></span>
-                        <label style="position: absolute; top:0.8em; left: -65px">חוזה שכר דירה</label> 
-                    </label>
-                </li>
-     <!--Rent Contract-->
-            <!-- <div class="checkbox"> -->
-                <!-- <label><input #house type="checkbox" name="rentContract" class="input" formControlName="rentContract">:חוזה -->
-                    <!-- שכר דירה </label> -->
-            <!-- </div> <br> -->
+                            <!-- Credit details -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #creditCard type="checkbox" name="creditCard" class="input" formControlName="creditCard" />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט אשראי מן החודשיים
+                                        האחרונים</label>
+                                </label>
+                            </li>
 
 
+                            <!-- Id -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #copyId type="checkbox" name="copyId" class="input" formControlName="copyId" />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">צילום+ ספח של ת.ז </label>
+                                </label>
+                            </li>
+
+
+                            <!-- Rent Contract -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #rentContract type="checkbox" name="rentContract" class="input"
+                                        formControlName="rentContract" />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">חוזה שכר דירה</label>
+                                </label>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-       
+
 
             <!-- Bottom -->
             <div class="form-group">

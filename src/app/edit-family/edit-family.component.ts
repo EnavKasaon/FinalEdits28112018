@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Family } from '../models/Family';
 import { FamilyService } from '../services/families.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
@@ -18,8 +18,13 @@ export class EditFamilyComponent implements OnInit {
   selectedFam : Family = new Family;
   alertType: string;
   alertMsg: string;
+  public newFam: Family = new Family;
+  private _alertType: string;
+  registerForm: FormGroup;
+  submitted = false;
+  form: FormGroup = new FormGroup({});
 
-  constructor(private _familyService:FamilyService) { }
+  constructor(private _familyService:FamilyService, private formBuilder: FormBuilder) { }
 
   ngOnInit() { 
     this.stopLoading=false;
@@ -30,7 +35,35 @@ export class EditFamilyComponent implements OnInit {
     });
     console.log(this.familyDetails.firstName);
     this.stopLoading = false;
+    this.newFam.familyId = 0;
+
+    this.registerForm = this.formBuilder.group({
+      joinDate: ['', Validators.required],
+      familyType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      BasketType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      firstName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      lastName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      street: ['', Validators.required],
+      houseNum: ['', Validators.required],
+      floor: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]],
+      peopleNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      notes: ['',],
+      howDidYouHear: ['',],
+      reasonForReferral: ['',],
+      house: ['',],
+      car: ['',],
+      debt: ['',],
+      payChecks: ['',],
+      bituahLeumi: ['',],
+      bankAccount: ['',],
+      creditCard: ['',],
+      copyId: ['',],
+      rentContract: ['',]
+    });
   }
+
+  get f() { return this.registerForm.controls; }
 
       // choose the drop down
       onChange(FamilyId) {
@@ -41,18 +74,18 @@ export class EditFamilyComponent implements OnInit {
            this.stopLoading = false;
            console.log(this.selectedFam.firstName);      
         });
-    }
+    } 
 
       //edit
   UpdateFamily(){
+    this.submitted = true;
     console.log("Trying to update family...");
     console.log("Family: "+JSON.stringify(this.selectedFam)+" ID: "+this.selectedFam.familyId);
-    this.stopLoading = true;
+    if (!this.registerForm.invalid){
     this._familyService.UpdateFamily(this.selectedFam)
     .subscribe((result) => {
       this.ansFromServer = result.SuccesMsg;
-      this.stopLoading = false;
-      if(this.ansFromServer != -1){
+      if(this.ansFromServer != -1  && !this.registerForm.invalid){
         this.alertType = "success";
         this.alertMsg ="המשפחה עודכנה בהצלחה!"; 
       }
@@ -62,7 +95,10 @@ export class EditFamilyComponent implements OnInit {
         this.alertMsg ="עדכון המשפחה נכשל.";
       }
         console.log(this.ansFromServer);
- });
-  
+      });
+    }
+    else{
+      this.alertType = "danger";
+      this.alertMsg ="עדכון הספק נכשל.";} 
+  } 
   }
-}

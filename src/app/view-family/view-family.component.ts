@@ -31,7 +31,6 @@ export class ViewFamilyComponent implements OnInit {
     this.stopLoading = false;
 
   }
-
       // choose the drop down
       onChange(FamilyId) {
         this.stopLoading = true;
