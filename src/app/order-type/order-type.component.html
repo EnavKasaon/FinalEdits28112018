@@ -7,10 +7,19 @@
 </ng-template>
 
 <!-- volunteers Form -->
-<br>
+<br> 
 <app-header [name]="'ניהול הזמנות'" [titleIcon]="'fa fa-shopping-cart'" [action]="'הוספה'"></app-header>
 <div class="container">
   <div class="col-md-8 offset-md-2">
+
+        <!-- alert -->
+        <div class="div-horizontal">
+            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+              <a href="/order-type" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong> {{ alertMsg }}</strong>
+            </div>
+          </div>
+          
     <button class="btn btn-primary" routerLink="/view-orders"> חזרה לניהול הזמנות <i class="fas fa-arrow-left"></i></button>
 
     <form #f="ngForm"  accept-charset="UTF-8">
@@ -109,16 +118,6 @@
       <!-- (click)="insertOrderType()"  -->
     </form>
     <br>
-
-
-
-    <!-- alert -->
-    <div class="div-horizontal">
-      <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-        <a href="/order-type" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong> {{ alertMsg }}</strong>
-      </div>
-    </div>
 
   </div>
 </div>

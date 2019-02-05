@@ -38,7 +38,7 @@ export class EditFamilyComponent implements OnInit {
     this.newFam.familyId = 0;
 
     this.registerForm = this.formBuilder.group({
-      joinDate: ['', Validators.required],
+      joinDate: ['',],
       familyType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       BasketType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       firstName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],

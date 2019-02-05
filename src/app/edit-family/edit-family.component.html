@@ -16,11 +16,13 @@
 <div class="container">  
     <div class="col-md-8 offset-md-2">
 
-        <!-- Alert -->
-        <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                <a href="edit-family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                 <strong>{{ alertMsg }}</strong>
-        </div>
+    <!-- alert -->
+    <div class="div-horizontal">
+            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+              <a href="/edit-family" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong> {{ alertMsg }}</strong>
+            </div>
+          </div>
 
        <!-----Choose Familiy form------>
                 <form #myForm2 = "ngForm">     
@@ -40,7 +42,7 @@
         <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
 
         <!-- Form -->
-        <form #myForm1 = "ngForm" [formGroup]="registerForm" (ngSubmit)= "EditFamily()" *ngIf="selectedFam.familyId" accept-charset="UTF-8">  
+        <form #myForm1 = "ngForm" [formGroup]="registerForm" (ngSubmit)= "UpdateFamily()" *ngIf="selectedFam.familyId" accept-charset="UTF-8">  
     
              <!-----Dropdown Bascket type-->
              <div class="form-row">
@@ -221,7 +223,7 @@
                 <div class="form-row" dir="rtl">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>תאריך הצטרפות:</label>
+                                <label>שינוי תאריך התצטרפות :</label>
                                 <input #joinDate type="date" formControlName="joinDate" ngModel name="joinDate" id="joinDate"  [(ngModel)]="selectedFam.joinDate"
                                     placeholder="תאריך הצטרפות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.joinDate?.errors }">
                                 <div *ngIf="submitted && f.joinDate?.errors" class="invalid-feedback">
@@ -337,43 +339,9 @@
     
                 <!-- Bottom -->
                 <div class="form-group">
-                    <button class="btn btn-primary" type="submit">הוסף</button>
+                    <button class="btn btn-primary" type="submit">ערוך</button>
                 </div>
             </form>
             <br>
         </div>
     </div>
-        
-                    
-                            
-                        <!-- <input #street type="text" ngModel name= "street" placeholder="רחוב" [(ngModel)]="selectedFam.street" class= "form-control form-fields" ><br><br> -->
-                        <!-- <input #houseNum type="text" ngModel name= "houseNum" placeholder="מספר בית"  class= "form-control form-fields" ><br><br> -->
-                        <!-- <input #floor type="text" ngModel name= "floor" placeholder="קומה" [(ngModel)]="selectedFam.floor" class= "form-control form-fields" ><br><br> -->
-                        <!-- <input #phone type="text" ngModel name=  "phone" placeholder="טלפון" [(ngModel)]="selectedFam.phone" class= "form-control form-fields" > <br><br> -->
-                        <!-- <input #peopleNumber type="text" ngModel name= "peopleNumber" [(ngModel)]="selectedFam.peopleNumber" placeholder="מס' נפשות" class= "form-control form-fields" > <br><br> -->
-                        <!-- <input #howDidYouHear type="text" ngModel name= ".howDidYouHear" [(ngModel)]="selectedFam.howDidYouHear" placeholder="איך שמעתם על העמותה" class= "form-control form-fields" > <br><br> -->
-                        <!-- <textarea #reasonForReferral ngModel name= "reasonForReferral" [(ngModel)]="selectedFam.howDidYouHear" placeholder="סיבת הפנייה" class= "form-control" ></textarea><br><br> <br> -->
-                        <!-- <textarea #notes ngModel name= "notes" placeholder="הערות" [(ngModel)]="selectedFam.reasonForReferral" class= "form-control" ></textarea><br><br> -->
-                    <!-- </div> -->
-                    
-                <!-- </div> -->
-
-                                                
-                                <!-----Date--> 
-                                <!-- <div class="form-group"> -->
-                                        <!-- <label>:תאריך הצטרפות</label> -->
-                                        <!-- <input #joinDate type="date" name = "joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control">      -->
-
-                                 <!-- </div> -->
-                               <!-- <br> -->
-        <!-- <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button> -->
-    
-    <!-- </form>  -->
-        <!-- <br> -->
-           
-
-      
-             
-            <!-- </div> -->
-        <!-- </div> -->
-    <!-- </div> -->
