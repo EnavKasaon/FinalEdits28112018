@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/User';
 import { RegisterService } from '../services/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../_helpers/must-match.validator';
+import { Router } from '@angular/router';
 
 @Component({
+  // moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -23,8 +26,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup; 
   submitted = false;
   form: FormGroup = new FormGroup({});
+  // model: any = {};
 
-  constructor(private _registerService:RegisterService, private formBuilder: FormBuilder) { }
+  constructor(private _registerService:RegisterService, 
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private registerService: RegisterService) { }
 
   ngOnInit() { 
     // this.stopLoading=false;
@@ -34,7 +41,10 @@ export class RegisterComponent implements OnInit {
       
       userName: ['', Validators.required], 
       Password: ['', [Validators.required, Validators.minLength(6)]],
-      Email: ['', [Validators.required, Validators.email]]
+      Email: ['', [Validators.required, Validators.email]],
+      confirmPassword: ['', Validators.required]
+    }, {
+        validator: MustMatch('Password', 'confirmPassword')
     });
   }
 
@@ -53,7 +63,10 @@ export class RegisterComponent implements OnInit {
       // this.stopLoading = false;
       if(this.ansFromServer != -1 && !this.registerForm.invalid){
         this.alertType = "success";
-        this.alertMsg ="המשתמש הוזן בהצלחה!"; 
+        this.alertMsg ="המשתמש הוזן בהצלחה!";
+        alert('המשתמש הוזן בהצלחה!') 
+
+        this.router.navigate(['/login']); 
       } 
       else{
         this.alertType = "danger";

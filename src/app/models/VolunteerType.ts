@@ -1,4 +1,4 @@
 export enum VolunteerType {
-    holidays =1 ,
-    Permanent = 2
+    Permanent =1 ,
+    holidays = 2
 }

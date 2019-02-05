@@ -1,68 +1,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW"
+    crossorigin="anonymous">
 
 <!-- Loading -->
 <ng-template #customLoadingTemplate>
-        <div class="custom-class">  </div>
+    <div class="custom-class"> </div>
 </ng-template>
 
 <br><br>
 
 
-<!-- volunteers Form -->
-<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'" 
-[action]="'עריכה'"></app-header>
-    <div class="container">
-            <div class="col-md-8 offset-md-2">
+<!-- Headers -->
+<app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'" [action]="'עריכה'"></app-header>
 
-                <!-----Choose Volunteer form------>
-                         <form #myForm1 = "ngForm" >
+<div class="container">
+    <div class="col-md-8 offset-md-2">
 
-                             <!-----Choose volunteer --> 
-                             <div class="form-group">
-                                    <label>:בחר מתנדב</label>
-                                    <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir= "rtl" name= "edvol" class= "form-control">
-                                            <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
-                                                {{vol.VolunteerFName}}</option>
-                                    </select> 
-                                 </div>
-                         </form>
-                     <!-- </div> -->  
-                 </div>
-                 <!---END-->
-
-                 <hr>
-                 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
-
-                <!-- the fields of the form -->
-                <div class="form-group" *ngIf="selectedVol.VolunteerId">
-                <label>:סוג מתנדב</label>
-                <select [(ngModel)]="selectedVol.VolunteerType" dir= "rtl" name="VolunteerType"  class= "form-control">
-                    <option value="Permanent">מתנדב קבוע</option>
-                        <option value="holidays">בחגים</option>
-                </select> </div>
-
-                <!-- The form -->
-                <form #volunteerForm = "ngForm" (ngSubmit)= "UpdateVolunteer()" *ngIf="selectedVol.VolunteerId" accept-charset="UTF-8" name="edit-volu">
-
-                <!-- Fields -->
-                <input type="text" ngModel name = "VolunteerFName" id="VolunteerFName" placeholder="שם פרטי" ngModel [(ngModel)]="selectedVol.VolunteerFName" class= "form-control">  <br><br>
-                <input type="text" ngModel name = "VolunteerLName" id="VolunteerLName" placeholder="שם משפחה" ngModel [(ngModel)]="selectedVol.VolunteerLName" class= "form-control"> <br><br>
-                <input type="text" ngModel name = "vPhone" id="vPhone" placeholder="טלפון" ngModel [(ngModel)]="selectedVol.vPhone" class= "form-control"> <br><br><br>
-                
-                <label>:תאריך לידה</label>
-                <input #BirthDate type="date" name = "BirthDate" id="BirthDate" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control"> <br> <br><br>  <br>      
-
-                <button  class = "btn btn-primary submitBtn" type= "submit"> ערוך </button>
-                </form>
-
-                <br>
-                <!-- alert -->
-                <div class = "div-horizontal">
-                 <div *ngIf="ansFromServer"  class="alert alert-{{ alertType }} alert-dismissible">
-                   <a href="edit-volunteers"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                   <strong > {{ alertMsg }}</strong>
-                   </div>
+        <!-- alert -->
+        <div class="div-horizontal">
+                <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+                    <a href="edit-volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong> {{ alertMsg }}</strong>
                 </div>
-        </div>
+            </div>
+
+        <form>
+
+            <!-----Choose volunteer -->
+            <div class="form-group">
+                <label>:בחר מתנדב</label>
+                <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir="rtl" name="edvol"
+                    class="form-control">
+                    <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
+                        {{vol.VolunteerFName}}</option>
+                </select>
+                <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר מתנדב </small>
+            </div>
+        </form>
+        <hr>
+        <!---END-->
+    
+
+        <!-- loading -->
+        <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+            [template]="customLoadingTemplate"></ngx-loading>
+
+
+        <!-- The submit form -->
+        <form #supplierForm = "ngForm" [formGroup]="registerForm" (ngSubmit)="UpdateVolunteer()" *ngIf="selectedVol.VolunteerId" accept-charset="UTF-8" name="form">
+
+            <!-- Dropdown volunteers type -->
+            <div class="form-group" *ngIf="selectedVol.VolunteerId">
+                <label>:סוג מתנדב</label>
+                <select #VolunteerType [(ngModel)]="selectedVol.VolunteerType" dir="rtl" formControlName="VolunteerType"
+                    name="VolunteerType" id="VolunteerType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VolunteerType?.errors }"
+                    aria-describedby="inputGroupPrepend2">
+                    <option value="קבוע">מתנדב קבוע</option>
+                    <option value="חגים">בחגים</option>
+                    <div *ngIf="submitted && f.VolunteerType?.errors" class="invalid-feedback">
+                        <div class="error1" *ngIf="f.VolunteerType.errors.required">אנא בחר סוג מתנדב</div>
+                    </div>
+                </select>
+                <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג מתנדב </small>
+            </div>
+
+            <!-- First Name Field -->
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input #volunteerFName type="text" formControlName="VolunteerFName" ngModel name="VolunteerFName"
+                            id="VolunteerFName" placeholder="שם פרטי" ngModel [(ngModel)]="selectedVol.VolunteerFName"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VolunteerFName?.errors }">
+                        <div *ngIf="submitted && f.VolunteerFName?.errors" class="invalid-feedback">
+                            <div class="error1" *ngIf="f.VolunteerFName.errors.required">אנא הכנס שם פרטי</div>
+                            <div class="error1" *ngIf="f.VolunteerFName.errors.pattern">אנא הזן אותיות בלבד</div>
+                        </div>
+                    </div>
+                </div> <br> <br>
+            </div>
+
+
+            <!-- Last Name Field -->
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input #volunteerLName type="text" formControlName="VolunteerLName" ngModel name="VolunteerLName"
+                            id="VolunteerLName" placeholder="שם משפחה" ngModel [(ngModel)]="selectedVol.VolunteerLName"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VolunteerLName?.errors }">
+                        <div *ngIf="submitted && f.VolunteerLName?.errors" class="invalid-feedback">
+                            <div class="error1" *ngIf="f.VolunteerLName.errors.required">אנא הכנס את שם משפחה</div>
+                            <div class="error1" *ngIf="f.VolunteerLName.errors.pattern">אנא הזן אותיות בלבד</div>
+                        </div>
+                    </div>
+                </div> <br> <br>
+            </div>
+
+
+            <!-- Volunteer's Phone Field -->
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input #volunteerPhone type="text" formControlName="vPhone" ngModel name="vPhone" id="vPhone"
+                            placeholder="מספר טלפון" ngModel [(ngModel)]="selectedVol.vPhone" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.vPhone?.errors }" aria-describedby="inputGroupPrepend2">
+                        <div *ngIf="submitted && f.vPhone?.errors" class="invalid-feedback">
+                            <div class="error1" *ngIf="f.vPhone.errors.required"> אנא הכנס מספר טלפון</div>
+                            <div class="error1" *ngIf="f.vPhone.errors.minlength">נא להזין 10 מספרים</div>
+                            <div class="error1" *ngIf="f.vPhone.errors.maxLength">נא להזין 10 מספרים</div>
+                            <div class="error1" *ngIf="f.vPhone.errors.pattern">נא להזין מספרים בלבד</div>
+                        </div>
+                    </div>
+                </div> <br> <br>
+            </div> <br>
+
+            <!-- Birth Date Field -->
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>:תאריך לידה</label>
+                        <input #birthdate type="text" formControlName="BirthDate" name="BirthDate" id="BirthDate"
+                            placeholder="תאריך לידה" ngModel [(ngModel)]="selectedVol.BirthDate" class="form-control" disabled>
+                    </div>
+                </div> <br> <br>
+            </div> <br>
+
+            <!-- Birth Date Field -->
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>:אנא בחר תאריך לידה חדש</label>
+                        <input #BirthDate type="date" formControlName="BirthDate" name="BirthDate" id="BirthDate"
+                            placeholder="תאריך לידה" ngModel [(ngModel)]="selectedVol.BirthDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.BirthDate?.errors }">
+                        <div *ngIf="submitted && f.BirthDate?.errors" class="invalid-feedback"> </div>
+                        <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הלידה </small>
+                    </div>
+                </div> <br> <br>
+            </div> 
+
+       <!-- Bottom -->
+      <div class="form-group">
+            <button class="btn btn-primary" type="submit">ערוך</button>
+          </div>
+        </form>
+        <br>
+      
+    </div> 
+</div>

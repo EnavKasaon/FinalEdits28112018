@@ -3,136 +3,289 @@
 
 <!-- Loading -->
 <ng-template #customLoadingTemplate>
-    <div class="custom-class">  </div>
+    <div class="custom-class"> </div>
 </ng-template>
 
-<br> 
+<br>
 
 <!-- Family Form -->
-<app-header [name]="'משפחות נתרמות'" [titleIcon]="'fa fa-address-card-o TitleIcon'"
-[action]="'צפיה'"></app-header>
+<app-header [name]="'משפחות נתרמות'" [titleIcon]="'fa fa-address-card-o TitleIcon'" [action]="'צפיה'"></app-header>
 
- 
+
 <div class="container">
     <div class="col-md-8 offset-md-2">
-         
+
         <!-- Excel -->
-        <button class="btn btn-primary" (click)= "downloadFile(familyDetails)">ייצוא כל המשפחות לאקסל</button>
+        <button class="btn btn-primary" (click)="downloadFile(familyDetails)">ייצוא כל המשפחות לאקסל</button>
 
-       <!-----Choose Familiy form------>
-                <form #myForm2 = "ngForm">
-                    
-                    
-                    <!-----Choose Familiy --> 
-                    <div class="form-group">
-                            <label>:בחר משפחה</label>
-                            <select  [(ngModel)]="selectedFam.familyId" (change)="onChange($event.target.value)" dir = "rtl" name="familyType" id="familyType" class= "form-control">
-                                    <option *ngFor="let fam of familyDetails" [value]="fam.familyId">
-                                            {{fam.firstName}}</option>
-                            </select>
-                        </div>
-                </form>   
-        <!---END-->
+        <!-----Choose Familiy form------>
+        <form #myForm2="ngForm">
 
 
+            <!-----Choose Familiy -->
+            <div class="form-group">
+                <label>:בחר משפחה</label>
+                <select [(ngModel)]="selectedFam.familyId" (change)="onChange($event.target.value)" dir="rtl" name="familyType"
+                    id="familyType" class="form-control">
+                    <option *ngFor="let fam of familyDetails" [value]="fam.familyId">
+                        {{fam.firstName}}</option>
+                </select>
+            </div>
+        </form>
         <hr>
         <br>
-         <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
-       
-         <!-- The form -->
-         <form #myForm1 = "ngForm" (ngSubmit)= "viewFamily()" *ngIf="selectedFam.familyId">  
-            <div class="row">
-                        <div class="col-md-6">
-                                
-                                <!-----Date--> 
-                                <div class="form-group">
-                                        <label>:תאריך הצטרפות</label>
-                                        <input #joinDate type="date" name = "joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate" class= "form-control" disabled>     
-                                 </div>
-                               <br>
-                                <!-----Familiy type--> 
-                                <div class="form-group">
-                                    <label>:סוג משפחה</label>
-                                    <select [(ngModel)]="selectedFam.familyType" dir = "rtl" name="familyType" id="familyType" class= "form-control" disabled>
-                                            <option value="רווחה" >רווחה</option>
-                                            <option value="פרטי" >פרטי</option>
-                                     </select>
-                                </div>
-                                
-                                 <!-----package type-->
-                                 <div class="form-group">
-                                     <label>:סוג סל</label>
-                                     <select [(ngModel)]="selectedFam.basketType"  dir = "rtl" name="BasketType" id="BasketType" class= "form-control" disabled>
-                                        <option value="normal">רגיל</option>
-                                        <option value="fruit&vegs" >פירות וירקות</option>
-                                        </select>
-                                 </div>
-                               
-                                 <!-----appartment-->  
-                                <div  dir = "rtl" class="checkbox">
-                                    <label ><input type="checkbox" ngModel name = "house" disabled>:דירה בבעלות</label> 
-                                </div> <br>
- 
-                                <!--car-->
-                                <div class="checkbox">
-                                 <label> <input type="checkbox" ngModel name = "car" disabled>:רכב בבעלות</label>
-                                </div> <br>
-                                
-                                <!--debts-->
-                                <div class="checkbox">
-                                    <label> <input type="checkbox" ngModel name = "debt" disabled>:חובות </label>
-                                </div> <br>
-                    
-                   <!-- The files -->
 
-                    <!--Pay Checks-->
-                    <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "payChecks" disabled>:תלושי שכר מן החודשיים האחרונים </label>
-                            </div> <br>
-        
-                            <!--Social Security-->
-                            <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "bituahLeumi" disabled>:מסמכים המוכיחים קבלת תמיכה מביטוח לאומי - אם יש</label>
-                            </div> <br>
-        
-                            <!--Bank Account-->
-                            <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "bankAccount" disabled>:פירוט חשבון בנק מן החודשיים האחרונים </label>
-                            </div> <br>
-        
-                            <!--Credit details-->
-                            <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "creditCard" disabled>:פירוט אשראי מן החודשיים האחרונים </label>
-                            </div> <br>
-                                                        
-                            <!--Id-->
-                            <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "copyId" disabled>:צילום+ ספח של ת.ז </label>
-                            </div> <br>
-                                                        
-                            <!--Rent Contract-->
-                            <div class="checkbox">
-                            <label> <input type="checkbox" ngModel name = "rentContract" disabled>:חוזה שכר דירה </label>
-                            </div> <br>
-                            
-                            </div>
-                    <div class="col-md-6">
-                            
-                        <!-- the fields of the form -->
-                        <input #firstName type="text" ngModel name= "firstName" placeholder="שם פרטי"  [(ngModel)]="selectedFam.firstName" class= "form-control form-fields" disabled>  <br><br>
-                        <input #lastName type="text" ngModel name = "lastName" placeholder="שם משפחה" [(ngModel)]="selectedFam.lastName" class= "form-control form-fields" disabled> <br><br>
-                        <input #street type="text" ngModel name= "street" placeholder="רחוב" [(ngModel)]="selectedFam.street" class= "form-control form-fields" disabled><br><br>
-                        <input #houseNum type="text" ngModel name= "houseNum" placeholder="מספר בית" [(ngModel)]="selectedFam.houseNum" class= "form-control form-fields" disabled><br><br>
-                        <input #floor type="text" ngModel name= "floor" placeholder="קומה" [(ngModel)]="selectedFam.floor" class= "form-control form-fields" disabled><br><br>
-                        <input #phone type="text" ngModel name=  "phone" placeholder="טלפון" [(ngModel)]="selectedFam.phone" class= "form-control form-fields" disabled> <br><br>
-                        <input #peopleNumber type="text" ngModel name= "peopleNumber" [(ngModel)]="selectedFam.peopleNumber" placeholder="מס' נפשות" class= "form-control form-fields" disabled> <br><br>
-                        <input #howDidYouHear type="text" ngModel name= ".howDidYouHear" [(ngModel)]="selectedFam.howDidYouHear" placeholder="איך שמעתם על העמותה" class= "form-control form-fields" disabled> <br><br>
-                        <textarea #reasonForReferral ngModel name= "reasonForReferral" [(ngModel)]="selectedFam.howDidYouHear" placeholder="סיבת הפנייה" class= "form-control" disabled></textarea><br><br> <br>
-                        <textarea #notes ngModel name= "notes" placeholder="הערות" [(ngModel)]="selectedFam.reasonForReferral" class= "form-control" disabled></textarea><br><br>
+        <!-- Loadig -->
+        <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+            [template]="customLoadingTemplate"></ngx-loading>
+
+        <!-- The form -->
+        <form #myForm1="ngForm" (ngSubmit)="viewFamily()" *ngIf="selectedFam.familyId">
+
+            <!-----Bascket Type-->
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>:סוג סל</label>
+                        <select [(ngModel)]="selectedFam.basketType" dir="rtl" name="BasketType" id="BasketType" class="form-control"
+                            disabled>
+                            <option value="רגיל">רגיל</option>
+                            <option value="פירות וירקות">פירות וירקות</option>
+                        </select>
                     </div>
-                    
                 </div>
-    
+
+                <!-----Familiy type-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>:סוג משפחה</label>
+                        <select [(ngModel)]="selectedFam.familyType" dir="rtl" name="familyType" id="familyType" class="form-control"
+                            disabled>
+                            <option value="רווחה">רווחה</option>
+                            <option value="פרטי">פרטי</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Last Name Field -->
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group"><label>:שם משפחה</label>
+                        <input #lastName type="text" ngModel name="lastName" placeholder="שם משפחה" [(ngModel)]="selectedFam.lastName"
+                            class="form-control form-fields" disabled> <br><br>
+                    </div>
+                </div>
+
+                <!-- First Name Field -->
+                <div class="col-md-6">
+                    <div class="form-group"><label>:שם פרטי</label>
+                        <input #firstName type="text" ngModel name="firstName" placeholder="שם פרטי" [(ngModel)]="selectedFam.firstName"
+                            class="form-control form-fields" disabled> <br><br>
+                    </div>
+                </div> 
+            </div> <br>
+
+
+            <!-- Floor Number Field -->
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group"><label>:קומה</label>
+                        <input #floor type="text" ngModel name="floor" placeholder="קומה" [(ngModel)]="selectedFam.floor"
+                            class="form-control form-fields" disabled><br><br>
+                    </div>
+                </div>
+
+                <!-- Sreet Field -->
+                <div class="col-md-6">
+                    <div class="form-group"><label>:רחוב</label>
+                        <input #street type="text" ngModel name="street" placeholder="רחוב" [(ngModel)]="selectedFam.street"
+                            class="form-control form-fields" disabled><br><br>
+                    </div>
+                </div>
+            </div> <br>
+
+
+            <!-- Family Phone Field -->
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group"><label>:טלפון</label>
+                        <input #phone type="text" ngModel name="phone" placeholder="טלפון" [(ngModel)]="selectedFam.phone"
+                            class="form-control form-fields" disabled> <br><br>
+                    </div>
+                </div>
+
+
+                <!-- house Number Field -->
+                <div class="col-md-6">
+                    <div class="form-group"><label>:מספר בית</label>
+                        <input #houseNum type="text" ngModel name="houseNum" placeholder="מספר בית" [(ngModel)]="selectedFam.houseNum"
+                            class="form-control form-fields" disabled><br><br>
+                    </div>
+                </div>
+            </div> <br>
+
+            <!-- How did you here about the charity Field -->
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group"><label>:איך שמעתם על העמותה</label>
+                        <input #howDidYouHear type="text" ngModel name=".howDidYouHear" [(ngModel)]="selectedFam.howDidYouHear"
+                            placeholder="איך שמעתם על העמותה" class="form-control form-fields" disabled> <br><br>
+                    </div>
+                </div>
+
+                <!-- Number of people in the family Field -->
+                <div class="col-md-6">
+                    <div class="form-group"> <label>:מספר נפשות</label>
+                        <input #peopleNumber type="text" ngModel name="peopleNumber" [(ngModel)]="selectedFam.peopleNumber"
+                            placeholder="מס' נפשות" class="form-control form-fields" disabled> <br><br>
+                    </div>
+                </div>
+            </div> <br>
+
+            <!-- Notes Field -->
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group"> <label>:הערות</label>
+                        <textarea #notes ngModel name="notes" placeholder="הערות" [(ngModel)]="selectedFam.reasonForReferral"
+                            class="form-control" disabled></textarea><br><br>
+                    </div>
+                </div>
+
+
+                <!-- The reason for refferal to the charity Field -->
+                <div class="col-md-6">
+                    <div class="form-group"> <label>:סיבת הפנייה</label>
+                        <textarea #reasonForReferral ngModel name="reasonForReferral" [(ngModel)]="selectedFam.howDidYouHear"
+                            placeholder="סיבת הפנייה" class="form-control" disabled></textarea><br><br> <br>
+                    </div>
+                </div>
+            </div> <br>
+
+
+            <!----- Join Date-->
+            <div class="form-row" dir="rtl">
+                <div class="col-md-12">
+                    <div class="form-group"> <label>תאריך הצטרפות:</label>
+                        <input #joinDate type="text" name="joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate"
+                            class="form-control" disabled>
+                    </div>
+                </div>
+            </div> 
+
+
+
+            <!-- Checkboxes -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:50px 0">
+                        <div class="card-header" id="headerStyle" style="text-align: center">מסמכים</div>
+
+                        <!-- Appartment -->
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #house type="checkbox" ngModel name="house" [(ngModel)]="selectedFam.house"
+                                        disabled>
+                                    <span class="default"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px"> דירה בבעלות</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Car -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #car type="checkbox" ngModel name="car" class="input" [(ngModel)]="selectedFam.car"
+                                        disabled />
+                                    <span class="primary"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px"> רכב בבעלות</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Debts -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #debts type="checkbox" ngModel name="debt" class="input" [(ngModel)]="selectedFam.debt"
+                                        disabled />
+                                    <span class="success"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">חובות</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Pay Checks -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #payChecks type="checkbox" ngModel name="payChecks" class="input"
+                                        [(ngModel)]="selectedFam.payChecks" disabled />
+                                    <span class="info"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים האחרונים</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Social Security -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #bituahLeumi type="checkbox" ngModel name="bituahLeumi" class="input"
+                                        [(ngModel)]="selectedFam.bituahLeumi" disabled />
+                                    <span class="warning"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">מסמכים המוכיחים קבלת
+                                        תמיכה מביטוח לאומי - אם יש</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Bank Account -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #bankAccount type="checkbox" ngModel name="bankAccount" class="input"
+                                        [(ngModel)]="selectedFam.bankAccount" disabled />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט חשבון בנק מן
+                                        החודשיים האחרונים</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Credit details -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #creditCard type="checkbox" ngModel name="creditCard" class="input"
+                                        [(ngModel)]="selectedFam.creditCard" disabled />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט אשראי מן החודשיים
+                                        האחרונים</label>
+                                </label>
+                            </li>
+
+
+                            <!-- Id -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #copyId type="checkbox" ngModel name="copyId" class="input" [(ngModel)]="selectedFam.copyId"
+                                        disabled />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">צילום+ ספח של ת.ז </label>
+                                </label>
+                            </li>
+
+
+                            <!-- Rent Contract -->
+                            <li class="list-group-item">
+                                <label class="checkbox">
+                                    <input #rentContract type="checkbox" ngModel name="rentContract" class="input"
+                                        [(ngModel)]="selectedFam.rentContract" disabled />
+                                    <span class="danger"></span>
+                                    <label style="position: absolute; top:0.8em; left: -65px">חוזה שכר דירה</label>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>

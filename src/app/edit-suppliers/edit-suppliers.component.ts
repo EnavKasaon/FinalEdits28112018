@@ -23,7 +23,6 @@ export class EditSuppliersComponent implements OnInit {
   submitted = false;
   form: FormGroup = new FormGroup({});
 
-  // form;
     constructor(private _supplierService:SupplierService, private formBuilder: FormBuilder) { 
       
     }
@@ -67,9 +66,6 @@ export class EditSuppliersComponent implements OnInit {
     this.submitted = true;
     console.log("Trying to update Supplier...");
     console.log("Supplier: "+JSON.stringify(this.selectedSup)+" ID: "+this.selectedSup.ID);
- //   this.selectedSup = <Supplier> this.registerForm.value;this.selectedSup = <Supplier> this.registerForm.value;
- //  this._supplierService.UpdateSupplier(this.registerForm.value)
- // this.selectedSup = <Supplier> (this.registerForm.value);
 if (!this.registerForm.invalid){
   this._supplierService.UpdateSupplier( this.selectedSup)
     .subscribe((result) => {

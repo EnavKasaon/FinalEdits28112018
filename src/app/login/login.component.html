@@ -1,3 +1,5 @@
+
+<!-- Form -->
 <div class="login-page">
   <div class="form">
     <img src="assets/images/logoAhva.png" class="img-logo">
@@ -7,9 +9,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="logInto()" accept-charset="UTF-8">
 
 
-      <!-- Fields -->
-      <!-- <form class="login-form"> -->
-
+      <!-- User Name Field -->
         <div class="form-group">
           <input #userName type="text" formControlName="userName" name="userName" id="userName" placeholder="שם משתמש"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }">
@@ -18,6 +18,7 @@
           </div>
         </div>
 
+        <!-- Password Field -->
         <div class="form-group">
           <input #password type="password" formControlName="password" name="password" id="password" placeholder="סיסמה"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.password?.errors }">
@@ -27,7 +28,7 @@
           </div>
         </div>
 
-
+        <!-- Bottuns -->
         <body>
           <!-- submit button -->
           <!-- <button type=button class="btn btn-primary"> <a href="home">כניסה</a></button> -->

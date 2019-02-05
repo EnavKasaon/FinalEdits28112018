@@ -10,7 +10,7 @@
 
 <!-- volunteers Form -->
 <app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'"
-[action]="'צפייה'"></app-header>
+[action]="'צפייה'" ></app-header>
     <div class="container">
             <div class="col-md-8 offset-md-2">
 
@@ -18,12 +18,12 @@
                 <button class="btn btn-primary" (click)= "downloadFile(volunteerDetails)">ייצוא כל המתנדבים לאקסל</button>
 
                 <!-----Choose Volunteer form------>
-                         <form #myForm1 = "ngForm" >
+                         <form #myForm1 = "ngForm" name="viewv" >
 
                              <!-----Choose volunteer --> 
                              <div class="form-group">
                                     <label>:בחר מתנדב</label>
-                                    <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir= "rtl" class= "form-control">
+                                    <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir= "rtl" name="viewPick"class= "form-control">
                                             <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
                                                 {{vol.VolunteerFName}}</option>
                                     </select> 
@@ -37,9 +37,9 @@
                 <!-- the fields of the form -->
                 <div class="form-group" *ngIf="selectedVol.VolunteerId">
                 <label>:סוג מתנדב</label>
-                <select [(ngModel)]="selectedVol.VolunteerType"  dir="rtl" name="VolunteerType" id="VolunteerType" class= "form-control" disabled>
-                        <option value="Permanent">מתנדב קבוע</option>
-                        <option value="holidays">בחגים</option>
+                <select [(ngModel)]="selectedVol.VolunteerType"  dir="rtl" name="VolunteerType" class= "form-control" disabled>
+                        <option value="קבוע">מתנדב קבוע</option>
+                        <option value="חגים">בחגים</option>
                 </select> </div>
 
                 <!-- The form -->
@@ -51,8 +51,9 @@
                 <input type="text" ngModel name = "vPhone" id="vPhone" placeholder="טלפון" [(ngModel)]="selectedVol.vPhone" class= "form-control" disabled> <br><br>
                 
                 <label>:תאריך לידה</label>
-                <input #BirthDate type="date" name = "BirthDate" id="BirthDate" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control" disabled> <br> <br>      
+                <input #BirthDate type="text" name = "BirthDate" id="BirthDate" dir= "rtl" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control" disabled> <br> <br>      
 
                 </form>
             </div>
         </div>
+        <br>

@@ -7,16 +7,16 @@
 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
   [template]="customLoadingTemplate"></ngx-loading>
 
+  <!-- Form -->
   <div class="register-page">
     <div class="form">
       <img src="assets/images/logoAhva.png" class="img-logo">
       <h1>ברוך הבא</h1>
       <h2>הרשמה</h2>
-<br>
+      <br>
       <form [formGroup]="registerForm" (ngSubmit)="insertUser()" accept-charset="UTF-8">
 
-      <!-- Fields -->
-      <!-- <form class="registration-form"> -->
+      <!-- User Name Field -->
         <div class="form-group">
           <input #userName type="text" formControlName="userName" name="userName" id="userName" placeholder="הזן שם משתמש"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }">
@@ -25,6 +25,7 @@
           </div>
         </div>
 
+        <!-- Password Field -->
         <div class="form-group">
           <input #Password type="Password" formControlName="Password" name="Password" id="Password" placeholder="הזן סיסמה"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.Password?.errors }">
@@ -34,6 +35,17 @@
           </div>
         </div>
 
+        <!-- Comfirm Password Field  -->
+        <div class="form-group">
+          <input #confirmPassword type="confirmPassword" formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="אשר סיסמה"
+            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword?.errors }">
+          <div *ngIf="submitted && f.confirmPassword?.errors" class="invalid-feedback">
+            <div class="error1" *ngIf="f.confirmPassword.errors.required">אנא הכנס סיסמה</div>
+            <div class="error1" *ngIf="f.confirmPassword.errors.mustMatch">הסיסמאות חייבות להיות זהות</div>
+          </div>
+        </div>
+
+        <!-- Email Field -->
         <div class="form-group">
           <input #Email type="email" formControlName="Email" name="Email" id="Email" placeholder="הזן כתובת אימייל"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.Email?.errors }">
@@ -60,7 +72,7 @@
 <!-- alert -->
 <div class="div-horizontal">
     <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-      <a href="register" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <a href="register.component.html" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong> {{ alertMsg }}</strong>
     </div>
   </div>

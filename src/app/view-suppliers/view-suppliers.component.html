@@ -33,8 +33,10 @@
                 <!---END-->
                 <hr>
                 
+                <!-- Loading -->
                 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
       
+                <!-- Choose Supplier Type -->
                 <div class="form-group" *ngIf="selectedSup.ID">
                         <label>:ספק</label>
                         <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierType"  class= "form-control" disabled>
