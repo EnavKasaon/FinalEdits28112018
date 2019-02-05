@@ -25,6 +25,7 @@ export class EditOrderTypeComponent implements OnInit {
   alertMsg: string;
 
   /********Error Messages********* */
+  TypeCurrentName: string;
   NameError: string="";
   NoValue: string="שדה זה הינו שדה חובה";
   SupplierError :string ="אנא בחר ספק";
@@ -38,6 +39,7 @@ export class EditOrderTypeComponent implements OnInit {
     private route: ActivatedRoute, private changeDetectorRefs: ChangeDetectorRef, private _supplierService:SupplierService) { }
 
   ngOnInit() {
+    this.selectedSup.ID = -1;
     // get all suppliers 
     this._supplierService.getSupplierName().subscribe((data: {}) => {
       console.log(data[0].companyName);
@@ -56,6 +58,7 @@ export class EditOrderTypeComponent implements OnInit {
   refresh() {
     this._ordersService.GetTypeByID(this.currentType).subscribe((res) => {
       this.type = res;
+      this.TypeCurrentName = res.order_type_name; // restart name for validation
       this.products = this.type.products; // restart products 
       this.selectedSup = this.type.supplier; //restart supplier
       this.changeDetectorRefs.detectChanges();
@@ -63,31 +66,49 @@ export class EditOrderTypeComponent implements OnInit {
     
   }
 
+  checkProducts(){
+    for(var i=0; i < this.products.length; i++) {
+      if(this.products[i].product_name.length < 1 || this.products[i].amount < 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+
   checkName(){
     // let element = document.getElementById('validationName');
+    console.log(this.type);
+    console.log("Compare "+ this.type.order_type_name+ " To "+this.TypeCurrentName);
     this.NameError = "";
     var ans = false;
     if(this.type.order_type_name == ""){
       this.NameError = this.NoValue;
       this.NameVaild = false;
       console.log(this.NameError);
+      return false;
     }
-    else{
+    else if(this.type.order_type_name === this.TypeCurrentName){
       this.NameVaild = true;
       this.NameError = "";
-    this._ordersService.CheckIfTypeNameExist(this.type.order_type_name).subscribe((data) =>{
-        ans = data.SuccesMsg;
-        if(ans){
-          this.NameError ="שם קיים";
-          console.log(this.NameError);
-          this.NameVaild = false;
-        }
-        else{
-          this.NameError = "";
-          this.NameVaild = true;
-        }   
-       });
+      return true;
     }
+    else{
+          this.NameVaild = true;
+          this.NameError = "";
+          this._ordersService.CheckIfTypeNameExist(this.type.order_type_name).subscribe((data) =>{
+              ans = data.SuccesMsg;
+              if(ans){
+                this.NameError ="שם קיים";
+                console.log(this.NameError);
+                this.NameVaild = false;
+              }
+              else{
+                this.NameError = "";
+                this.NameVaild = true;
+              }   
+            });
+          }
   
   }
 
