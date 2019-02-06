@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './order-type.component.html',
   styleUrls: ['./order-type.component.css']
 })
-
+ 
 export class OrderTypeComponent implements OnInit {
   public productForm: FormGroup;
   supplierDetails:any =  [];
@@ -59,17 +59,6 @@ export class OrderTypeComponent implements OnInit {
     this.orderTypeInsert.order_type_id=0;
     // this.orderTypeInsert.supplier_id = -1;
     this.supplierDetails = [];
- 
-    // this.registerForm = this.formBuilder.group({
-    //   //    ContactPerson: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-    //   //    ContactPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
-    //   //    SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-    //     //  companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-    //       amount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]], 
-    //    //   Fax: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(9)]],
-    //    product_name:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+")]]
-    //     }); 
-
 
     this.products.push(new Product({product_name:'',amount:0,comments:''}));
       this._supplierService.getSupplierName().subscribe((data: {}) => {
@@ -100,7 +89,7 @@ export class OrderTypeComponent implements OnInit {
       this.NameVaild = false;
       console.log(this.NameError);
     }
-    else{
+    else {
       this.NameVaild = true;
       this.NameError = "";
     this._ordersService.CheckIfTypeNameExist(this.orderTypeInsert.order_type_name).subscribe((data) =>{
@@ -140,7 +129,7 @@ removeProduct(p: Product){
       break;
     }
   }
-} 
+}  
 
 insertOrderType(){
   // console.log("Form validation:"+this.f.form.valid);

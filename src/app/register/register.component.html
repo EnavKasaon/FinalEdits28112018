@@ -2,6 +2,7 @@
 <ng-template #customLoadingTemplate>
   <div class="custom-class"> </div>
 </ng-template>
+<br> <br>
 
 <!-- loading -->
 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
@@ -37,7 +38,7 @@
 
         <!-- Comfirm Password Field  -->
         <div class="form-group">
-          <input #confirmPassword type="confirmPassword" formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="אשר סיסמה"
+          <input #confirmPassword type="Password" formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="אשר סיסמה"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword?.errors }">
           <div *ngIf="submitted && f.confirmPassword?.errors" class="invalid-feedback">
             <div class="error1" *ngIf="f.confirmPassword.errors.required">אנא הכנס סיסמה</div>
@@ -47,11 +48,17 @@
 
         <!-- Email Field -->
         <div class="form-group">
-          <input #Email type="email" formControlName="Email" name="Email" id="Email" placeholder="הזן כתובת אימייל"
-            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.Email?.errors }">
-          <div *ngIf="submitted && f.Email?.errors" class="invalid-feedback">
+          <input #Email type="text" [(ngModel)]="newUser.Email" formControlName="Email"  id="Email" placeholder="הזן כתובת אימייל"
+          [className]="emailVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.Email?.errors }" name="Email" (ngModelChange) = "checkEmail()" required>
+            
+            <div [className]="emailVaild ? 'valid-feedback' : 'invalid-feedback'" id="validationName">            
+                <div>{{ EmailError }}</div>
+            </div>
+            <div *ngIf="submitted && f.Email?.errors" class="invalid-feedback">
             <div class="error1" *ngIf="f.Email.errors.required">אנא הכנס אימייל</div>
             <div class="error1" *ngIf="f.Email.errors.email"> כתובת האימייל חייבת להיות כתובת דוא"ל חוקית</div>
+            <!-- <div class="error1" *ngIf="f.confirmPassword.errors.checkEmail">אימייל זה כבר קיים במערכת</div> -->
           </div>
         </div>
 
@@ -59,7 +66,7 @@
 
           <!-- submit button and going to login page -->
           <!-- <button type=button class="btn btn-primary"  (click)="clickMethod('')"> <a href="login">כניסה</a></button> -->
-          <button class="btn btn-primary" type="submit"> כניסה </button>
+          <button id="submitType" class="btn btn-primary" type="submit"> כניסה </button>
           <br><br>
           <!-- back to login page without registration -->
           <a href="login" id="backToLogin">חזרה</a>
@@ -79,5 +86,5 @@
 
 
     </div>
-  </div>
+  </div> 
 

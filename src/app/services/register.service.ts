@@ -33,14 +33,14 @@ export class RegisterService {
     const body = JSON.stringify(user);
     const headerOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this._http.post(`${this._appSettings.serverBaseUrl}/api/Register/Insert`, body, headerOptions);
-  }
+  } 
 
   getAll() {
     return this._http.get<User[]>('/api/users');
   }
 
   getById(id: number) {
-    return this._http.get('/api/users/' + id);
+    return this._http.get('/api/users/' + id); 
   }
 
   update(user: User) {
@@ -49,6 +49,12 @@ export class RegisterService {
 
   delete(id: number) {
     return this._http.delete('/api/users/' + id);
+  }
+
+  public CheckIfEmailExist(email: string): Observable<any>{
+    const body = JSON.stringify(email);
+    const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+    return this._http.put(`${this._appSettings.serverBaseUrl}/api/Register/CheckIfEmailExist`, body , headerOptions);
   }
 }
 

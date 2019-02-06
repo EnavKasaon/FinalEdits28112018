@@ -53,12 +53,12 @@
                 name = "OrderTypeName" (ngModelChange) = "checkName()" required>
                 <!-- class="invalid-feedback"  class="form-control is-invalid"-->
                 <div [className]="NameVaild ? 'valid-feedback' : 'invalid-feedback'" id="validationName">            
-                    <div>{{ NameError }}</div>
+                    <div>{{ NameError }}</div> 
                 </div>
                 
             </div>
           </div>
-      </div>
+      </div> 
       <br>
 
       <!-- Loading -->
@@ -123,7 +123,7 @@
         </tbody>
         <button class="btn btn-success btn-md right" (click)="addProduct()"> הוספת מוצר <i class="fas fa-plus"></i></button>
       </table>
-      <br>
+      <br> 
       <div class="form-group">
           <button id="submitType" [disabled] = "!NameVaild" class="btn btn-primary submitBtn" (click)="insertOrderType()" type="submit"> הוסף סוג הזמנה חדש </button>
       </div>

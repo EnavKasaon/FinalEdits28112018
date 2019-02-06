@@ -11,7 +11,7 @@ import { OrderType } from '../models/OrderType';
 import { Order } from '../models/Order';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class OrdersService {
 
