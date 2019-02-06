@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DebugElement } from '@angular/core';
 import { SupplierService } from '../services/suppliers.service';
 import { Supplier } from '../models/Supplier';
 import { FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
@@ -65,7 +65,8 @@ export class OrderTypeComponent implements OnInit {
        console.log(data[0].companyName);
         this.supplierDetails = data;
       });
-     
+     this.selectedSup.ID = -1;
+     //this.selectedSup.ID = this.supplierDetails[0].ID;
 
       console.log(this.supplierDetails.companyName);
   }
@@ -79,6 +80,17 @@ export class OrderTypeComponent implements OnInit {
   AmountError: string="אנא בחר כמות";
   ProductError: string="אנא הכנס שם מוצר";
   NameVaild: boolean = false;
+
+
+  checkProducts(){
+    for(var i=0; i < this.products.length; i++) {
+      if(this.products[i].product_name.length < 1 || this.products[i].amount < 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 
   checkName(){
     // let element = document.getElementById('validationName');
@@ -107,7 +119,25 @@ export class OrderTypeComponent implements OnInit {
     }
   
   }
+ 
 
+
+  ValidateForm (){
+    let sum = 0;
+    let x = document.getElementsByClassName('is-invaild');
+      for (let i = 0; i < x.length; i++) {
+          sum = sum+1;
+      }
+    
+    //let my = document.getElementById('my-form');
+    console.log("items *"+sum);
+    
+    if(document.getElementsByClassName("is-invaild")[0] !== undefined){
+      //this.insertOrderType();
+      return true;
+    }
+    return false;
+  }
   
 
 
@@ -120,6 +150,7 @@ export class OrderTypeComponent implements OnInit {
        this.selectedSup = new Supplier(data);
        console.log(this.selectedSup.companyName);      
     });
+    this.orderTypeInsert.supplier.ID = -1;
 }
 
 removeProduct(p: Product){
