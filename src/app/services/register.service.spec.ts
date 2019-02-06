@@ -12,5 +12,5 @@ describe('RegisterService', () => {
   it('should be created', inject([RegisterService], (service: RegisterService) => {
     expect(service).toBeTruthy();
   }));
-});
+}); 
  
