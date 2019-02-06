@@ -21,6 +21,10 @@ export class VolunteerService {
    return this._http.get<Volunteer>(`${this._appSettings.serverBaseUrl}/api/Volunteer/GetAllVolunteers`);
 
   };
+  public getBirthdays(): Observable<Volunteer>{  
+    return this._http.get<Volunteer>(`${this._appSettings.serverBaseUrl}/api/Volunteer/GetTodayBirtdayVolunteers`);
+ 
+   };
 
   public getVolunteer (id:number): Observable<Volunteer>{  
    console.log("Volunteer ID: "+id);

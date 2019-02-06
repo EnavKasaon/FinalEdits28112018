@@ -61,7 +61,6 @@ export class ViewOrdersByTypeComponent implements OnInit {
  refresh() {
   this._ordersService.GetOrdersByType(this.currentType).subscribe((res) => {
     this.allOrders = res;
-    //this.teachDS = new LanguageDataSource(this.user.profile.languages.teach);
     this.changeDetectorRefs.detectChanges();
   });
 }

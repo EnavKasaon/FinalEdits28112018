@@ -1,0 +1,39 @@
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class"> </div>
+</ng-template>
+<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+[template]="customLoadingTemplate"></ngx-loading>
+  <!-- The table for View orders -->
+  <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">סוג ספק </th>
+            <th scope="col">סוג סחורה</th>
+            <th scope="col">טלפון איש קשר</th>
+            <th scope="col">שם איש קשר</th>
+            <th scope="col">  פקס </th>
+            <th scope="col">  טלפון </th>
+            <th scope="col"> שם חברה </th> <!--first name and last name-->
+            <th scope="col"> מספר</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!allSuppliers?.length > 0" class="table-info">
+                  <td colspan="8" class="table-info"> אין נתונים לתצוגה </td>
+          </tr>
+          <tr *ngFor="let s of allSuppliers">
+              <td>{{ s.SupplierType}} </td>
+              <td>{{ s.GoodsType}} </td>
+              <td>{{ s.ContactPhone}} </td>
+              <td>{{ s.ContactPerson}} </td>
+              <td>{{ s.Fax}} </td>
+              <td>{{ s.Phone}} </td>
+              <td>{{ s.companyName}} </td>
+              <td>{{ s.ID}} </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    

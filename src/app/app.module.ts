@@ -68,6 +68,11 @@ import { EditOrderTypeComponent } from './edit-order-type/edit-order-type.compon
 //login and register
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
+import { ReportsComponent } from './reports/reports.component';
+import { OrdersReportComponent } from './reports/orders-report/orders-report.component';
+import { FamiliesReportComponent } from './reports/families-report/families-report.component';
+import { VolunteersReportComponent } from './reports/volunteers-report/volunteers-report.component';
+import { SuppliersReportComponent } from './reports/suppliers-report/suppliers-report.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +104,11 @@ import { AuthenticationService } from './services/authentication.service';
     OrderTypeComponent,
     ViewOrdersByTypeComponent,
     EditOrderTypeComponent,
+    ReportsComponent,
+    OrdersReportComponent,
+    FamiliesReportComponent,
+    VolunteersReportComponent,
+    SuppliersReportComponent,
     
   ],
   
@@ -196,6 +206,9 @@ import { AuthenticationService } from './services/authentication.service';
           // View-Supplier path
       { path: 'view-suppliers',
       component: ViewSuppliersComponent },    
+      // reports path
+      { path: 'reports',
+      component: ReportsComponent }, 
      
   // View-Family path
   { path: 'view-family',

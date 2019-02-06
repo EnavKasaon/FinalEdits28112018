@@ -1,0 +1,33 @@
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class"> </div>
+</ng-template>
+<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+[template]="customLoadingTemplate"></ngx-loading>
+  <!-- The table for View orders -->
+  <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"> סוג מתנדב</th>
+            <th scope="col">  תאריך לידה </th>
+            <th scope="col">  טלפון </th>
+            <th scope="col"> שם מתנדב </th> <!--first name and last name-->
+            <th scope="col"> מספר</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!allVolunteers?.length > 0" class="table-info">
+                  <td colspan="5" class="table-info"> אין נתונים לתצוגה </td>
+          </tr>
+          <tr *ngFor="let v of allVolunteers">
+              <td>{{ v.VolunteerType }} </td>
+              <td>{{ v.BirthDate}} </td>
+              <td>{{ v.vPhone }} </td>
+              <td>{{ v.VolunteerFName}} {{ v.VolunteerLName}} </td>
+              <td>{{ v.VolunteerId }} </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    

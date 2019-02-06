@@ -39,9 +39,12 @@ export class OrdersService {
      };
 
    public GetOrdersByType (id:number): Observable<Order>{  
-    //console.log("Supplier ID: "+id);
     return this._http.get<Order>(`${this._appSettings.serverBaseUrl}/api/Orders/GetOrdersByType/?id=${id}`);
     };
+
+    public GetAllOrders (): Observable<Order>{  
+      return this._http.get<Order>(`${this._appSettings.serverBaseUrl}/api/Orders/GetAllOrders`);
+      };
 
    public MarkOrderReceived(order: Order): Observable<any>{
     const body = JSON.stringify(order);

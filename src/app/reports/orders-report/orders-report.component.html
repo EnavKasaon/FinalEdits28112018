@@ -1,0 +1,32 @@
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class"> </div>
+</ng-template>
+<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+[template]="customLoadingTemplate"></ngx-loading>
+  <!-- The table for View orders -->
+  <div class="table-responsive">
+      <table class="table">
+          <thead>
+              <tr>
+                <th scope="col"> תאריך קבלה </th>
+                <th scope="col"> סוג הזמנה </th>
+                <th scope="col"> תאריך הזמנה </th>
+                <th scope="col"> מספר הזמנה</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!allOrders?.length > 0" class="table-info">
+                      <td colspan="4" class="table-info"> אין הזמנות לסוג זה</td>
+              </tr>
+              <tr *ngFor="let o of allOrders">
+                <td *ngIf="o.received">{{ o.received_date }}</td>
+                <td *ngIf="!o.received">לא התקבלה</td>
+                <td>{{ o.order_type.order_type_name }}</td>
+                <td>{{ o.order_date }}</td>
+                <td>{{ o.order_id }}</td>
+                </tr>
+        </tbody>
+      </table>
+   </div>
+    
