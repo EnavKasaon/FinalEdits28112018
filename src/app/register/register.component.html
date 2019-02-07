@@ -2,9 +2,9 @@
 <ng-template #customLoadingTemplate>
   <div class="custom-class"> </div>
 </ng-template>
-<br> <br>
+<br> <br> 
 
-<!-- loading -->
+<!-- loading --> 
 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
   [template]="customLoadingTemplate"></ngx-loading>
 
@@ -58,7 +58,6 @@
             <div *ngIf="submitted && f.Email?.errors" class="invalid-feedback">
             <div class="error1" *ngIf="f.Email.errors.required">אנא הכנס אימייל</div>
             <div class="error1" *ngIf="f.Email.errors.email"> כתובת האימייל חייבת להיות כתובת דוא"ל חוקית</div>
-            <!-- <div class="error1" *ngIf="f.confirmPassword.errors.checkEmail">אימייל זה כבר קיים במערכת</div> -->
           </div>
         </div>
 

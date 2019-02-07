@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { User } from '../models/User';
+import { RegisterService } from '../services/register.service';
+import { FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   // moduleId: module.id,
@@ -15,19 +18,18 @@ import { AuthenticationService } from '../services/authentication.service';
 
 export class LoginComponent implements OnInit {
 
-  supplierDetails: any = [];
+  loginDetails: any = []; 
   public newlog: Login = new Login;
   ansFromServer: any;
   arr: any = [];
   public stopLoading = false;
-  selectedSup: Login = new Login;
+  selectedUser: Login = new Login;
   private _alertType: string;
   alertMsg: string;
   registerForm: FormGroup; 
   submitted = false;
   form: FormGroup = new FormGroup({});
   alertType: string;
-  // model: any = {};
   returnUrl: string;
 
   constructor(private _loginService: LoginService, 
@@ -46,22 +48,68 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     this.stopLoading = false;
+    this.newlog.userID= 0;
 
-   // this.newSupp.ID = 0;
     this.registerForm = this.formBuilder.group({
       userName: ['', Validators.required], 
       password: ['', [Validators.required, Validators.minLength(6)]]
     }); 
+    console.log(this.loginDetails.userName);
   }
  
   get f() { return this.registerForm.controls; }
+  
+  UserNameError: string="";
+  userNameVaild: boolean = false;
+  NoValueUserName: string="שדה זה הינו שדה חובה";
+  passwordError: string="";
+  passwordVaild: boolean = false;
+  NoValuePassword: string="שדה זה הינו שדה חובה";
+
+  checkPasswordAndUsername(){
+    this.UserNameError = "";
+    this.passwordError = "";
+
+    var ans = false;
+    if(this.newlog.userName == "" || this.newlog.password == "" ){
+      this.UserNameError = this.NoValueUserName;
+      this.passwordError = this.NoValuePassword;
+
+      this.userNameVaild = false;
+      this.passwordVaild = false;
+
+      console.log(this.UserNameError);
+      console.log(this.passwordError);
+    }
+    else {
+      this.userNameVaild = true;
+      this.passwordVaild = true;
+      this.UserNameError = "";
+      this.passwordError = "";
+    this._loginService.CheckIfPassAndNameExist(this.newlog.userName, this.newlog.password ).subscribe((data) =>{
+        ans = data.SuccesMsg;
+        if(ans){
+          this.UserNameError =" ";
+          this.userNameVaild = true;
+          
+        }
+        else{
+          this.UserNameError ="שם משתמש או סיסמה לא נכונים ";
+          console.log(this.UserNameError);
+          this.userNameVaild = false;
+        }   
+       });
+    }
+  }
+
+
 
   logInto(){
     this.submitted = true;
     console.log("Trying to log in...");
     // this.stopLoading = true;
         // this.stopLoading = false;  
-          if ( !this.registerForm.invalid) {
+          if ( !this.registerForm.invalid && this.userNameVaild==true) {
       // this.authenticationService.login(this.model.username, this.model.password)
           // .subscribe(
               // data => {

@@ -8,11 +8,14 @@
 
     <form [formGroup]="registerForm" (ngSubmit)="logInto()" accept-charset="UTF-8">
 
-
-      <!-- User Name Field -->
+      <!-- User Name Field --> 
         <div class="form-group">
-          <input #userName type="text" formControlName="userName" name="userName" id="userName" placeholder="שם משתמש"
-            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }">
+          <input #userName type="text"  [(ngModel)]="newlog.userName" formControlName="userName" id="userName" placeholder="שם משתמש"
+          [className]="userNameVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control" 
+          [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" name="userName" (ngModelChange) = "checkPasswordAndUsername()" required>
+          <div [className]="userNameVaild ? 'valid-feedback' : 'invalid-feedback'" id="validationName">            
+              <div>{{ UserNameError }}</div>
+          </div>
           <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
             <div class="error1" *ngIf="f.userName.errors.required">אנא הכנס שם משתמש</div>
           </div>
@@ -20,20 +23,25 @@
 
         <!-- Password Field -->
         <div class="form-group">
-          <input #password type="password" formControlName="password" name="password" id="password" placeholder="סיסמה"
-            class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.password?.errors }">
-          <div *ngIf="submitted && f.password?.errors" class="invalid-feedback">
+          <input #password type="password" [(ngModel)]="newlog.password" formControlName="password" id="password" placeholder="סיסמה"
+             [className]="passwordVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password?.errors }" name="password" (ngModelChange) = "checkPasswordAndUsername()" required>
+              <div [className]="passwordVaild ? 'valid-feedback' : 'invalid-feedback'" id="validationName">            
+                  <div>{{ passwordError }}</div>
+              </div>
+              <div *ngIf="submitted && f.password?.errors" class="invalid-feedback"  >
             <div class="error1" *ngIf="f.password.errors.required">אנא הכנס סיסמה</div>
             <div class= "error1" *ngIf="f.password.errors.minlength">הסיסמא חייבת להכיל לפחות 6 תווים</div>
           </div>
         </div>
+
 
         <!-- Bottuns -->
         <body>
           <!-- submit button -->
           <!-- <button type=button class="btn btn-primary"> <a href="home">כניסה</a></button> -->
           <!-- <button class = "btn btn-primary submitBtn" type= "submit">כניסה</button> -->
-          <button type=submit class="btn btn-primary"> כניסה</button> 
+          <button  id="submitType" type=submit class="btn btn-primary"> כניסה</button> 
 
           <br><br><a href="register" id="moveToRegister">הרשמה</a>
         </body>

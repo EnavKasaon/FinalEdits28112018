@@ -7,7 +7,7 @@ import { MustMatch } from '../_helpers/must-match.validator';
 import { Router } from '@angular/router';
 import { FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
 
-@Component({
+@Component({ 
   // moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -97,8 +97,8 @@ export class RegisterComponent implements OnInit {
       if(this.ansFromServer != -1 && !this.registerForm.invalid){
         this.alertType = "success";
         this.alertMsg ="המשתמש הוזן בהצלחה!";
-       // alert('המשתמש הוזן בהצלחה!') 
-      //  this.router.navigate(['/login']); 
+        alert('המשתמש הוזן בהצלחה!') 
+        this.router.navigate(['/login']); 
       } 
       else{
         this.alertType = "danger";

@@ -56,6 +56,6 @@ export class RegisterService {
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
     return this._http.put(`${this._appSettings.serverBaseUrl}/api/Register/CheckIfEmailExist`, body , headerOptions);
   }
-}
+} 
 
 
