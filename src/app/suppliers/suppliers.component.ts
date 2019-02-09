@@ -20,11 +20,13 @@ export class SuppliersComponent implements OnInit {
   selectedSup: Supplier = new Supplier;
   private _alertType: string;
   public get alertType(): string {
-    return this._alertType; }
+    return this._alertType;
+  }
   public set alertType(value: string) {
-    this._alertType = value;  }
+    this._alertType = value;
+  }
   alertMsg: string;
-  registerForm: FormGroup; 
+  registerForm: FormGroup;
   submitted = false;
   form: FormGroup = new FormGroup({});
 
@@ -36,39 +38,44 @@ export class SuppliersComponent implements OnInit {
 
     this.newSupp.ID = 0;
     this.registerForm = this.formBuilder.group({
-      ContactPerson: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-      ContactPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
-      SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-      companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-      Phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
-      Fax: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(9)]],
-      GoodsType:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]]
-    }); 
+      ContactPerson: ['', [Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      ContactPhone: ['', [ Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]],
+      SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      Phone: ['', [ Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]],
+      Fax: ['', [ Validators.pattern("^[0-9]*$"), Validators.minLength(8)]],
+      GoodsType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]]
+    });
   }
- 
+
   get f() { return this.registerForm.controls; }
 
   insertSupplier() {
-    this.submitted = true; 
+    this.submitted = true;
     console.log("Trying to insert Supplier...");
     console.log("Supplier: " + JSON.stringify(this.newSupp) + " ID: " + this.newSupp.ID);
-    this.stopLoading = true;
-    this.newSupp = <Supplier> this.registerForm.value;
-    this._supplierService.insertSupplier(this.newSupp)
-    .subscribe((res) => {
-   this.ansFromServer = res.SuccesMsg;
-        this.stopLoading = false;   
+    if (!this.registerForm.invalid) {
+      this.stopLoading = true;
+      this.newSupp = <Supplier>this.registerForm.value;
+      this._supplierService.insertSupplier(this.newSupp)
+        .subscribe((res) => {
+          this.ansFromServer = res.SuccesMsg;
+          this.stopLoading = false;
           if (this.ansFromServer != -1) {
             this.alertType = "success";
-          this.alertMsg = "הספק הוזן בהצלחה!";
-        } 
-        else {
-          this.alertType = "danger";
-          this.alertMsg = "הוספת הספק נכשלה.";
-        }
-        console.log(this.ansFromServer);
-   });
+            this.alertMsg = "הספק הוזן בהצלחה!";
+          }
+          else {
+            this.alertType = "danger";
+            this.alertMsg = "הוספת הספק נכשלה.";
+          }
+          console.log(this.ansFromServer);
+        });
+    }
+    else {
+      this.alertType = "danger";
+      this.alertMsg = "הוספת הספק נכשלה.";
+    }
   }
 }
-
 
