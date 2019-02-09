@@ -2,10 +2,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- File Form -->
+<br>
 <app-header [name]="'טפסים'" [titleIcon]="'fa fa-file-text-o'"
 [action]="'הוספה'"></app-header>
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 offset-md-3">
             <form #filesForm = "ngForm" (ngSubmit)= "addFiles(filesForm)">
                
                     <!-- the fields of the form -->
@@ -13,7 +14,7 @@
                     <br>
                     <div class="form-group">
                         <label>:בחר קובץ</label>
-                            <input type="file" name="fileToUpload" class="form-fields">
+                            <input type="file" name="fileToUpload" class="form-fields" dir="rtl">
                     </div>
                     
                     <br>

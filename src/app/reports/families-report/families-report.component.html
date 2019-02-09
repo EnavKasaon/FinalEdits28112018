@@ -1,0 +1,63 @@
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class"> </div>
+</ng-template>
+<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+[template]="customLoadingTemplate"></ngx-loading>
+  <!-- The table for View orders -->
+  <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+              <th scope="col">שכירות</th>
+              <th scope="col">ת.ז</th>
+              <th scope="col">כרטיס אשראי</th>
+              <th scope="col">צ'קים</th>
+              <th scope="col">חשבון בנק</th>
+              <th scope="col">ביטוח לאומי</th>
+              <th scope="col"> חובות</th>
+              <th scope="col">רכב</th>
+              <th scope="col">דירה בבעלות</th>
+              <th scope="col">סוג סל</th>
+              <th scope="col">סוג</th>
+              <th scope="col">תאריך הצטרפות</th>
+              <th scope="col">?איך שמעו</th>
+              <th scope="col">סיבה</th>
+              <th scope="col">טלפון</th>
+            <th scope="col">קומה</th>
+            <th scope="col">  מס בית </th>
+            <th scope="col">  רחוב </th>
+            <th scope="col"> שם </th> <!--first name and last name-->
+            <th scope="col"> מספר</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!familyDetails?.length > 0" class="table-info">
+                  <td colspan="20" class="table-info"> אין נתונים לתצוגה </td>
+          </tr>
+          <tr *ngFor="let f of familyDetails">
+              <td>{{ f.rentContract}} </td>
+              <td>{{ f.copyId}} </td>
+              <td>{{ f.creditCard}} </td>
+              <td>{{ f.payChecks}} </td>
+              <td>{{ f.bankAccount}} </td>
+            <td>{{ f.bituahLeumi}} </td>
+              <td>{{ f.debt}} </td>
+              <td>{{ f.car}} </td>
+              <td>{{ f.house}} </td>
+              <td>{{ f.basketType}} </td>
+            <td>{{ f.familyType}} </td>
+              <td>{{ f.joinDate}} </td>
+              <td>{{ f.howDidYouHear}} </td>
+              <td>{{ f.reasonForReferral}} </td>
+              <td>{{ f.phone}} </td>
+              <td>{{ f.floor}} </td>
+              <td>{{ f.houseNum}} </td>
+              <td>{{ f.street}} </td>
+              <td>{{ f.firstName}} {{ f.lastName}} </td>
+               <td>{{ f.familyId}} </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    

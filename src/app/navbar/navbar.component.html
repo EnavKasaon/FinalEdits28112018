@@ -5,20 +5,28 @@
 <div class="topnav"> 
 
     <!-- logout -->
-      <button class="menu-btn" routerLink="login">
+      <button class="menu-btn" mat-button routerLink="login">
       <i class="fas fa-sign-out-alt"></i>יציאה</button> 
+    <!--Birthday notification-->
+      <!-- <button class="menu-btn" mat-button [matMenuTriggerFor]="birthday">
+          <i class="fas fa-birthday-cake"></i>
+         <span class="badge badge-light">2</span>
+          <span class="sr-only">unread messages</span>
+        </button>
+        <mat-menu #birthday="matMenu" >
+         <button mat-menu-item >הוספה</button>
+          <button mat-menu-item >עריכה</button>
+          <button mat-menu-item >מחיקה</button>
+        </mat-menu>  -->
       
 <!-- Agora -->
       <div class="topnav-right" routerLinkActive="active"> 
           <button class="menu-btn" routerLink="agora">אגורה</button> 
           
         <!-- Inventory Navbar -->
-            <button class="menu-btn" routerLink="view-orders">הזמנות</button> 
-            <!-- <mat-menu #inventory="matMenu">
-             <button mat-menu-item routerLink="inventory-management">הוספה</button>
-              <button mat-menu-item routerLink="edit-inventory">עריכה</button>
-              <button mat-menu-item routerLink="remove-inventory">מחיקה</button>
-            </mat-menu> -->
+            <button class="menu-btn"  mat-button routerLink="view-orders">הזמנות</button> 
+            <button class="menu-btn" mat-button routerLink="reports">דוחות</button> 
+            
         
 
                <!-- Files Navbar -->
