@@ -49,3 +49,8 @@ form .form-control:focus{
 .btn btn-outline-secondary{
     background-color: rgb(46,184,184) !important;
 }
+
+.p {
+    text-decoration: right;
+    text-align: right;
+}

@@ -30,8 +30,9 @@
     <form [formGroup]="registerForm" (ngSubmit)="insertSupplier()" accept-charset="UTF-8">
 
       <!-- Dropdown Supplier Type -->
+      <div class="form-group required">
       <div class="form-group">
-        <label>:ספק</label>
+        <label class="control-label">:ספק</label>
         <select #Type dir="rtl" name="SupplierType" id="SupplierType" formControlName="SupplierType"
           class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SupplierType?.errors }"
           aria-describedby="inputGroupPrepend2">
@@ -43,25 +44,25 @@
         </select>
         <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג ספק </small>
       </div>
+    </div>
 
       <!-- Contact Person Field -->
       <div class="form-row">
         <div class="col-md-6 ">
-          <div class="form-group">
-            <input #ContactPerson type="text" formControlName="ContactPerson" name="ContactPerson" id="contactName"
-              placeholder="שם איש קשר" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.ContactPerson?.errors }">
+          <div class="form-group ">
+              <input #ContactPerson type="text" formControlName="ContactPerson" name="ContactPerson" id="contactName"
+              placeholder="שם איש קשר" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactPerson?.errors }" >
             <div *ngIf="submitted && f.ContactPerson?.errors" class="invalid-feedback">
               <div class="error1" *ngIf="f.ContactPerson.errors.pattern">אנא הזן אותיות בלבד</div>
             </div>
           </div>
-        </div>
+      </div>
 
         <!-- Compny Name Field -->
         <div class="col-md-6">
           <div class="form-group">
             <input #companyName type="text" formControlName="companyName" name="companyName" id="company"
-              placeholder="שם חברה" class="form-control"
+              placeholder="שם חברה" class="form-control" style= "display:inline"
               [ngClass]="{ 'is-invalid': submitted && f.companyName?.errors }" aria-describedby="inputGroupPrepend2">
             <div *ngIf="submitted && f.companyName?.errors" class="invalid-feedback">
               <div class="error1" *ngIf="f.companyName.errors.required">אנא הכנס שם חברה</div>
@@ -99,13 +100,13 @@
               <div class="error1" *ngIf="f.Phone.errors.pattern">נא להזין מספרים בלבד</div>
             </div>
           </div>
-        </div><br><br>
+        </div><br><br> 
       </div>
 
 
       <!-- Fax Field -->
       <div class="form-row">
-        <div class="col-12">
+        <div class="col-md-6">
           <div class="form-group">
             <input #Fax type="text" formControlName="Fax" name="Fax" id="fax" placeholder="פקס" class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.Fax?.errors }" aria-describedby="inputGroupPrepend2">
@@ -114,8 +115,19 @@
               <div class="error1" *ngIf="f.Fax.errors.pattern">נא להזין מספרים בלבד</div>
             </div>
           </div>
-        </div> <br> <br>
+        </div>
+
+        <!-- Address Field -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #Address type="text" formControlName="Address" name="Address" id="Address" placeholder="כתובת"
+              class="form-control" aria-describedby="inputGroupPrepend2"
+              [ngClass]="{ 'is-invalid': submitted && f.Address?.errors }"> <br>
+            <div *ngIf="submitted && f.Address?.errors" class="invalid-feedback"> </div>
+          </div>
+        </div><br><br>
       </div>
+
 
       <!-- Goods Type Field -->
       <div class="form-row">

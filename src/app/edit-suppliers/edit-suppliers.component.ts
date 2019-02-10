@@ -38,14 +38,15 @@ export class EditSuppliersComponent implements OnInit {
       this.stopLoading = false;
 
      this.registerForm = this.formBuilder.group({
-       ContactPerson: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-       ContactPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
+       ContactPerson: ['', [Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
+       ContactPhone: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]], 
        SupplierType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
        companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-       Phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
-       Fax: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(9)]],
-       GoodsType:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]]
-     }); 
+       Phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]], 
+       Fax: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(8)]],
+       GoodsType:  ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+       Address: ['']
+      }); 
     }
 
     get f() { return this.registerForm.controls; }

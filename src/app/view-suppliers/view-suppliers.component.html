@@ -1,64 +1,127 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css"
+integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
 
+<!-- Loading -->
 <ng-template #customLoadingTemplate>
         <div class="custom-class">
         </div>
 </ng-template>
+
+
 <!-- Suppliers Form -->
 <br>
-<app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'"
-[action]="'צפייה'"></app-header>
-<div class="container"> 
+<app-header [name]="'ספקים'" [titleIcon]="'fas fa-dolly'" [action]="'צפייה'"></app-header>
+<div class="container">
 
         <!-- Excel -->
         <div class="col-md-6 offset-md-3">
-           <button class="btn btn-primary" (click)= "downloadFile(supplierDetails)">ייצוא כל הספקים לאקסל</button>
-           
-           <!-----Choose Suppliers ------>
-           
-                        <form #vf = "ngForm">
-                           
-                            <!-----Choose Supplier --> 
-                            <div class="form-group">
-                                    <label>:בחר ספק</label>
-                                    <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)" dir= "rtl" class= "form-control">
-                                         <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
-                                         {{sup.companyName}} 
-                                        </option>  
-                                    </select>
-                                </div>
-                        </form>
-                
-                <!---END-->
-                <hr>
-                
-                <!-- Loading -->
-                <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }" [template]="customLoadingTemplate"></ngx-loading>
-      
-                <!-- Choose Supplier Type -->
-                <div class="form-group" *ngIf="selectedSup.ID">
-                        <label>:ספק</label>
-                        <select [(ngModel)]="selectedSup.SupplierType" dir= "rtl" name="SupplierType"  class= "form-control" disabled>
-                            <option value="רגיל" >רגיל</option>
-                            <option value="תורם" >תורם</option>
-                        </select>
-                      </div>
+                <!-- <button class="btn btn-primary" (click)="downloadFile(supplierDetails)">ייצוא כל הספקים לאקסל</button> -->
 
-                <form #suppliersViewForm = "ngForm" (ngSubmit)= "ViewSupplier()" *ngIf="selectedSup.ID">
-                        <div class="row">
-                           <div class="col-md-6">
-                                <input type="text" ngModel name = "ContactPerson" id="ContactPerson" placeholder="שם איש קשר" [(ngModel)]="selectedSup.ContactPerson" class= "form-control" disabled> <br><br>
-                                <input type="text" ngModel name = "ContactPhone" id="ContactPhone" placeholder="טלפון איש קשר" [(ngModel)]="selectedSup.ContactPhone" class= "form-control" disabled>        
-                           </div> 
-                           <div class="col-md-6">
-                                <input type="text" ngModel name = "companyName" id="companyName" placeholder="שם חברה" [(ngModel)]="selectedSup.companyName"  class= "form-control" disabled>  <br><br>
-                                <input type="text" ngModel name = "Phone" id="Phone" placeholder="טלפון" [(ngModel)]="selectedSup.Phone"  class= "form-control" disabled> <br><br>
-                                <input type="text" ngModel name = "Fax" id="Fax" placeholder="פקס" [(ngModel)]="selectedSup.Fax" class= "form-control" disabled> <br><br>
-                                <input type="text" ngModel name = "GoodsType" id="GoodsType" placeholder="סוג סחורה" [(ngModel)]="selectedSup.GoodsType" class= "form-control" disabled><br><br>
-                           </div>
-                           <br>       
+                <!-----Choose Suppliers ------>
+                <form #vf="ngForm">
+
+                        <!-----Choose Supplier -->
+                        <div class="form-group">
+                                <label>:בחר ספק</label>
+                                <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)" dir="rtl"
+                                        class="form-control">
+                                        <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
+                                                {{sup.companyName}}
+                                        </option>
+                                </select>
                         </div>
-                    </form>
-    </div>
+                </form>
+                <hr>
+                <!---END-->
+
+
+                <!-- Loading -->
+                <ngx-loading [show]="stopLoading"
+                        [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+                        [template]="customLoadingTemplate"></ngx-loading>
+
+   
+
+                <form #suppliersViewForm="ngForm" (ngSubmit)="ViewSupplier()" *ngIf="selectedSup.ID">
+
+               <!-- Dropdown Supplier Type -->
+      <div class="form-group" *ngIf="selectedSup.ID">
+        <label>:ספק</label>
+        <select [(ngModel)]="selectedSup.SupplierType" #Type dir="rtl" ngModel name="SupplierType" id="SupplierType"
+        class="form-control" aria-describedby="inputGroupPrepend2" disabled>
+          <option value="רגיל">רגיל</option>
+          <option value="תורם">תורם</option>
+        </select>
+        <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג ספק </small>
+      </div>
+
+      <!-- Contact Person Field -->
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #ContactPerson type="text" ngModel name="ContactPerson" id="contactName" 
+            [(ngModel)]="selectedSup.ContactPerson" placeholder="שם איש קשר" class="form-control" disabled>
+          </div>
+        </div>
+
+        <!-- Compny Name Field -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #companyName type="text" ngModel name="companyName" id="company" [(ngModel)]="selectedSup.companyName" 
+            placeholder="שם חברה" class="form-control" aria-describedby="inputGroupPrepend2" disabled>
+          </div>
+        </div> <br><br>
+      </div>
+
+      <!-- Contact Phone Field -->
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #ContactPhone type="text" ngModel name="ContactPhone" id="contactPhone" [(ngModel)]="selectedSup.ContactPhone" 
+            placeholder="טלפון איש קשר" class="form-control" aria-describedby="inputGroupPrepend2" disabled>
+          </div>
+        </div>
+
+        <!-- Phone Field -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #Phone type="text" ngModel name="Phone" id="phone" [(ngModel)]="selectedSup.Phone" 
+            placeholder="טלפון" class="form-control" aria-describedby="inputGroupPrepend2" disabled> <br>
+          </div>
+        </div><br><br>
+      </div>
+
+
+      <!-- Fax Field -->
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #Fax type="text" ngModel name="Fax" id="Fax" [(ngModel)]="selectedSup.Fax" placeholder="פקס" 
+            class="form-control"  aria-describedby="inputGroupPrepend2" disabled>
+          </div> 
+        </div>
+
+        <!-- Address Field -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <input #Address type="text" ngModel name="Address" id="Address" [(ngModel)]="selectedSup.Address" 
+            placeholder="כתובת" class="form-control" aria-describedby="inputGroupPrepend2" disabled> <br>
+          </div>
+        </div><br><br>
+      </div>
+
+      <!-- Goods Type Field -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <input #GoodsType type="text" ngModel name="GoodsType" id="GoodsType" [(ngModel)]="selectedSup.GoodsType"
+               placeholder="סוג סחורה" class="form-control" aria-describedby="inputGroupPrepend2" disabled>
+          </div>
+        </div>
+      </div> <br>
+
+
+                </form>
+        </div>
 </div>

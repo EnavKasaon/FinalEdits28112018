@@ -15,7 +15,7 @@
             <div class="col-md-8 offset-md-2">
 
                 <!-- Excel -->
-                <button class="btn btn-primary" (click)= "downloadFile(volunteerDetails)">ייצוא כל המתנדבים לאקסל</button>
+                <!-- <button class="btn btn-primary" (click)= "downloadFile(volunteerDetails)">ייצוא כל המתנדבים לאקסל</button> -->
 
                 <!-----Choose Volunteer form------>
                          <form #myForm1 = "ngForm" name="viewv" >
@@ -49,6 +49,7 @@
                 <input type="text" ngModel name = "VolunteerFName" id="VolunteerFName" placeholder="שם פרטי" [(ngModel)]="selectedVol.VolunteerFName" class= "form-control" disabled>  <br><br>
                 <input type="text" ngModel name = "VolunteerLName" id="VolunteerLName" placeholder="שם משפחה" [(ngModel)]="selectedVol.VolunteerLName" class= "form-control" disabled> <br><br>
                 <input type="text" ngModel name = "vPhone" id="vPhone" placeholder="טלפון" [(ngModel)]="selectedVol.vPhone" class= "form-control" disabled> <br><br>
+                <input type="text" ngModel name="IdNum" id="IdNum" ngModel [(ngModel)]="selectedVol.IdNum"  placeholder="תעודת זהות" class="form-control" disabled > 
                 
                 <label>:תאריך לידה</label>
                 <input #BirthDate type="text" name = "BirthDate" id="BirthDate" dir= "rtl" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control" disabled> <br> <br>      

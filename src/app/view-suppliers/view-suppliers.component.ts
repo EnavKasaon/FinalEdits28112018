@@ -65,33 +65,33 @@ export class ViewSuppliersComponent implements OnInit {
   }
 
 
-downloadFile(data: any) {
-  this.excelService.exportAsExcelFile(data, 'ספקים');
-}
+// downloadFile(data: any) {
+  // this.excelService.exportAsExcelFile(data, 'ספקים');
+// }
 
-ConvertToCSV(objArray: any): string {
-  var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-  var str = '';
-  var row = "";
+// ConvertToCSV(objArray: any): string {
+  // var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+  // var str = '';
+  // var row = "";
 
-  for (var index in objArray[0]) {
+  // for (var index in objArray[0]) {
       //Now convert each value to string and comma-separated
-      row += index + ',';
-  }
-  row = row.slice(0, -1);
+      // row += index + ',';
+  // }
+  // row = row.slice(0, -1);
   //append Label row with line break
-  str += row + '\r\n';
+  // str += row + '\r\n';
 
-  for (var i = 0; i < array.length; i++) {
-      var line = '';
-      for (var index in array[i]) {
-          if (line != '') line += ','
+  // for (var i = 0; i < array.length; i++) {
+      // var line = '';
+      // for (var index in array[i]) {
+          // if (line != '') line += ','
 
-          line += array[i][index];
-      }
-      str += line + '\r\n';
-  }
-  return str;
-}
+          // line += array[i][index];
+      // }
+      // str += line + '\r\n';
+  // }
+  // return str;
+// }
   
 }

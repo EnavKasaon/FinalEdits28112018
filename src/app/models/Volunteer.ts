@@ -6,7 +6,7 @@ export class Volunteer {
     vPhone:string;
     BirthDate:Date;
     VolunteerType: string; 
-   
+    IdNum: string;
 
     public constructor(init?: Partial< Volunteer >) {
         Object.assign(this, init);  }

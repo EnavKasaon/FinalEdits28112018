@@ -44,6 +44,7 @@
                             aria-describedby="inputGroupPrepend2">
                             <option value="רגיל">רגיל</option>
                             <option value="פירות וירקות">פירות וירקות</option>
+                            <option value="מזון מבושל">מזון מבושל</option>
                             <div *ngIf="submitted && f.BasketType?.errors" class="invalid-feedback">
                                 <div class="error1" *ngIf="f.BasketType.errors.required">אנא בחר סוג סל</div>
                             </div>
@@ -133,8 +134,8 @@
                             aria-describedby="inputGroupPrepend2">
                         <div *ngIf="submitted && f.phone?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.phone.errors.required"> אנא הכנס מספר טלפון</div>
-                            <div class="error1" *ngIf="f.phone.errors.minlength">נא להזין 10 מספרים</div>
-                            <div class="error1" *ngIf="f.phone.errors.maxLength">נא להזין 10 מספרים</div>
+                            <div class="error1" *ngIf="f.phone.errors.minlength">נא להזין 8 מספרים לפחות</div>
+                            <div class="error1" *ngIf="f.phone.errors.maxLength">ניתן להזין עד 30 תווים</div>
                             <div class="error1" *ngIf="f.phone.errors.pattern">נא להזין מספרים בלבד</div>
                         </div>
                     </div>

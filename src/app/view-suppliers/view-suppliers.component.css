@@ -12,7 +12,7 @@ label {
 .no-data-available {
     text-align: center;
   }
-  
+   
   /*
      src/styles.css (i.e. your global style)
   */
@@ -42,4 +42,12 @@ textarea{
     float: right;
 
 }
+
+.error1, #passwordHelpBlock {
+  text-align: right;
+  direction: rtl;
+  font-size: 12px;
+  color: gray;
+}
+
 

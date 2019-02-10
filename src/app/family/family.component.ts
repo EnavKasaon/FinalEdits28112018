@@ -40,7 +40,7 @@ export class FamilyComponent implements OnInit {
       street: ['', Validators.required],
       houseNum: ['', Validators.required],
       floor: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]],
+      phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]],
       peopleNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       notes: ['',],
       howDidYouHear: ['',],

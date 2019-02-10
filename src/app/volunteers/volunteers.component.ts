@@ -36,11 +36,11 @@ export class VolunteersComponent implements OnInit {
       VolunteerLName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
       VolunteerType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
       VolunteerFName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]], 
-      vPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]], 
-      BirthDate: ['', Validators.required]
-
+      vPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]], 
+      BirthDate: ['',],
+      IdNum: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(9), Validators.maxLength(9)]]
     }); 
-  } 
+  }  
 
   get f() { return this.registerForm.controls; }
 

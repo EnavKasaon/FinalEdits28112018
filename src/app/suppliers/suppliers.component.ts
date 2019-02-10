@@ -44,7 +44,8 @@ export class SuppliersComponent implements OnInit {
       companyName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       Phone: ['', [ Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(30)]],
       Fax: ['', [ Validators.pattern("^[0-9]*$"), Validators.minLength(8)]],
-      GoodsType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]]
+      GoodsType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      Address: ['']
     });
   }
 

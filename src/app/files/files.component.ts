@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../_helpers/must-match.validator';
+import { Router } from '@angular/router';
+import { FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-files',
@@ -7,9 +12,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilesComponent implements OnInit {
 
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addFiles(){
+
   }
 
 }

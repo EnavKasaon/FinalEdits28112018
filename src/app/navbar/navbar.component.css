@@ -60,7 +60,11 @@
 
 .menu-btn {
     border: none;
+    
 }
 
-
+button {
+  text-decoration: right;
+   text-align: right;
+}
 

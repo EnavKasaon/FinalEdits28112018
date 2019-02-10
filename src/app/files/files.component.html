@@ -3,25 +3,34 @@
 
 <!-- File Form -->
 <br>
-<app-header [name]="'טפסים'" [titleIcon]="'fa fa-file-text-o'"
-[action]="'הוספה'"></app-header>
+<app-header [name]="'טפסים'" [titleIcon]="'fa fa-file-text-o'" [action]="'הוספה'"></app-header>
 <div class="container">
-      <div class="col-md-6 offset-md-3">
-            <form #filesForm = "ngForm" (ngSubmit)= "addFiles(filesForm)">
-               
-                    <!-- the fields of the form -->
-                    <input type="text"  placeholder="שם טופס" class= "form-control form-fields">  <br><br>
-                    <br>
-                    <div class="form-group">
-                        <label>:בחר קובץ</label>
-                            <input type="file" name="fileToUpload" class="form-fields" dir="rtl">
-                    </div>
-                    
-                    <br>
-                    <br>
-                    <button  class = "btn btn-primary submitBtn" type= "submit"> הוסף </button>
-                
-            </form>
-        
-    </div>
+        <div class="col-md-6 offset-md-3">
+                <form #filesForm="ngForm" [formGroup]="registerForm" (ngSubmit)="addFiles()" accept-charset="UTF-8">
+
+
+                        <!-- File name Field -->
+                        <div class="form-group">
+                                <input #fileName type="text" formControlName="fileName" name="fileName" id="fileName"
+                                        placeholder="הזן שם טופס" class="form-control" dir="rtl"
+                                        [ngClass]="{ 'is-invalid': submitted && f.fileName?.errors }">
+                                <div *ngIf="submitted && f.fileName?.errors" class="invalid-feedback">
+                                        <div class="error1" *ngIf="f.fileName.errors.required">אנא הכנס שם טופס</div>
+                                </div>
+                        </div><br>
+                        <br>
+
+                        <!-- Adding the file -->
+                        <div class="form-group">
+                                <label>:בחר קובץ</label>
+                                <input type="file" name="fileToUpload" class="form-fields" dir="rtl">
+                        </div>
+
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" type="submit"> הוסף </button>
+
+                </form>
+
+        </div>
 </div>

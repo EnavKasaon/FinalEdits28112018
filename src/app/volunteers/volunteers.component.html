@@ -78,13 +78,28 @@
               aria-describedby="inputGroupPrepend2">
               <div *ngIf="submitted && f.vPhone?.errors" class="invalid-feedback">
                   <div  class= "error1" *ngIf="f.vPhone.errors.required"> אנא הכנס מספר טלפון</div>
-                  <div class= "error1" *ngIf="f.vPhone.errors.minlength">נא להזין 10 מספרים</div>
-                  <div class= "error1" *ngIf="f.vPhone.errors.maxLength">נא להזין 10 מספרים</div>
+                  <div class= "error1" *ngIf="f.vPhone.errors.minlength">נא להזין 8 מספרים לפחות</div>
+                  <div class= "error1" *ngIf="f.vPhone.errors.maxLength">ניתן להזין עד 30 תווים</div>
                   <div class= "error1" *ngIf="f.vPhone.errors.pattern">נא להזין מספרים בלבד</div>          
                   </div>
             </div>
           </div> <br> <br>
         </div> 
+
+      <!-- Id Number Field -->
+      <div class="form-row">
+        <div class= "col-12">
+              <div class="form-group">
+              <input #IdNum type="text" formControlName="IdNum" name="IdNum" id="IdNum"
+                placeholder="תעודת זהות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.IdNum?.errors }"> 
+                <div *ngIf="submitted && f.IdNum?.errors" class="invalid-feedback">
+                  <div class= "error1" *ngIf="f.IdNum.errors.pattern">אנא הזן מספרים בלבד</div>
+                  <div class="error1" *ngIf="f.IdNum.errors.minlength"> נא להזין 9 מספרים </div>
+                  <div class="error1" *ngIf="f.IdNum.errors.maxLength">נא להזין  9 מספרים</div>     
+                </div>
+               </div>
+              </div> <br> <br>
+          </div> 
 
     <!-- Birth Date Field -->
     <div class="form-row">

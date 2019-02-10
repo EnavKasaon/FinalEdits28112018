@@ -8,6 +8,7 @@ export class Supplier {
     ContactPhone: string;
     GoodsType: string;
     SupplierType: string;
+    Address: string;
    
 
     public constructor(init?: Partial<Supplier>) { 

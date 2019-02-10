@@ -14,11 +14,11 @@
        <div class="list-group">
           <a *ngFor="let todo of todoArray;trackBy: trackByFn" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
+                <small><i class="material-icons" (click)="deleteItem(todo)">delete</i></small>
                 <p class="mb-1">{{todo.task_desc}}</p>
-              <small><i class="material-icons" (click)="deleteItem(todo)">delete</i></small>
             </div>
           </a>
-        </div>
+        </div> 
        <!-- <div class="form-group">
        <div class="input-group-prepend">
             <span class="input-group-text" (click)="addTodo(todo.value)"><i class="material-icons">add</i></span>

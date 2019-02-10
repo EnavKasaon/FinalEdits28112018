@@ -3,8 +3,10 @@
 }
 label {
     text-align: right;
-    float: right;
+    /* float: right; */
     width:100%;
+    display: inline-block;
+
  }
  
 
@@ -17,6 +19,7 @@ input {
       clear: both;
       width: 100%;
       text-align: right;
+     
 }
 
 
@@ -49,4 +52,8 @@ textarea{
     color: gray;
 }
 
-
+/* Puts * near lables */
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
