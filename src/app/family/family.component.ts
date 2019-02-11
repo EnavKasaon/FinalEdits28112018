@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Family } from '../models/Family';
 import { FamilyService } from '../services/families.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
 
 
 @Component({
@@ -24,6 +26,8 @@ export class FamilyComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   form: FormGroup = new FormGroup({});
+  startDate = new Date(1950, 1, 1);
+
 
   constructor(private _familyService: FamilyService, private formBuilder: FormBuilder) { }
 
@@ -32,7 +36,7 @@ export class FamilyComponent implements OnInit {
     this.stopLoading = false;
 
     this.registerForm = this.formBuilder.group({
-      joinDate: ['', Validators.required],
+      joinDate: ['',],
       familyType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       BasketType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       firstName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
@@ -56,7 +60,7 @@ export class FamilyComponent implements OnInit {
       rentContract: ['',]
 
     });
-  }
+  } 
 
   get f() { return this.registerForm.controls; }
 

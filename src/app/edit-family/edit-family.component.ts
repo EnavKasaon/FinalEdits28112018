@@ -3,6 +3,8 @@ import { Family } from '../models/Family';
 import { FamilyService } from '../services/families.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
 
 @Component({
   selector: 'app-edit-family',
@@ -23,7 +25,9 @@ export class EditFamilyComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   form: FormGroup = new FormGroup({});
+  startDate = new Date(1950, 1, 1);
 
+  
   constructor(private _familyService:FamilyService, private formBuilder: FormBuilder) { }
 
   ngOnInit() { 
@@ -61,7 +65,7 @@ export class EditFamilyComponent implements OnInit {
       copyId: ['',],
       rentContract: ['',]
     });
-  }
+  } 
 
   get f() { return this.registerForm.controls; }
 

@@ -51,10 +51,13 @@
                 <input type="text" ngModel name = "vPhone" id="vPhone" placeholder="טלפון" [(ngModel)]="selectedVol.vPhone" class= "form-control" disabled> <br><br>
                 <input type="text" ngModel name="IdNum" id="IdNum" ngModel [(ngModel)]="selectedVol.IdNum"  placeholder="תעודת זהות" class="form-control" disabled > 
                 
-                <label>:תאריך לידה</label>
-                <input #BirthDate type="text" name = "BirthDate" id="BirthDate" dir= "rtl" ngModel [(ngModel)]="selectedVol.BirthDate" class= "form-control" disabled> <br> <br>      
-
-                </form>
-            </div>
+                <mat-form-field style="float:right; width:100%">
+                    <label>:תאריך לידה</label>
+                        <input #Birthdate matInput [matDatepicker]="picker" type=text ngModel name="BirthDate" 
+                        id="BirthDate" ngModel [(ngModel)]="selectedVol.BirthDate" class="form-control" style="float:right" disabled>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate" style="float:right"> </mat-datepicker>
+                </mat-form-field>
+            </form> 
+          </div>
         </div>
-        <br>
+     <br>

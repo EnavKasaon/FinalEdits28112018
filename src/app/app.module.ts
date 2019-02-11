@@ -11,7 +11,6 @@ import { HttpClientModule  } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { appSettings } from './app.settings';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularCalendarComponent } from './calendar-home-page/calendar-home-page.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -23,8 +22,12 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MustMatch } from './_helpers/must-match.validator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
+import { ManageUsersComponent } from './manageUsers/manageUsers.component';
 
-// inserts
+
+// inserts 
 import { HomeComponent } from './home/home.component';
 import { FamilyComponent } from './family/family.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -117,6 +120,7 @@ import { VolunteerPipe } from './reports/volunteers-report/VolunteerPipe.pipe';
     FamiliesReportComponent,
     VolunteersReportComponent,
     SuppliersReportComponent,
+    ManageUsersComponent,
     
   ],
   
@@ -126,9 +130,14 @@ import { VolunteerPipe } from './reports/volunteers-report/VolunteerPipe.pipe';
     MyCommonModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatNativeDateModule,
     DateValueAccessorModule,
     HttpClientModule,
+    MatDatepickerModule,
     HttpModule,
     ReactiveFormsModule,
     NgbModalModule,
@@ -234,10 +243,12 @@ import { VolunteerPipe } from './reports/volunteers-report/VolunteerPipe.pipe';
     component: ViewOrdersTypesComponent }, 
 
       // home path
-      {
-          path: 'home',
-          component: HomeComponent
-       },     
+      { path: 'home',
+          component: HomeComponent  }, 
+          
+     // manage users path
+    { path: 'manageUsers',
+    component: ManageUsersComponent }, 
 
   ]) ],
   providers: [
@@ -249,6 +260,8 @@ import { VolunteerPipe } from './reports/volunteers-report/VolunteerPipe.pipe';
     RegisterService,
     ExcelService,
     AuthenticationService,
+    MatDatepickerModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'IL-ISR'},
     appSettings
   ],
   bootstrap: [AppComponent]

@@ -18,11 +18,23 @@ export class LoginService {
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
   } 
 
+  // [OperationContract]
+  // [WebGet(UriTemplate = "IsValidUser/{userid}/{password}")]
+  // string IsValidUser(string userid, string password);
+
   public CheckIfPassAndNameExist(username: string, password: string): Observable<any>{
  //   this.passandname= username + password;
     const body = JSON.stringify(username);
+    //  const body1 = JSON.stringify(password);
+    // const both= body+ body1;
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-    return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, body , headerOptions);
+   // return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, both, headerOptions);
+    return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, body, headerOptions);
+
+
+  // return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`,                                    
+  //  {body, body1},                                               
+  //  { params: { headerOptions} })
   }
 
   

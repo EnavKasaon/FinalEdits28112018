@@ -28,7 +28,6 @@ input {
 
 input[type=checkbox]{
     width:auto;
-    
 }
 
 textarea{
@@ -38,25 +37,10 @@ textarea{
 
 }
 
-
-.div-horizontal {
+.div-horizontal * {
     text-align: right;
     direction: rtl;
 }
-
-
-.error1, #passwordHelpBlock, #bdate {
+th,td{
     text-align: right;
-    direction: rtl;
-    font-size: 12px;
-    color: gray;
-}
-
-/* Birthdate Field */
-#BirthDate {
-    position: relative;
-    width:100%;
-    text-align: right;
-    direction: rtl;
-    float: right;
 }

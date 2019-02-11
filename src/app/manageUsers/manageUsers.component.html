@@ -1,0 +1,76 @@
+<!-- Manage Users Page -->
+
+<br>
+<br>
+<app-header [name]="'ניהול משתמשים'" [titleIcon]="'fas fa-user'"></app-header>
+<div class="container">
+        <div class="col-md-6 offset-md-3">
+
+
+        <!-- alert -->
+        <div class="div-horizontal">
+            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+                <a href="manageUsers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong> {{ alertMsg }}</strong>
+            </div>
+        </div>
+
+
+<!-- Loading -->
+<ng-template #customLoadingTemplate>
+  <div class="custom-class"> </div>
+</ng-template> 
+<ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+[template]="customLoadingTemplate"></ngx-loading>
+
+
+<!-- The table for View orders -->
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align: center"> מחיקת משתמש</th>
+          <th scope="col" style="text-align: center"> סוג משתמש</th>
+          <th scope="col" style="text-align: center">  אימייל </th>
+          <th scope="col"style="text-align: center" > שם משתמש </th> 
+          <th scope="col" style="text-align: center"> מספר</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!allUsers?.length > 0" class="table-info">
+                <td colspan="5" class="table-info"> אין נתונים לתצוגה </td>
+        </tr>
+        <tr *ngFor="let u of allUsers">
+            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+            <td>{{ u.UserType}} </td>
+            <td>{{ u.Email }} </td>
+            <td>{{ u.userName}} </td>
+            <td>{{ u.userID }} </td>
+
+            <!-- Modal -->
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">מחיקת משתמש</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>?האם אתה בטוח שאתה רוצה למחוק את המשתמש</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteUser(u.userID)">מחיקה </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>  
+  </div>

@@ -5,7 +5,8 @@ export class User {
     Password:string;
     Email:string;
     confirmPassword:string;
-
+    UserType: string;
+    
     public constructor(init?: Partial<User>) {
         Object.assign(this, init);
     }

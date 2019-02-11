@@ -25,8 +25,8 @@
             <!-----Choose Familiy -->
             <div class="form-group">
                 <label>:בחר משפחה</label>
-                <select [(ngModel)]="selectedFam.familyId" (change)="onChange($event.target.value)" dir="rtl" name="familyType"
-                    id="familyType" class="form-control">
+                <select [(ngModel)]="selectedFam.familyId" (change)="onChange($event.target.value)" dir="rtl"
+                    name="familyType" id="familyType" class="form-control">
                     <option *ngFor="let fam of familyDetails" [value]="fam.familyId">
                         {{fam.firstName}}</option>
                 </select>
@@ -36,7 +36,8 @@
         <br>
 
         <!-- Loadig -->
-        <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+        <ngx-loading [show]="stopLoading"
+            [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
             [template]="customLoadingTemplate"></ngx-loading>
 
         <!-- The form -->
@@ -47,8 +48,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>:סוג סל</label>
-                        <select [(ngModel)]="selectedFam.basketType" dir="rtl" name="BasketType" id="BasketType" class="form-control"
-                            disabled>
+                        <select [(ngModel)]="selectedFam.basketType" dir="rtl" name="BasketType" id="BasketType"
+                            class="form-control" disabled>
                             <option value="רגיל">רגיל</option>
                             <option value="פירות וירקות">פירות וירקות</option>
                             <option value="מזון מבושל">מזון מבושל</option>
@@ -60,8 +61,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>:סוג משפחה</label>
-                        <select [(ngModel)]="selectedFam.familyType" dir="rtl" name="familyType" id="familyType" class="form-control"
-                            disabled>
+                        <select [(ngModel)]="selectedFam.familyType" dir="rtl" name="familyType" id="familyType"
+                            class="form-control" disabled>
                             <option value="רווחה">רווחה</option>
                             <option value="פרטי">פרטי</option>
                         </select>
@@ -73,18 +74,18 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group"><label>:שם משפחה</label>
-                        <input #lastName type="text" ngModel name="lastName" placeholder="שם משפחה" [(ngModel)]="selectedFam.lastName"
-                            class="form-control form-fields" disabled> <br><br>
+                        <input #lastName type="text" ngModel name="lastName" placeholder="שם משפחה"
+                            [(ngModel)]="selectedFam.lastName" class="form-control form-fields" disabled> <br><br>
                     </div>
                 </div>
 
                 <!-- First Name Field -->
                 <div class="col-md-6">
                     <div class="form-group"><label>:שם פרטי</label>
-                        <input #firstName type="text" ngModel name="firstName" placeholder="שם פרטי" [(ngModel)]="selectedFam.firstName"
-                            class="form-control form-fields" disabled> <br><br>
+                        <input #firstName type="text" ngModel name="firstName" placeholder="שם פרטי"
+                            [(ngModel)]="selectedFam.firstName" class="form-control form-fields" disabled> <br><br>
                     </div>
-                </div> 
+                </div>
             </div> <br>
 
 
@@ -92,16 +93,16 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group"><label>:קומה</label>
-                        <input #floor type="text" ngModel name="floor" placeholder="קומה" [(ngModel)]="selectedFam.floor"
-                            class="form-control form-fields" disabled><br><br>
+                        <input #floor type="text" ngModel name="floor" placeholder="קומה"
+                            [(ngModel)]="selectedFam.floor" class="form-control form-fields" disabled><br><br>
                     </div>
                 </div>
 
                 <!-- Sreet Field -->
                 <div class="col-md-6">
                     <div class="form-group"><label>:רחוב</label>
-                        <input #street type="text" ngModel name="street" placeholder="רחוב" [(ngModel)]="selectedFam.street"
-                            class="form-control form-fields" disabled><br><br>
+                        <input #street type="text" ngModel name="street" placeholder="רחוב"
+                            [(ngModel)]="selectedFam.street" class="form-control form-fields" disabled><br><br>
                     </div>
                 </div>
             </div> <br>
@@ -111,8 +112,8 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group"><label>:טלפון</label>
-                        <input #phone type="text" ngModel name="phone" placeholder="טלפון" [(ngModel)]="selectedFam.phone"
-                            class="form-control form-fields" disabled> <br><br>
+                        <input #phone type="text" ngModel name="phone" placeholder="טלפון"
+                            [(ngModel)]="selectedFam.phone" class="form-control form-fields" disabled> <br><br>
                     </div>
                 </div>
 
@@ -120,8 +121,8 @@
                 <!-- house Number Field -->
                 <div class="col-md-6">
                     <div class="form-group"><label>:מספר בית</label>
-                        <input #houseNum type="text" ngModel name="houseNum" placeholder="מספר בית" [(ngModel)]="selectedFam.houseNum"
-                            class="form-control form-fields" disabled><br><br>
+                        <input #houseNum type="text" ngModel name="houseNum" placeholder="מספר בית"
+                            [(ngModel)]="selectedFam.houseNum" class="form-control form-fields" disabled><br><br>
                     </div>
                 </div>
             </div> <br>
@@ -130,16 +131,18 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group"><label>:איך שמעתם על העמותה</label>
-                        <input #howDidYouHear type="text" ngModel name=".howDidYouHear" [(ngModel)]="selectedFam.howDidYouHear"
-                            placeholder="איך שמעתם על העמותה" class="form-control form-fields" disabled> <br><br>
+                        <input #howDidYouHear type="text" ngModel name=".howDidYouHear"
+                            [(ngModel)]="selectedFam.howDidYouHear" placeholder="איך שמעתם על העמותה"
+                            class="form-control form-fields" disabled> <br><br>
                     </div>
                 </div>
 
                 <!-- Number of people in the family Field -->
                 <div class="col-md-6">
                     <div class="form-group"> <label>:מספר נפשות</label>
-                        <input #peopleNumber type="text" ngModel name="peopleNumber" [(ngModel)]="selectedFam.peopleNumber"
-                            placeholder="מס' נפשות" class="form-control form-fields" disabled> <br><br>
+                        <input #peopleNumber type="text" ngModel name="peopleNumber"
+                            [(ngModel)]="selectedFam.peopleNumber" placeholder="מס' נפשות"
+                            class="form-control form-fields" disabled> <br><br>
                     </div>
                 </div>
             </div> <br>
@@ -148,8 +151,9 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group"> <label>:הערות</label>
-                        <textarea #notes ngModel name="notes" placeholder="הערות" [(ngModel)]="selectedFam.reasonForReferral"
-                            class="form-control" disabled></textarea><br><br>
+                        <textarea #notes ngModel name="notes" placeholder="הערות"
+                            [(ngModel)]="selectedFam.reasonForReferral" class="form-control"
+                            disabled></textarea><br><br>
                     </div>
                 </div>
 
@@ -157,25 +161,28 @@
                 <!-- The reason for refferal to the charity Field -->
                 <div class="col-md-6">
                     <div class="form-group"> <label>:סיבת הפנייה</label>
-                        <textarea #reasonForReferral ngModel name="reasonForReferral" [(ngModel)]="selectedFam.howDidYouHear"
-                            placeholder="סיבת הפנייה" class="form-control" disabled></textarea><br><br> <br>
-                    </div>
-                </div>
-            </div> <br>
-
-
-            <!----- Join Date-->
-            <div class="form-row" dir="rtl">
-                <div class="col-md-12">
-                    <div class="form-group"> <label>תאריך הצטרפות:</label>
-                        <input #joinDate type="text" name="joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate"
-                            class="form-control" disabled>
+                        <textarea #reasonForReferral ngModel name="reasonForReferral"
+                            [(ngModel)]="selectedFam.howDidYouHear" placeholder="סיבת הפנייה" class="form-control"
+                            disabled></textarea><br><br> <br>
                     </div>
                 </div>
             </div> 
 
-
-
+            <!----- Join Date-->
+            <div class="form-row" dir="rtl">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <mat-form-field style="float:right; width:100%">
+                            <label>תאריך הצטרפות:</label>
+                            <input #joinDate matInput [matDatepicker]="picker" type=text name="joinDate" id="joinDate"
+                                ngModel [(ngModel)]="selectedFam.joinDate" class="form-control" style="float:right"
+                                disabled>
+                            <mat-datepicker #picker startView="year" [startAt]="startDate" style="float:right">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
             <!-- Checkboxes -->
             <div class="row">
                 <div class="col-md-12">
@@ -197,8 +204,8 @@
                             <!-- Car -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #car type="checkbox" ngModel name="car" class="input" [(ngModel)]="selectedFam.car"
-                                        disabled />
+                                    <input #car type="checkbox" ngModel name="car" class="input"
+                                        [(ngModel)]="selectedFam.car" disabled />
                                     <span class="primary"></span>
                                     <label style="position: absolute; top:0.8em; left: -65px"> רכב בבעלות</label>
                                 </label>
@@ -208,8 +215,8 @@
                             <!-- Debts -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #debts type="checkbox" ngModel name="debt" class="input" [(ngModel)]="selectedFam.debt"
-                                        disabled />
+                                    <input #debts type="checkbox" ngModel name="debt" class="input"
+                                        [(ngModel)]="selectedFam.debt" disabled />
                                     <span class="success"></span>
                                     <label style="position: absolute; top:0.8em; left: -65px">חובות</label>
                                 </label>
@@ -222,7 +229,8 @@
                                     <input #payChecks type="checkbox" ngModel name="payChecks" class="input"
                                         [(ngModel)]="selectedFam.payChecks" disabled />
                                     <span class="info"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים האחרונים</label>
+                                    <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים
+                                        האחרונים</label>
                                 </label>
                             </li>
 
@@ -266,8 +274,8 @@
                             <!-- Id -->
                             <li class="list-group-item">
                                 <label class="checkbox">
-                                    <input #copyId type="checkbox" ngModel name="copyId" class="input" [(ngModel)]="selectedFam.copyId"
-                                        disabled />
+                                    <input #copyId type="checkbox" ngModel name="copyId" class="input"
+                                        [(ngModel)]="selectedFam.copyId" disabled />
                                     <span class="danger"></span>
                                     <label style="position: absolute; top:0.8em; left: -65px">צילום+ ספח של ת.ז </label>
                                 </label>

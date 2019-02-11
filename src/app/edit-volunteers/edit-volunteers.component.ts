@@ -3,8 +3,11 @@ import { Volunteer } from '../models/Volunteer';
 import { VolunteerService } from '../services/volunteers.service';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
 
-@Component({
+
+@Component({ 
   selector: 'app-edit-volunteers',
   templateUrl: './edit-volunteers.component.html',
   styleUrls: ['./edit-volunteers.component.css']
@@ -23,6 +26,8 @@ export class EditVolunteersComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   form: FormGroup = new FormGroup({});
+  startDate = new Date(1950, 1, 1);
+
 
   constructor(private _volunteerService: VolunteerService, private formBuilder: FormBuilder) { }
 
@@ -64,7 +69,7 @@ export class EditVolunteersComponent implements OnInit {
 
 
   //edit
-  UpdateVolunteer() {
+  UpdateVolunteer() { 
     this.submitted = true;
     console.log("Trying to update volunteer...");
     console.log("Volunteer: " + JSON.stringify(this.selectedVol) + " ID: " + this.selectedVol.VolunteerId);
@@ -77,7 +82,7 @@ export class EditVolunteersComponent implements OnInit {
             this.alertType = "success";
             this.alertMsg = "המתנדב עודכן בהצלחה!";
           }
-          else {
+          else { 
             this.alertType = "danger";
             this.alertMsg = "עדכון המתנדב נכשל.";
           }
