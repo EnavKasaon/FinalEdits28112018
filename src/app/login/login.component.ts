@@ -65,11 +65,11 @@ export class LoginComponent implements OnInit {
   passwordError: string="";
   passwordVaild: boolean = false;
   NoValuePassword: string="שדה זה הינו שדה חובה";
+  err: boolean = false;
 
   checkPasswordAndUsername(){
     this.UserNameError = "";
     this.passwordError = "";
-
     var ans = false;
     if(this.newlog.userName == "" || this.newlog.password == "" ){
       this.UserNameError = this.NoValueUserName;
@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
 
       this.userNameVaild = false;
       this.passwordVaild = false;
+      this.err = false; 
 
       console.log(this.UserNameError);
       console.log(this.passwordError);
@@ -91,6 +92,7 @@ export class LoginComponent implements OnInit {
         if(ans){
           this.UserNameError =" ";
           this.userNameVaild = true;
+          this.err= true; 
           
         }
         else{
@@ -109,7 +111,7 @@ export class LoginComponent implements OnInit {
     console.log("Trying to log in...");
     // this.stopLoading = true;
         // this.stopLoading = false;  
-          if ( !this.registerForm.invalid && this.userNameVaild==true) {
+          if ( !this.registerForm.invalid && this.err==true) {
       // this.authenticationService.login(this.model.username, this.model.password)
           // .subscribe(
               // data => {
@@ -119,7 +121,7 @@ export class LoginComponent implements OnInit {
                 }, err => {
                   console.log(err) // when there's an error
                  });
-                            // },
+                          }          // },
               error => {
                 this.alertType = "danger";
                 this.alertMsg = "שגיאה בעת הכניסה.";
@@ -128,7 +130,7 @@ export class LoginComponent implements OnInit {
               }
         console.log(this.ansFromServer);
   }
-}
+
  }
 
 

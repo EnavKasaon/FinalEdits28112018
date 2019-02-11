@@ -47,15 +47,22 @@ export class RegisterService {
     return this._http.put('/api/users/' + user.userID, user);
   }
 
-  delete(id: number) {
-    return this._http.delete('/api/users/' + id);
-  }
+  public deleteUser (id:number): Observable<any>{  
+    console.log("User ID: "+id);
+     return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Register/Delete/?id=${id}`);
+    };
+
+
 
   public CheckIfEmailExist(email: string): Observable<any>{
     const body = JSON.stringify(email);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
     return this._http.put(`${this._appSettings.serverBaseUrl}/api/Register/CheckIfEmailExist`, body , headerOptions);
   }
+
+  public getAllUsers(): Observable<User>{  
+    return this._http.get<User>(`${this._appSettings.serverBaseUrl}/api/Register/GetAllUsers`);
+   };
 } 
 
 

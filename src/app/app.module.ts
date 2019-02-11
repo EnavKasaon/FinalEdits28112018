@@ -24,8 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MustMatch } from './_helpers/must-match.validator';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
-// import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { ManageUsersComponent } from './manageUsers/manageUsers.component';
+
 
 // inserts 
 import { HomeComponent } from './home/home.component';
@@ -112,6 +112,7 @@ import { SuppliersReportComponent } from './reports/suppliers-report/suppliers-r
     FamiliesReportComponent,
     VolunteersReportComponent,
     SuppliersReportComponent,
+    ManageUsersComponent,
     
   ],
   
@@ -234,10 +235,12 @@ import { SuppliersReportComponent } from './reports/suppliers-report/suppliers-r
     component: ViewOrdersTypesComponent }, 
 
       // home path
-      {
-          path: 'home',
-          component: HomeComponent
-       },     
+      { path: 'home',
+          component: HomeComponent  }, 
+          
+     // manage users path
+    { path: 'manageUsers',
+    component: ManageUsersComponent }, 
 
   ]) ],
   providers: [
