@@ -51,11 +51,14 @@ export class ViewOrdersTypesComponent implements OnInit {
   trackByFn(index, item) {
     return index; // or item.id
   }
-  deleteType(id:number){
-    this._ordersService.deleteOrderType(id).subscribe((data: {}) => {
+  deleteType(id: OrderType){
+    console.log("before deleting type: "+ id.order_type_name );
+    if(confirm("?האם אתה בטוח שאתה רוצה למחוק את סוג ההזמנה")) {
+    this._ordersService.deleteOrderType(id.order_type_id).subscribe((data: {}) => {
       console.log(data);
       this.getAllTypes();
      });
+     }
    }
  
 
@@ -94,7 +97,7 @@ export class ViewOrdersTypesComponent implements OnInit {
       }
       document.getElementById("OpenAnswer").click();
         console.log("Is Success: "+res);
-   });
+      });
   }
 
 

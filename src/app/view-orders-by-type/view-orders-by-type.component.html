@@ -33,7 +33,7 @@
       <!-- The botton of delete, mark of order -->
       <tr *ngFor="let o of allOrders;trackBy: trackByFn">
         <td>
-          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+          <button class="btn btn-danger btn-sm"  (click)="deleteOrder(o.order_id)" >מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
           <button *ngIf="!o.received" class="btn btn btn-success btn-sm" (click)="MarkReceived(o)">סימון קבלה <i class="fas fa-check"></i></button>
           <button *ngIf="o.received" class="btn btn btn-secondary btn-sm" (click)="MarkReceived(o)"> ביטול קבלה <i
               class="fas fa-minus"></i></button>&nbsp;
@@ -48,7 +48,7 @@
         <td>{{ o.order_id }}</td>
 
         <!-- Modal -->
-        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -58,8 +58,8 @@
                 </button>
               </div>
 
-              <!-- Deleting order dialog -->
-              <div class="modal-body">
+              Deleting order dialog -->
+              <!-- <div class="modal-body">
                 <p>האם אתה בטוח שאתה רוצה למחוק את ההזמנה?</p>
               </div>
               <div class="modal-footer">
@@ -69,7 +69,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </tr>
     </tbody>
   </table>

@@ -73,10 +73,18 @@ import { OrdersReportComponent } from './reports/orders-report/orders-report.com
 import { FamiliesReportComponent } from './reports/families-report/families-report.component';
 import { VolunteersReportComponent } from './reports/volunteers-report/volunteers-report.component';
 import { SuppliersReportComponent } from './reports/suppliers-report/suppliers-report.component';
+import { SelectboxPipe } from './reports/orders-report/SelectboxPipe.pipe';
+import { FamilyPipe } from './reports/families-report/FamilyPipe.pipe';
+import { SupplierPipe } from './reports/suppliers-report/SupplierPipe.pipe';
+import { VolunteerPipe } from './reports/volunteers-report/VolunteerPipe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SelectboxPipe,
+    VolunteerPipe,
+    SupplierPipe,
+    FamilyPipe,
     HomeComponent,
     FamilyComponent,
     NavbarComponent,

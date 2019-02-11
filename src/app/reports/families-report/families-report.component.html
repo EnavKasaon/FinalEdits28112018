@@ -2,14 +2,25 @@
 <ng-template #customLoadingTemplate>
     <div class="custom-class"> </div>
 </ng-template>
+
+<div class="col-md-6 offset-md-3"> 
+    <form>
+      <div class="form-group">
+        <label></label>
+          <input [(ngModel)]="searchText" name ="searchText" class="form-control" placeholder="הקש מילות חיפוש">
+      </div> 
+  </form> 
+</div>
+<br>
 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
 [template]="customLoadingTemplate"></ngx-loading>
   <!-- The table for View orders -->
+
   <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
-              <th scope="col">שכירות</th>
+              <!-- <th scope="col">שכירות</th>
               <th scope="col">ת.ז</th>
               <th scope="col">כרטיס אשראי</th>
               <th scope="col">צ'קים</th>
@@ -17,16 +28,20 @@
               <th scope="col">ביטוח לאומי</th>
               <th scope="col"> חובות</th>
               <th scope="col">רכב</th>
-              <th scope="col">דירה בבעלות</th>
+              <th scope="col">דירה בבעלות</th> -->
+              
+              <!-- <th scope="col">פעולות</th> -->
+              <th scope="col">מסמכים</th>
               <th scope="col">סוג סל</th>
               <th scope="col">סוג</th>
               <th scope="col">תאריך הצטרפות</th>
-              <th scope="col">?איך שמעו</th>
-              <th scope="col">סיבה</th>
+              <!-- <th scope="col">?איך שמעו</th>
+              <th scope="col">סיבה</th> -->
               <th scope="col">טלפון</th>
-            <th scope="col">קומה</th>
+            <!-- <th scope="col">קומה</th>
             <th scope="col">  מס בית </th>
-            <th scope="col">  רחוב </th>
+            <th scope="col">  רחוב </th> -->
+            <th scope="col">כתובת</th>
             <th scope="col"> שם </th> <!--first name and last name-->
             <th scope="col"> מספר</th>
           </tr>
@@ -35,8 +50,8 @@
           <tr *ngIf="!familyDetails?.length > 0" class="table-info">
                   <td colspan="20" class="table-info"> אין נתונים לתצוגה </td>
           </tr>
-          <tr *ngFor="let f of familyDetails">
-              <td>{{ f.rentContract}} </td>
+          <tr *ngFor="let f of familyDetails | family: searchText">
+              <!-- <td>{{ f.rentContract}} </td>
               <td>{{ f.copyId}} </td>
               <td>{{ f.creditCard}} </td>
               <td>{{ f.payChecks}} </td>
@@ -44,16 +59,19 @@
             <td>{{ f.bituahLeumi}} </td>
               <td>{{ f.debt}} </td>
               <td>{{ f.car}} </td>
-              <td>{{ f.house}} </td>
+              <td>{{ f.house}} </td> -->    
+              <!-- <td><button class="btn btn btn-secondary btn-sm" (click)="EditFamily(f)" >עריכה</button></td> -->
+              <td>{{ GetBooleanStatus(f) }}</td>
               <td>{{ f.basketType}} </td>
             <td>{{ f.familyType}} </td>
               <td>{{ f.joinDate}} </td>
-              <td>{{ f.howDidYouHear}} </td>
-              <td>{{ f.reasonForReferral}} </td>
+              <!-- <td>{{ f.howDidYouHear}} </td>
+              <td>{{ f.reasonForReferral}} </td> -->
               <td>{{ f.phone}} </td>
-              <td>{{ f.floor}} </td>
+              <!-- <td>{{ f.floor}} </td>
               <td>{{ f.houseNum}} </td>
-              <td>{{ f.street}} </td>
+              <td>{{ f.street}} </td> -->
+              <td> {{ f.street}}, {{ f.houseNum}} קומה {{ f.floor}}</td>
               <td>{{ f.firstName}} {{ f.lastName}} </td>
                <td>{{ f.familyId}} </td>
           </tr>

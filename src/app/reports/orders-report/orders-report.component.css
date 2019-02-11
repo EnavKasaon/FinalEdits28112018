@@ -44,3 +44,11 @@ textarea{
 th,td{
     text-align: right;
 }
+/* sub-title style */
+h2 {
+    text-align: center;
+    color: #B23000;
+    padding: 0%;
+    font-weight: bold;
+    font-size: 30px;
+}

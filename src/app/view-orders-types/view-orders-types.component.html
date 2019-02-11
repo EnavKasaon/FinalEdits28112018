@@ -16,7 +16,7 @@
     <tbody>
       <tr *ngFor="let t of allTypes;trackBy: trackByFn">
         <td>
-          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+          <button class="btn btn-danger btn-sm" (click)="deleteType(t)">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
           <button class="btn btn btn-primary btn-sm" (click)="EditType(t)">עריכה <i class="fas fa-edit"></i></button>&nbsp;
           <button class="btn btn btn-secondary btn-sm" (click)="GetOrdersByType(t)"> צפייה בהזמנות מסוג זה <i class="far fa-eye"></i></button>&nbsp;
           <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddOrderModal" (click)="GetTypeData(t.order_type_id)">הוספת
@@ -26,7 +26,7 @@
       
         <td>{{ t.order_type_name }}</td>
           <!-- Modal -->
-          <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!-- <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -41,12 +41,12 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteType(t.order_type_id)">מחיקה
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteType(t)">מחיקה
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
       </tr>
     </tbody>
   </table>

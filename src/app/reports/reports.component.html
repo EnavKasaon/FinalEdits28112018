@@ -10,15 +10,13 @@
         <select [(ngModel)] = "reportType" name ="reportType" dir="rtl" [ngModelOptions]="{standalone: true}" class="form-control" (change)="onChange()">
         <option [value] ="0">בחר סוג דוח</option>
         <option [value]= "1">הזמנות</option>
-        <!-- <option [value]= "2">משפחות</option> -->
+        <option [value]= "2">משפחות</option>
         <option [value]= "3">ספקים</option>
         <option [value]= "4">מתנדבים</option>
         </select>
         </div>
     </form>
 </div>
-<br>
-
     <app-families-report *ngIf="reportType == 2"></app-families-report>
     <app-suppliers-report *ngIf="reportType == 3"></app-suppliers-report>
     <app-volunteers-report *ngIf="reportType == 4"></app-volunteers-report>
