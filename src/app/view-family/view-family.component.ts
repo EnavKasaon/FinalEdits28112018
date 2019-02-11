@@ -29,7 +29,7 @@ export class ViewFamilyComponent implements OnInit {
     });
     console.log(this.familyDetails.firstName);
     this.stopLoading = false;
-
+ 
   }
       // choose the drop down
       onChange(FamilyId) {

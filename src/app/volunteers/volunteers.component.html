@@ -101,20 +101,23 @@
               </div> <br> <br>
           </div> 
 
-    <!-- Birth Date Field -->
-    <div class="form-row">
-            <div class= "col-12">
-            <div class="form-group">
-            <label>:תאריך לידה</label>
-          <input #birthdate type="date" formControlName="BirthDate" name="BirthDate" id="BirthDate"
-            placeholder="תאריך לידה" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.BirthDate?.errors }"> 
-            <div *ngIf="submitted && f.BirthDate?.errors" class="invalid-feedback">
-            </div>
-            <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הלידה </small>
-           </div>
-          </div> <br> <br> 
-    </div>  
-
+          
+            <!-- Birth Date Field -->
+            <div class="form-row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <mat-form-field style="float:right; width:100%">
+                            <label>:תאריך לידה</label>
+                            <input #Birthdate matInput [matDatepicker]="picker" type=text formControlName="BirthDate"
+                             name="BirthDate" id="BirthDate" class="form-control" style="float:right">
+                            <mat-datepicker-toggle matSuffix [for]="picker" style="float:right"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="year" [startAt]="startDate" style="float:right">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div> <br> <br>
+            </div> <br>
+      
       <!-- Bottom -->
       <div class="form-group">
             <button class="btn btn-primary" type="submit">הוסף</button>

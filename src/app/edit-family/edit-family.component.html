@@ -221,19 +221,40 @@
                     </div>
              
                 <!-- To Change Join Date Field -->
-                <div class="form-row" dir="rtl">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>שינוי תאריך התצטרפות :</label>
-                                <input #joinDate type="date" formControlName="joinDate" ngModel name="joinDate" id="joinDate"  [(ngModel)]="selectedFam.joinDate"
-                                    placeholder="תאריך הצטרפות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.joinDate?.errors }">
-                                <div *ngIf="submitted && f.joinDate?.errors" class="invalid-feedback">
-                                </div>
-                                <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הצטרפות </small>
-                            </div>
-                        </div>
-                    </div>
+                <!-- <div class="form-row" dir="rtl"> -->
+                        <!-- <div class="col-md-12"> -->
+                            <!-- <div class="form-group"> -->
+                                <!-- <label>שינוי תאריך התצטרפות :</label> -->
+                                <!-- <input #joinDate type="date" formControlName="joinDate" ngModel name="joinDate" id="joinDate"  [(ngModel)]="selectedFam.joinDate" -->
+                                    <!-- placeholder="תאריך הצטרפות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.joinDate?.errors }"> -->
+                                <!-- <div *ngIf="submitted && f.joinDate?.errors" class="invalid-feedback">  </div> -->
+                                <!-- <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הצטרפות </small> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
     
+
+            <!-- Join Date Field -->
+            <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <mat-form-field style="float:right; width:100%">
+                                <label>תאריך הצטרפות:</label>
+                                <input #joinDate matInput [matDatepicker]="picker" type=text formControlName="joinDate"
+                                    ngModel name="joinDate" id="joinDate" ngModel [(ngModel)]="selectedFam.joinDate"
+                                    class="form-control" style="float:right"  [ngClass]="{ 'is-invalid': submitted && f.joinDate?.errors }">
+                                    <div *ngIf="submitted && f.joinDate?.errors" class="invalid-feedback">  </div>
+                            <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הצטרפות </small>
+                                <mat-datepicker-toggle matSuffix [for]="picker" style="float:right"></mat-datepicker-toggle>
+                                <mat-datepicker #picker startView="year" [startAt]="startDate" style="float:right">
+                          
+                                </mat-datepicker>
+                            </mat-form-field>
+                            
+                        </div>
+                    </div> <br> <br>
+                </div> <br> 
+
                 <!-- Checkboxes -->
                 <div class="row">
                     <div class="col-md-12">
@@ -276,7 +297,7 @@
                                         <span class="info"></span>
                                         <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים האחרונים</label>
                                     </label>
-                                </li>
+                                </li> 
     
                                 <!-- Social Security -->
                                 <li class="list-group-item">

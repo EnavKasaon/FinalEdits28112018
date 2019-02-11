@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Volunteer } from '../models/Volunteer';
 import { VolunteerService } from '../services/volunteers.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
 
 @Component({
   selector: 'app-volunteers',
@@ -20,10 +21,11 @@ export class VolunteersComponent implements OnInit {
   selectedVol : Volunteer = new Volunteer;
   alertType: string;
   alertMsg: string;
-  registerForm: FormGroup;
+  registerForm: FormGroup; 
   submitted = false;
   form: FormGroup = new FormGroup({});
- 
+  startDate = new Date(1950, 1, 1);
+
  
   constructor(private _volunteerService:VolunteerService, private formBuilder: FormBuilder) { 
   } 

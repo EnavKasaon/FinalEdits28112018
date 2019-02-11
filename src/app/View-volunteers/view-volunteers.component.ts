@@ -9,7 +9,7 @@ import { ExcelService } from '../services/excel.service';
   selector: 'app-view-volunteers',
   templateUrl: './view-volunteers.component.html',
   styleUrls: ['./view-volunteers.component.css']
-})
+}) 
 
 export class ViewVolunteersComponent implements OnInit {
 

@@ -11,7 +11,6 @@ import { HttpClientModule  } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { appSettings } from './app.settings';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularCalendarComponent } from './calendar-home-page/calendar-home-page.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -23,8 +22,12 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MustMatch } from './_helpers/must-match.validator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
+// import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
-// inserts
+// inserts 
 import { HomeComponent } from './home/home.component';
 import { FamilyComponent } from './family/family.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -118,9 +121,14 @@ import { SuppliersReportComponent } from './reports/suppliers-report/suppliers-r
     MyCommonModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatNativeDateModule,
     DateValueAccessorModule,
     HttpClientModule,
+    MatDatepickerModule,
     HttpModule,
     ReactiveFormsModule,
     NgbModalModule,
@@ -241,6 +249,8 @@ import { SuppliersReportComponent } from './reports/suppliers-report/suppliers-r
     RegisterService,
     ExcelService,
     AuthenticationService,
+    MatDatepickerModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'IL-ISR'},
     appSettings
   ],
   bootstrap: [AppComponent]
