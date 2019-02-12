@@ -22,21 +22,29 @@ export class LoginService {
   // [WebGet(UriTemplate = "IsValidUser/{userid}/{password}")]
   // string IsValidUser(string userid, string password);
 
-  public CheckIfPassAndNameExist(username: string, password: string): Observable<any>{
  //   this.passandname= username + password;
-    const body = JSON.stringify(username);
     //  const body1 = JSON.stringify(password);
     // const both= body+ body1;
-    const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
    // return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, both, headerOptions);
-    return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, body, headerOptions);
 
 
   // return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`,                                    
   //  {body, body1},                                               
   //  { params: { headerOptions} })
-  }
+  
 
+  // public CheckIfPassAndNameExist(username: string, password: string): Observable<any>{
+    // const body = JSON.stringify(username);
+    // const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+    // return this._http.put(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, body, headerOptions);
+  // }
+
+
+public CheckIfPassAndNameExist(user:User): Observable<any>{
+  const body = JSON.stringify(user);
+  const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+  return this._http.post(`${this._appSettings.serverBaseUrl}/api/LogIn/CheckIfPassAndNameExist`, body , headerOptions);
+}
   
   getAll() {
     return this._http.get<User[]>('/api/users');

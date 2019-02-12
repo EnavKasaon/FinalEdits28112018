@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { RegisterService } from '../services/register.service';
-
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-manageUsers',
@@ -14,9 +15,14 @@ export class ManageUsersComponent implements OnInit {
   ansFromServer: any;
   alertType: string;
   alertMsg: string;
+  selectedUser: User = new User();
 
 
-  constructor(private _registerService: RegisterService, private changeDetectorRefs: ChangeDetectorRef) { }
+
+  constructor(private _registerService: RegisterService,
+     private changeDetectorRefs: ChangeDetectorRef,
+     private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.stopLoading = true;
@@ -28,6 +34,12 @@ export class ManageUsersComponent implements OnInit {
      });
   }
 
+
+  trackByFn(index, item) {
+    return index; // or item.id
+  }
+
+
   getAllUsers(){
     this._registerService.getAllUsers().subscribe((data: {}) => {
       console.log(data[0].userName);
@@ -37,24 +49,26 @@ export class ManageUsersComponent implements OnInit {
      console.log(this.allUsers);
   }
 
-  deleteUser(id:number){
-    this._registerService.deleteUser(id).subscribe((data: {}) => {
+
+  deleteUser(id: User){
+    console.log("before deleting user: "+ id.userName );
+    if(confirm("האם אתה בטוח שאתה רוצה למחוק את המשתמש?")) {
+    this._registerService.deleteUser(id.userID).subscribe((data: {}) => {
       console.log(data);
       this.getAllUsers();
-        this.ansFromServer = data;
-      if (this.ansFromServer != -1 ) {
-        this.alertType = "success";
-        this.alertMsg = " המשתמש נמחק בהצלחה";
-      }
-      else {
-        this.alertType = "danger";
-        this.alertMsg = "מחיקת המשתמש נכשלה.";
-      }
-      console.log(this.ansFromServer);
-    });
-   }
-   
-
+        // this.ansFromServer = data;
+      // if (this.ansFromServer != -1 ) {
+        // this.alertType = "success";
+        // this.alertMsg = " המשתמש נמחק בהצלחה";
+      // }
+      // else {
+        // this.alertType = "danger";
+        // this.alertMsg = "מחיקת המשתמש נכשלה.";
+      // }
+      // console.log(this.ansFromServer);
+     });
+  }
+}
 }
 
 

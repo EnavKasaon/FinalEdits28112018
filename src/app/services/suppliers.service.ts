@@ -37,7 +37,7 @@ export class SupplierService {
     console.log("Supplier ID: "+id);
      return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Supplier/Delete/?id=${id}`);
     };
-
+ 
     public UpdateSupplier(supplier:Supplier): Observable<any>{
     const body = JSON.stringify(supplier);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};

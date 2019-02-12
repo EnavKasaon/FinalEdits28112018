@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   loginDetails: any = []; 
   public newlog: Login = new Login;
+  public newUser: User = new User;
   ansFromServer: any;
   arr: any = [];
   public stopLoading = false;
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
 
     this.stopLoading = false;
     this.newlog.userID= 0;
+    this.newUser.userID= 0;
 
     this.registerForm = this.formBuilder.group({
       userName: ['', Validators.required], 
@@ -71,7 +73,7 @@ export class LoginComponent implements OnInit {
     this.UserNameError = "";
     this.passwordError = "";
     var ans = false;
-    if(this.newlog.userName == "" || this.newlog.password == "" ){
+    if( this.newUser.userName == "" || this.newUser.Password == ""){
       this.UserNameError = this.NoValueUserName;
       this.passwordError = this.NoValuePassword;
 
@@ -87,12 +89,13 @@ export class LoginComponent implements OnInit {
       this.passwordVaild = true;
       this.UserNameError = "";
       this.passwordError = "";
-    this._loginService.CheckIfPassAndNameExist(this.newlog.userName, this.newlog.password ).subscribe((data) =>{
+    this._loginService.CheckIfPassAndNameExist(this.newUser ).subscribe((data) =>{
         ans = data.SuccesMsg;
         if(ans){
           this.UserNameError =" ";
           this.userNameVaild = true;
           this.err= true; 
+          this.logInto();
           
         }
         else{

@@ -52,7 +52,7 @@ export class RegisterService {
      return this._http.delete(`${this._appSettings.serverBaseUrl}/api/Register/Delete/?id=${id}`);
     };
 
-
+ 
 
   public CheckIfEmailExist(email: string): Observable<any>{
     const body = JSON.stringify(email);
