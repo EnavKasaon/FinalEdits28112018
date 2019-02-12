@@ -28,7 +28,7 @@
 <div class="table-responsive">
     <table class="table">
       <thead>
-        <tr>
+        <tr *ngFor="let t of allTypes;trackBy: trackByFn">
           <th scope="col" style="text-align: center"> מחיקת משתמש</th>
           <th scope="col" style="text-align: center"> סוג משתמש</th>
           <th scope="col" style="text-align: center">  אימייל </th>
@@ -41,36 +41,39 @@
                 <td colspan="5" class="table-info"> אין נתונים לתצוגה </td>
         </tr>
         <tr *ngFor="let u of allUsers">
-            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
+            <button class="btn btn-danger btn-sm" (click)="deleteUser(u)">מחיקה <i class="fas fa-trash-alt"></i></button>&nbsp;
             <td>{{ u.UserType}} </td>
             <td>{{ u.Email }} </td>
             <td>{{ u.userName}} </td>
             <td>{{ u.userID }} </td>
 
-            <!-- Modal -->
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">מחיקת משתמש</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p style= "text-align: center"> ?האם אתה בטוח שאתה רוצה למחוק את המשתמש</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteUser(u.userID)">מחיקה </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-        </tr>
-      </tbody>
-    </table>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      </div>  
     </div>
-    </div>  
-  </div>
+
+
+
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+                <!-- <div class="modal-dialog" role="document"> -->
+                  <!-- <div class="modal-content"> -->
+                    <!-- <div class="modal-header"> -->
+                      <!-- <h5 class="modal-title" id="exampleModalLabel">מחיקת משתמש</h5> -->
+                      <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                        <!-- <span aria-hidden="true">&times;</span> -->
+                      <!-- </button> -->
+                    <!-- </div> -->
+                    <!-- <div class="modal-body"> -->
+                      <!-- <p style= "text-align: center"> ?האם אתה בטוח שאתה רוצה למחוק את המשתמש</p> -->
+                    <!-- </div> -->
+                    <!-- <div class="modal-footer"> -->
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button> -->
+                      <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteUser(u.userID)">מחיקה </button> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
+                <!-- </div> -->
+              <!-- </div> -->

@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 })
 export class ViewOrdersTypesComponent implements OnInit {
   
-  allTypes: any = [];
+  allTypes: any = []; 
   selectedType: OrderType = new OrderType();
   // selectedSupplier: Supplier = new Supplier;
   orderInsert: any;
@@ -23,10 +23,15 @@ export class ViewOrdersTypesComponent implements OnInit {
   constructor(private _ordersService:OrdersService, private _supplierService: SupplierService, private router: Router,
     private route: ActivatedRoute, private changeDetectorRefs: ChangeDetectorRef){}
   
+
+
   ngOnInit() {
     this.getAllTypes();
     this.selectedType.supplier = new Supplier;
   }
+
+
+
   GetOrdersByType(type: OrderType) {
     console.log('get orders called');
     let navigationExtras: NavigationExtras = {
@@ -37,6 +42,8 @@ export class ViewOrdersTypesComponent implements OnInit {
         console.log(navigationExtras.queryParams.type);
     this.router.navigate(['/view-orders-type'], navigationExtras);
   }
+
+
   EditType(type: OrderType) {
     console.log('edit called');
     let navigationExtras: NavigationExtras = {
@@ -51,9 +58,11 @@ export class ViewOrdersTypesComponent implements OnInit {
   trackByFn(index, item) {
     return index; // or item.id
   }
+
+
   deleteType(id: OrderType){
     console.log("before deleting type: "+ id.order_type_name );
-    if(confirm("?האם אתה בטוח שאתה רוצה למחוק את סוג ההזמנה")) {
+    if(confirm("האם אתה בטוח שאתה רוצה למחוק את סוג ההזמנה?")) {
     this._ordersService.deleteOrderType(id.order_type_id).subscribe((data: {}) => {
       console.log(data);
       this.getAllTypes();
@@ -70,6 +79,8 @@ export class ViewOrdersTypesComponent implements OnInit {
      });
      console.log(this.allTypes);
   }
+
+
   GetTypeData(id: number){  
     this.allTypes.forEach(element => {
       if(element.order_type_id == id){
@@ -78,6 +89,8 @@ export class ViewOrdersTypesComponent implements OnInit {
     });
     console.log("selected type: "+ this.selectedType);
   }
+
+
   addOrder(){
     var today = new Date();
     this.orderInsert ={
