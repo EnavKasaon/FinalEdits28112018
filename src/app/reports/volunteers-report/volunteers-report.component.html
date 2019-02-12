@@ -2,6 +2,17 @@
 <ng-template #customLoadingTemplate>
     <div class="custom-class"> </div>
 </ng-template>
+
+<div class="col-md-6 offset-md-3"> 
+    <form>
+      <div class="form-group">
+        <label></label>
+          <input [(ngModel)]="searchText" name ="searchText" class="form-control" placeholder="הקש מילות חיפוש">
+      </div> 
+  </form> 
+</div>
+<br>
+
 <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
 [template]="customLoadingTemplate"></ngx-loading>
   <!-- The table for View orders -->
@@ -20,7 +31,7 @@
           <tr *ngIf="!allVolunteers?.length > 0" class="table-info">
                   <td colspan="5" class="table-info"> אין נתונים לתצוגה </td>
           </tr>
-          <tr *ngFor="let v of allVolunteers">
+          <tr *ngFor="let v of allVolunteers | volunteer: searchText ">
               <td>{{ v.VolunteerType }} </td>
               <td>{{ v.BirthDate}} </td>
               <td>{{ v.vPhone }} </td>

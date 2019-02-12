@@ -45,10 +45,14 @@ export class ViewOrdersByTypeComponent implements OnInit {
    });
  }
  deleteOrder(id:number){
-  this._ordersService.deleteOrder(id).subscribe((data: {}) => {
-    console.log(data);
-    this.refresh();
-   });
+  if(confirm("?האם אתה בטוח שאתה רוצה למחוק את ההזמנה")) {
+    this._ordersService.deleteOrder(id).subscribe((data: {}) => {
+      console.log(data);
+      this.refresh();
+     });
+    console.log("Implement delete functionality here");
+  }
+  
  }
  getOrderByID(id:number): Order{
    this.allOrders.forEach(element => {

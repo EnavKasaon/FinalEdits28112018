@@ -10,6 +10,7 @@ export class OrdersReportComponent implements OnInit {
 
   allOrders: any = []; 
   stopLoading:boolean = false;
+  public sel:any;
 
   constructor(private _orderService : OrdersService) { }
 
@@ -20,5 +21,7 @@ export class OrdersReportComponent implements OnInit {
         this.stopLoading = false;
       });
   }
+
+  
 
 }
