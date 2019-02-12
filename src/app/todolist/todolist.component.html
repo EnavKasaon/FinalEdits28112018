@@ -14,7 +14,7 @@
        <div class="list-group">
           <a *ngFor="let todo of todoArray;trackBy: trackByFn" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-                <small><i class="material-icons" (click)="deleteItem(todo)">delete</i></small>
+                <button class="btn btn-secondary btn-sm" (click)="deleteItem(todo)" type="button"><small><i class="material-icons">delete</i></small></button>
                 <p class="mb-1">{{todo.task_desc}}</p>
             </div>
           </a>

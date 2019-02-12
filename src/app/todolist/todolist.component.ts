@@ -37,8 +37,9 @@ export class TodolistComponent implements OnInit {
     .subscribe((res)=>{
       ans = res;
       console.log(ans);
+      this.loadData();
     });
-    this.loadData();
+    
     
   }
   /*delete item*/
@@ -48,8 +49,9 @@ export class TodolistComponent implements OnInit {
     .subscribe((res)=>{
       ans= res;
       console.log(ans);
+      this.loadData();
     });
-    this.loadData();
+    
    }
 
 }

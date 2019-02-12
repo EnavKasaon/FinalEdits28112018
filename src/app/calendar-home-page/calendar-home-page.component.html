@@ -75,7 +75,7 @@
               <th>הסר</th>
               <th>ת. סיום</th>
               <th>ת. התחלה</th>
-              <th>צבע</th>
+              <!-- <th>צבע</th> -->
               <th>כותרת</th>
               
               <!-- <th>Secondary color</th> -->
@@ -127,12 +127,12 @@
                       altFormat="F j, Y H:i"
                       placeholder="Not set">
                   </td>
-                <td *ngIf="!event.meta.isBirthday">
+                <!-- <td *ngIf="!event.meta.isBirthday">
                     <input
                       type="color"
                       [(ngModel)]="event.color.primary"
                       (change)="refresh.next()">
-                  </td>
+                  </td> -->
               <td *ngIf="!event.meta.isBirthday">
                 <input
                   type="text"

@@ -33,7 +33,7 @@
           </tr>
           <tr *ngFor="let v of allVolunteers | volunteer: searchText ">
               <td>{{ v.VolunteerType }} </td>
-              <td>{{ v.BirthDate}} </td>
+              <td>{{ v.BirthDate | date: 'dd/MM/yyyy'}} </td>
               <td>{{ v.vPhone }} </td>
               <td>{{ v.VolunteerFName}} {{ v.VolunteerLName}} </td>
               <td>{{ v.VolunteerId }} </td>

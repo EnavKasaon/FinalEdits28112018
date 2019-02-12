@@ -41,10 +41,10 @@
      
           <!-- Filling orders fields -->
         </td>
-        <td *ngIf="o.received">{{ o.received_date }}</td>
+        <td *ngIf="o.received">{{ o.received_date | date: 'dd/MM/yyyy'}}</td>
         <td *ngIf="!o.received">לא התקבלה</td>
         <td>{{ o.order_type.order_type_name }}</td>
-        <td>{{ o.order_date }}</td>
+        <td>{{ o.order_date | date: 'dd/MM/yyyy'}}</td>
         <td>{{ o.order_id }}</td>
 
         <!-- Modal -->

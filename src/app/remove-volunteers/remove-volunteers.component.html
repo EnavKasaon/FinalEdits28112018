@@ -17,7 +17,7 @@
                 <!-- alert -->
                 <div class="div-horizontal">
                         <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                                <a href="remove-volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <a [routerLink]="remove-volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong> {{ alertMsg }}</strong>
                         </div>
                 </div>

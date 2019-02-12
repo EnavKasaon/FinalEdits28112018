@@ -64,7 +64,7 @@
               <td>{{ GetBooleanStatus(f) }}</td>
               <td>{{ f.basketType}} </td>
             <td>{{ f.familyType}} </td>
-              <td>{{ f.joinDate}} </td>
+              <td>{{ f.joinDate | date: 'dd/MM/yyyy'}} </td>
               <!-- <td>{{ f.howDidYouHear}} </td>
               <td>{{ f.reasonForReferral}} </td> -->
               <td>{{ f.phone}} </td>
