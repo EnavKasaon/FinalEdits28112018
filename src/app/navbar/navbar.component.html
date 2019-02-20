@@ -22,7 +22,7 @@
 
 <!-- Agora -->
       <div class="topnav-right" routerLinkActive="active"> 
-          <button class="menu-btn" routerLink="agora">אגורה</button> 
+          <button class="menu-btn" mat-button routerLink="agora">אגורה</button> 
           
 <!-- users managment -->
   <button class="menu-btn" mat-button routerLink="manageUsers">ניהול משתמשים</button> 
@@ -35,10 +35,10 @@
 
                <!-- Files Navbar -->
                <button class="menu-btn" mat-button [matMenuTriggerFor]="files">טפסים</button> 
-               <mat-menu #files="matMenu">
-                <button mat-menu-item routerLink="files">הוספה</button>
-                 <button mat-menu-item routerLink="remove-files">מחיקה</button>
-               </mat-menu>
+                <mat-menu #files="matMenu"> 
+                 <button mat-menu-item routerLink="files">הוספה</button> 
+                 <button mat-menu-item routerLink="remove-files">מחיקה</button> 
+                </mat-menu>
 
  <!-- Volunteers Navbar -->
  <button class="menu-btn" mat-button [matMenuTriggerFor]="volunteers">מתנדבים</button> 
@@ -79,7 +79,7 @@
      
   
          <!-- logo -->
-         <button class="menu-btn" routerLink="home">
+         <button class="menu-btn" mat-button routerLink="home">
           <img src="assets/images/Ahva-logo-trans-200-89.png" class="logo-menu">
          </button> 
          

@@ -5,7 +5,7 @@
 <ng-template #customLoadingTemplate>
         <div class="custom-class"> </div>
 </ng-template>
-
+ 
 <br> <br>
 <!-- volunteer Form -->
 <app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'" [action]="'מחיקה'"></app-header>
@@ -17,8 +17,9 @@
                 <!-- alert -->
                 <div class="div-horizontal">
                         <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                                <a [routerLink]="remove-volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <a (click)="navigate()"  class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong> {{ alertMsg }}</strong>
+                                <!-- <button mat-menu-item routerLink="remove-volunteers">הוספה</button> -->
                         </div>
                 </div>
 

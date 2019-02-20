@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VolunteerService } from '../services/volunteers.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
- 
+import { RouterModule, Route, Router } from '@angular/router';
+
 @Component({
   selector: 'app-remove-volunteers',
   templateUrl: './remove-volunteers.component.html',
@@ -18,7 +19,8 @@ export class RemoveVolunteersComponent implements OnInit {
   alertType: string;
   alertMsg: string;
 
-  constructor(private _volunteerService:VolunteerService) { }
+  constructor(private _volunteerService:VolunteerService,
+    private router: Router) { }
 
   ngOnInit() { 
     this.volunteerDetails = [];
@@ -49,5 +51,11 @@ export class RemoveVolunteersComponent implements OnInit {
       }
         console.log(this.ansFromServer);
  }); 
+  }
+
+  navigate() {
+    // this.router.navigate(["page2"]);
+    this.router.navigate(['/', 'remove-volunteer']);
+
   }
 }

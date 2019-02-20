@@ -27,6 +27,7 @@ export class FamilyComponent implements OnInit {
   submitted = false;
   form: FormGroup = new FormGroup({});
   startDate = new Date(1950, 1, 1);
+  familyType: string = "";
 
 
   constructor(private _familyService: FamilyService, private formBuilder: FormBuilder) { }
@@ -37,7 +38,7 @@ export class FamilyComponent implements OnInit {
 
     this.registerForm = this.formBuilder.group({
       joinDate: ['',],
-      familyType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
+      familyType: ['', Validators.required],
       BasketType: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       firstName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.pattern("^[a-z\u0590-\u05fe ]+"), Validators.minLength(1)]],
@@ -63,7 +64,6 @@ export class FamilyComponent implements OnInit {
   } 
 
   get f() { return this.registerForm.controls; }
-
 
   insertFamily() {
     this.submitted = true;

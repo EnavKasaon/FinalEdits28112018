@@ -1,4 +1,4 @@
 export enum familyType {
-    רווחה =1 ,
+    רווחה = 1 ,
     פרטי = 2
 }

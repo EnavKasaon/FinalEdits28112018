@@ -31,8 +31,7 @@
         <ngx-loading [show]="submitted && stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
             [template]="customLoadingTemplate"></ngx-loading>
 
-        <form [formGroup]="registerForm" (ngSubmit)="insertFamily()" accept-charset="UTF-8" name="editv">
-
+        <form #myForm1 = "ngForm" [formGroup]="registerForm" (ngSubmit)="insertFamily()" accept-charset="UTF-8" name="editv">
 
             <!-----Dropdown Bascket type-->
             <div class="form-row">
@@ -57,11 +56,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>:סוג משפחה</label>
-                        <select #familyType dir="rtl" name="familyType" id="familyType" formControlName="familyType"
-                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.familyType?.errors }"
-                            aria-describedby="inputGroupPrepend2">
-                            <option value="רווחה ">רווחה</option>
-                            <option value="פרטי">פרטי</option>
+                        <select  [(ngModel)] = "familyType" #familyType1 dir="rtl" name="familyType" id="familyType" formControlName="familyType"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.familyType?.errors } " 
+                            aria-describedby="inputGroupPrepend2" >
+                            <option value = "רווחה" >רווחה</option>
+                            <option value = "פרטי" >פרטי</option>
                             <div *ngIf="submitted && f.familyType?.errors" class="invalid-feedback">
                                 <div class="error1" *ngIf="f.familyType.errors.required">אנא בחר סוג משפחה</div>
                             </div>
@@ -70,7 +69,7 @@
                     </div>
                 </div>
             </div>
-
+ 
 
             <!-- Last Name Field -->
             <div class="form-row">
@@ -213,8 +212,9 @@
                 </div>
             </div> 
 
-
+            
             <!-- Checkboxes -->
+            <div *ngIf="familyType == 'פרטי' ">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" style="margin:50px 0">
@@ -316,7 +316,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
 
             <!-- Bottom -->
             <div class="form-group">

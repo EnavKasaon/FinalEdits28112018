@@ -26,7 +26,7 @@ export class ReportsComponent implements OnInit {
     }
     if(id == 4){
       this.reportName = "מתנדבים";
-    }
+    } 
 
   }
 
