@@ -15,6 +15,14 @@
       <h1>ברוך הבא</h1>
       <h2>הרשמה</h2>
       <br>
+
+      <!-- alert -->
+<div class="div-horizontal">
+  <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+    <a href="register.component.html" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong> {{ alertMsg }}</strong>
+  </div>
+</div>
       <form [formGroup]="registerForm" (ngSubmit)="insertUser()" accept-charset="UTF-8">
 
       <!-- User Name Field -->
@@ -66,22 +74,16 @@
           <!-- submit button and going to login page -->
           <!-- <button type=button class="btn btn-primary"  (click)="clickMethod('')"> <a href="login">כניסה</a></button> -->
           <button id="submitType" class="btn btn-primary" type="submit"> כניסה </button>
-          <br><br>
+          
           <!-- back to login page without registration -->
-          <a href="login" id="backToLogin">חזרה</a>
+          <!-- <a href="login" id="backToLogin">חזרה</a> -->
 
         </body>
       <!-- </form> -->
     </form> <br>
 
     
-<!-- alert -->
-<div class="div-horizontal">
-    <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-      <a href="register.component.html" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong> {{ alertMsg }}</strong>
-    </div>
-  </div>
+
 
 
     </div>

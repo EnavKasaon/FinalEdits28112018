@@ -97,8 +97,8 @@ export class RegisterComponent implements OnInit {
       if(this.ansFromServer != -1 && !this.registerForm.invalid){
         this.alertType = "success";
         this.alertMsg ="המשתמש הוזן בהצלחה!";
-        alert('המשתמש הוזן בהצלחה!') 
-        this.router.navigate(['/login']); 
+     //   alert('המשתמש הוזן בהצלחה!') 
+       // this.router.navigate(['/login']); 
       } 
       else{
         this.alertType = "danger";
@@ -107,11 +107,10 @@ export class RegisterComponent implements OnInit {
         console.log(this.ansFromServer);
  });
   }
-  
- // else{
-  //  this.alertType = "danger";
-  //  this.alertMsg ="בעיה.";
- // } 
+
+  else {
+    this.EmailError ="אימייל זה כבר קיים במערכת";
+  }
 }
 
  
