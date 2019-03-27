@@ -27,8 +27,9 @@
                 <form #myForm2="ngForm" (ngSubmit)="DeleteFamily(myForm2)">
 
                         <!-----Choose Familiy -->
+                   <div class="form-group required">
                         <div class="form-group">
-                                <label>:בחר משפחה</label>
+                                <label class="control-label">:בחר משפחה</label>
                                 <select #familyId [(ngModel)]="selectedFamily" dir="rtl" name="familyType" id="familyType"
                                         class="form-control">
                                         <option *ngFor="let fam of familyDetails" [ngValue]="fam.familyId">
@@ -36,6 +37,7 @@
                                         </option>
                                 </select>
                         </div>
+                </div>
                         <button class="btn btn-primary submitBtn" type="submit"> מחק </button>
                 </form>
                 <br>

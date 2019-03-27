@@ -51,3 +51,9 @@ textarea{
 }
 
 
+/* Puts * near lables */
+.form-group.required .control-label:after {
+  content:" *";
+  color:red;
+} 
+

@@ -3,7 +3,7 @@
 
 <!-- Loading -->
 <ng-template #customLoadingTemplate>
-    <div class="custom-class"> </div>
+  <div class="custom-class"> </div>
 </ng-template>
 
 <!-- volunteers Form -->
@@ -11,119 +11,129 @@
 <app-header [name]="'מתנדבים'" [titleIcon]="'fas fa-hand-holding-heart'" [action]="'הוספה'"></app-header>
 
 <div class="container">
-    <div class="col-md-8 offset-md-2">
+  <div class="col-md-8 offset-md-2">
 
-        <!-- alert -->
-        <div class="div-horizontal">
-            <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
-                <a href="volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong> {{ alertMsg }}</strong>
+    <!-- alert -->
+    <div class="div-horizontal">
+      <div *ngIf="ansFromServer" class="alert alert-{{ alertType }} alert-dismissible">
+        <a href="volunteers" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong> {{ alertMsg }}</strong>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <ngx-loading [show]="stopLoading"
+      [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+      [template]="customLoadingTemplate"></ngx-loading>
+
+    <form [formGroup]="registerForm" (ngSubmit)="insertVolunteer()" accept-charset="UTF-8" name="form">
+
+      <!-- Dropdown Volunteer Type -->
+      <div class="form-group required">
+        <div class="form-group">
+          <label class="control-label">:סוג מתנדב</label>
+          <select #VolunteerType dir="rtl" name="VolunteerType" id="VolunteerType" formControlName="VolunteerType"
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VolunteerType?.errors }"
+            aria-describedby="inputGroupPrepend2">
+            <option value="קבוע">מתנדב קבוע</option>
+            <option value="חגים">בחגים</option>
+            <div *ngIf="submitted && f.VolunteerType?.errors" class="invalid-feedback">
+              <div class="error1" *ngIf="f.VolunteerType.errors.required">אנא בחר סוג מתנדב</div>
             </div>
+          </select>
+          <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג מתנדב </small>
         </div>
+      </div>
 
-        <!-- Loading -->
-        <ngx-loading [show]="stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
-            [template]="customLoadingTemplate"></ngx-loading>
 
-        <form [formGroup]="registerForm" (ngSubmit)="insertVolunteer()" accept-charset="UTF-8" name="form">
-
-            <!-- Dropdown Volunteer Type -->
-            <div class="form-group">
-                <label>:סוג מתנדב</label>
-                <select #VolunteerType dir="rtl" name="VolunteerType" id="VolunteerType" formControlName="VolunteerType" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.VolunteerType?.errors }" aria-describedby="inputGroupPrepend2">
-                    <option value="קבוע">מתנדב קבוע</option>
-                    <option value="חגים">בחגים</option>
-                    <div *ngIf="submitted && f.VolunteerType?.errors" class="invalid-feedback">
-                        <div class= "error1" *ngIf="f.VolunteerType.errors.required">אנא בחר סוג מתנדב</div>
-                      </div>
-                    </select>
-                    <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג מתנדב </small>
-                  </div> 
-
-        <!-- First Name Field -->
-        <div class="form-row">
-        <div class= "col-12">
+      <!-- First Name Field -->
+      <div class="form-row">
+        <div class="col-12">
           <div class="form-group">
-            <input #volunteerFName type="text" formControlName="VolunteerFName" name="VolunteerFName" id="VolunteerFName"
-              placeholder="שם פרטי" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VolunteerFName?.errors }"> 
-              <div *ngIf="submitted && f.VolunteerFName?.errors" class="invalid-feedback">
-                <div class= "error1" *ngIf="f.VolunteerFName.errors.required">אנא הכנס שם פרטי</div>
-                <div class= "error1" *ngIf="f.VolunteerFName.errors.pattern">אנא הזן אותיות בלבד</div>
-              </div>
-             </div>
-            </div> <br> <br>
-        </div> 
+            <span class="required-mark"> * </span>
+            <input #volunteerFName type="text" formControlName="VolunteerFName" name="VolunteerFName"
+              id="VolunteerFName" placeholder="שם פרטי" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.VolunteerFName?.errors }">
+            <div *ngIf="submitted && f.VolunteerFName?.errors" class="invalid-feedback">
+              <div class="error1" *ngIf="f.VolunteerFName.errors.required">אנא הכנס שם פרטי</div>
+              <div class="error1" *ngIf="f.VolunteerFName.errors.pattern">אנא הזן אותיות בלבד</div>
+            </div>
+          </div>
+        </div> <br> <br>
+      </div>
 
       <!-- Last Name Field -->
       <div class="form-row">
-      <div class= "col-12">
-            <div class="form-group">
-            <input #volunteerLName type="text" formControlName="VolunteerLName" name="VolunteerLName" id="VolunteerLName"
-              placeholder="שם משפחה" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VolunteerLName?.errors }"> 
-              <div *ngIf="submitted && f.VolunteerLName?.errors" class="invalid-feedback">
-                <div class= "error1" *ngIf="f.VolunteerLName.errors.required">אנא הכנס את שם משפחה</div>
-                <div class= "error1" *ngIf="f.VolunteerLName.errors.pattern">אנא הזן אותיות בלבד</div>
-              </div>
-             </div>
-            </div> <br> <br>
-        </div> 
+        <div class="col-12">
+          <div class="form-group">
+            <span class="required-mark"> * </span>
+            <input #volunteerLName type="text" formControlName="VolunteerLName" name="VolunteerLName"
+              id="VolunteerLName" placeholder="שם משפחה" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.VolunteerLName?.errors }">
+            <div *ngIf="submitted && f.VolunteerLName?.errors" class="invalid-feedback">
+              <div class="error1" *ngIf="f.VolunteerLName.errors.required">אנא הכנס את שם משפחה</div>
+              <div class="error1" *ngIf="f.VolunteerLName.errors.pattern">אנא הזן אותיות בלבד</div>
+            </div>
+          </div>
+        </div> <br> <br>
+      </div>
 
-        <!-- Volunteer's Phone Field -->
-        <div class="form-row">
-        <div class= "col-12">
-                <div class="form-group">
-              <input #volunteerPhone type="text" formControlName="vPhone" name="vPhone" id="vPhone"
+      <!-- Volunteer's Phone Field -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <span class="required-mark"> * </span>
+            <input #volunteerPhone type="text" formControlName="vPhone" name="vPhone" id="vPhone"
               placeholder="מספר טלפון" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.vPhone?.errors }"
               aria-describedby="inputGroupPrepend2">
-              <div *ngIf="submitted && f.vPhone?.errors" class="invalid-feedback">
-                  <div  class= "error1" *ngIf="f.vPhone.errors.required"> אנא הכנס מספר טלפון</div>
-                  <div class= "error1" *ngIf="f.vPhone.errors.minlength">נא להזין 8 מספרים לפחות</div>
-                  <div class= "error1" *ngIf="f.vPhone.errors.maxLength">ניתן להזין עד 30 תווים</div>
-                  <div class= "error1" *ngIf="f.vPhone.errors.pattern">נא להזין מספרים בלבד</div>          
-                  </div>
+            <div *ngIf="submitted && f.vPhone?.errors" class="invalid-feedback">
+              <div class="error1" *ngIf="f.vPhone.errors.required"> אנא הכנס מספר טלפון</div>
+              <div class="error1" *ngIf="f.vPhone.errors.minlength">נא להזין 8 מספרים לפחות</div>
+              <div class="error1" *ngIf="f.vPhone.errors.maxLength">ניתן להזין עד 30 תווים</div>
+              <div class="error1" *ngIf="f.vPhone.errors.pattern">נא להזין מספרים בלבד</div>
             </div>
-          </div> <br> <br>
-        </div> 
+          </div>
+        </div> <br> <br>
+      </div>
 
       <!-- Id Number Field -->
       <div class="form-row">
-        <div class= "col-12">
-              <div class="form-group">
-              <input #IdNum type="text" formControlName="IdNum" name="IdNum" id="IdNum"
-                placeholder="תעודת זהות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.IdNum?.errors }"> 
-                <div *ngIf="submitted && f.IdNum?.errors" class="invalid-feedback">
-                  <div class= "error1" *ngIf="f.IdNum.errors.pattern">אנא הזן מספרים בלבד</div>
-                  <div class="error1" *ngIf="f.IdNum.errors.minlength"> נא להזין 9 מספרים </div>
-                  <div class="error1" *ngIf="f.IdNum.errors.maxLength">נא להזין  9 מספרים</div>     
-                </div>
-               </div>
-              </div> <br> <br>
-          </div> 
+        <div class="col-12">
+          <div class="form-group">
+            <input #IdNum type="text" formControlName="IdNum" name="IdNum" id="IdNum" placeholder="תעודת זהות"
+              class="form-control" [ngClass]="{ 'is-invalid': submitted && f.IdNum?.errors }">
+            <div *ngIf="submitted && f.IdNum?.errors" class="invalid-feedback">
+              <div class="error1" *ngIf="f.IdNum.errors.pattern">אנא הזן מספרים בלבד</div>
+              <div class="error1" *ngIf="f.IdNum.errors.minlength"> נא להזין 9 מספרים </div>
+              <div class="error1" *ngIf="f.IdNum.errors.maxLength">נא להזין 9 מספרים</div>
+            </div>
+          </div>
+        </div> <br> <br>
+      </div>
 
-          
-            <!-- Birth Date Field -->
-            <div class="form-row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <mat-form-field style="float:right; width:100%">
-                            <label>:תאריך לידה</label>
-                            <input #Birthdate matInput [matDatepicker]="picker" type=text formControlName="BirthDate"
-                             name="BirthDate" id="BirthDate" class="form-control" style="float:right">
-                            <mat-datepicker-toggle matSuffix [for]="picker" style="float:right"></mat-datepicker-toggle>
-                            <mat-datepicker #picker startView="year" [startAt]="startDate" style="float:right">
-                            </mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div> <br> <br>
-            </div> <br>
-      
+
+      <!-- Birth Date Field -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <mat-form-field style="float:right; width:100%">
+              <label>:תאריך לידה</label>
+              <input #Birthdate matInput [matDatepicker]="picker" type=text formControlName="BirthDate" name="BirthDate"
+                id="BirthDate" class="form-control" style="float:right">
+              <mat-datepicker-toggle matSuffix [for]="picker" style="float:right"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate" style="float:right">
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div> <br> <br>
+      </div> <br>
+
       <!-- Bottom -->
       <div class="form-group">
-            <button class="btn btn-primary" type="submit">הוסף</button>
-          </div>
-        </form>
-        <br>
+        <button class="btn btn-primary" type="submit">הוסף</button>
+      </div>
+    </form>
+    <br>
 
-    </div>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW"
-    crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css"
+    integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -28,55 +28,64 @@
 
 
         <!-- Loading -->
-        <ngx-loading [show]="submitted && stopLoading" [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
+        <ngx-loading [show]="submitted && stopLoading"
+            [config]="{ backdropBackgroundColour: 'rgba(255, 255, 255, 0.2)',backdropBorderRadius: '3px', primaryColour: 'rgb(46,184,184)', secondaryColour: 'rgb(46,184,184)', tertiaryColour: 'rgb(46,184,184)' }"
             [template]="customLoadingTemplate"></ngx-loading>
 
-        <form #myForm1 = "ngForm" [formGroup]="registerForm" (ngSubmit)="insertFamily()" accept-charset="UTF-8" name="editv">
+        <form #myForm1="ngForm" [formGroup]="registerForm" (ngSubmit)="insertFamily()" accept-charset="UTF-8"
+            name="editv">
 
             <!-----Dropdown Bascket type-->
             <div class="form-row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>:סוג סל</label>
-                        <select #basketType dir="rtl" name="BasketType" id="BasketType" formControlName="BasketType"
-                            class="form-control" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.BasketType?.errors }"
-                            aria-describedby="inputGroupPrepend2">
-                            <option value="רגיל">רגיל</option>
-                            <option value="פירות וירקות">פירות וירקות</option>
-                            <option value="מזון מבושל">מזון מבושל</option>
-                            <div *ngIf="submitted && f.BasketType?.errors" class="invalid-feedback">
-                                <div class="error1" *ngIf="f.BasketType.errors.required">אנא בחר סוג סל</div>
-                            </div>
-                        </select>
-                        <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג סל </small>
+                    <div class="form-group required">
+                        <div class="form-group">
+                            <label class="control-label">:סוג סל</label>
+                            <select #basketType dir="rtl" name="BasketType" id="BasketType" formControlName="BasketType"
+                                class="form-control" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.BasketType?.errors }"
+                                aria-describedby="inputGroupPrepend2">
+                                <option value="רגיל">רגיל</option>
+                                <option value="פירות וירקות">פירות וירקות</option>
+                                <option value="מזון מבושל">מזון מבושל</option>
+                                <div *ngIf="submitted && f.BasketType?.errors" class="invalid-feedback">
+                                    <div class="error1" *ngIf="f.BasketType.errors.required">אנא בחר סוג סל</div>
+                                </div>
+                            </select>
+                            <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג סל </small>
+                        </div>
                     </div>
                 </div>
 
                 <!----- Dropdown Familiy type-->
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>:סוג משפחה</label>
-                        <select  [(ngModel)] = "familyType" #familyType1 dir="rtl" name="familyType" id="familyType" formControlName="familyType"
-                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.familyType?.errors } " 
-                            aria-describedby="inputGroupPrepend2" >
-                            <option value = "רווחה" >רווחה</option>
-                            <option value = "פרטי" >פרטי</option>
-                            <div *ngIf="submitted && f.familyType?.errors" class="invalid-feedback">
-                                <div class="error1" *ngIf="f.familyType.errors.required">אנא בחר סוג משפחה</div>
-                            </div>
-                        </select>
-                        <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג משפחה </small>
+                    <div class="form-group required">
+                        <div class="form-group">
+                            <label class="control-label">:סוג משפחה</label>
+                            <select [(ngModel)]="familyType" #familyType1 dir="rtl" name="familyType" id="familyType"
+                                formControlName="familyType" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.familyType?.errors } "
+                                aria-describedby="inputGroupPrepend2">
+                                <option value="רווחה">רווחה</option>
+                                <option value="פרטי">פרטי</option>
+                                <div *ngIf="submitted && f.familyType?.errors" class="invalid-feedback">
+                                    <div class="error1" *ngIf="f.familyType.errors.required">אנא בחר סוג משפחה</div>
+                                </div>
+                            </select>
+                            <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג משפחה </small>
+                        </div>
                     </div>
                 </div>
             </div>
- 
 
             <!-- Last Name Field -->
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input #volunteerLName type="text" formControlName="lastName" name="lastName" id="lastName"
-                            placeholder="שם משפחה" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }">
+                        <span class="required-mark"> * </span>
+                        <input #volunteerLName type="text" class="control-input" formControlName="lastName"
+                            name="lastName" id="lastName" placeholder="שם משפחה" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.lastName?.errors }">
                         <div *ngIf="submitted && f.lastName?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.lastName.errors.required">אנא הכנס את שם משפחה</div>
                             <div class="error1" *ngIf="f.lastName.errors.pattern">אנא הזן אותיות בלבד</div>
@@ -87,8 +96,10 @@
                 <!-- First Name Field -->
                 <div class="col-md-6">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #firstName type="text" formControlName="firstName" name="firstName" id="firstName"
-                            placeholder="שם פרטי" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }">
+                            placeholder="שם פרטי" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName?.errors }">
                         <div *ngIf="submitted && f.firstName?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.firstName.errors.required">אנא הכנס שם פרטי</div>
                             <div class="error1" *ngIf="f.firstName.errors.pattern">אנא הזן אותיות בלבד</div>
@@ -101,6 +112,7 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #floor type="text" formControlName="floor" name="floor" id="floor" placeholder="קומה"
                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.floor?.errors }"
                             aria-describedby="inputGroupPrepend2">
@@ -114,6 +126,7 @@
                 <!-- Sreet Field -->
                 <div class="col-md-6">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #street type="text" formControlName="street" name="street" id="street" placeholder="רחוב"
                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.street?.errors }">
                         <div *ngIf="submitted && f.street?.errors" class="invalid-feedback">
@@ -128,8 +141,10 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input #phone type="text" formControlName="phone" name="phone" id="phone" placeholder="מספר טלפון"
-                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone?.errors }"
+                        <span class="required-mark"> * </span>
+                        <input #phone type="text" formControlName="phone" name="phone" id="phone"
+                            placeholder="מספר טלפון" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.phone?.errors }"
                             aria-describedby="inputGroupPrepend2">
                         <div *ngIf="submitted && f.phone?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.phone.errors.required"> אנא הכנס מספר טלפון</div>
@@ -145,8 +160,10 @@
                 <!-- house Number Field -->
                 <div class="col-md-6">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #houseNum type="text" formControlName="houseNum" name="houseNum" id="houseNum"
-                            placeholder="מספר בית" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.houseNum?.errors }">
+                            placeholder="מספר בית" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.houseNum?.errors }">
                         <div *ngIf="submitted && f.houseNum?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.houseNum.errors.required">אנא הכנס מספר בית</div>
                         </div>
@@ -160,8 +177,9 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input #howDidYouHear type="text" formControlName="howDidYouHear" name="howDidYouHear" id="howDidYouHear"
-                            placeholder="איך שמעתם על העמותה" class="form-control form-fields"> <br><br>
+                        <input #howDidYouHear type="text" formControlName="howDidYouHear" name="howDidYouHear"
+                            id="howDidYouHear" placeholder="איך שמעתם על העמותה" class="form-control form-fields">
+                        <br><br>
                     </div>
                 </div> <br> <br>
 
@@ -169,8 +187,10 @@
                 <!-- Number of people in the family Field -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input #peopleNumber type="text" formControlName="peopleNumber" name="peopleNumber" id="peopleNumber"
-                            placeholder="מספר נפשות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.peopleNumber?.errors }"
+                        <span class="required-mark"> * </span>
+                        <input #peopleNumber type="text" formControlName="peopleNumber" name="peopleNumber"
+                            id="peopleNumber" placeholder="מספר נפשות" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.peopleNumber?.errors }"
                             aria-describedby="inputGroupPrepend2">
                         <div *ngIf="submitted && f.peopleNumber?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.peopleNumber.errors.required"> אנא הכנס מספר נפשות</div>
@@ -192,8 +212,9 @@
                 <!-- The reason for refferal to the charity Field -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <textarea #reasonForReferral type="text" formControlName="reasonForReferral" name="reasonForReferral"
-                            id="reasonForReferral" placeholder="סיבת הפנייה" class="form-control"></textarea><br>
+                        <textarea #reasonForReferral type="text" formControlName="reasonForReferral"
+                            name="reasonForReferral" id="reasonForReferral" placeholder="סיבת הפנייה"
+                            class="form-control"></textarea><br>
                     </div>
                 </div>
             </div>
@@ -204,119 +225,128 @@
                     <div class="form-group">
                         <label>תאריך הצטרפות:</label>
                         <input #joinDate type="date" formControlName="joinDate" name="joinDate" id="joinDate"
-                            placeholder="תאריך הצטרפות" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.joinDate?.errors }">
+                            placeholder="תאריך הצטרפות" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.joinDate?.errors }">
                         <div *ngIf="submitted && f.joinDate?.errors" class="invalid-feedback">
                         </div>
                         <small id="bdate" class="form-text text-muted"> אנא הכנס את תאריך הצטרפות </small>
                     </div>
                 </div>
-            </div> 
+            </div>
 
-            
+
             <!-- Checkboxes -->
             <div *ngIf="familyType == 'פרטי' ">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="margin:50px 0">
-                        <div class="card-header" id="headerStyle" style="text-align: center">מסמכים</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" style="margin:50px 0">
+                            <div class="card-header" id="headerStyle" style="text-align: center">מסמכים</div>
 
-                        <!-- Appartment -->
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #house type="checkbox" name="house" class="input" formControlName="house" />
-                                    <span class="default"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px"> דירה בבעלות</label>
-                                </label>
-                            </li>
+                            <!-- Appartment -->
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #house type="checkbox" name="house" class="input"
+                                            formControlName="house" />
+                                        <span class="default"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px"> דירה בבעלות</label>
+                                    </label>
+                                </li>
 
-                            <!-- Car -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #car type="checkbox" name="car" class="input" formControlName="car" />
-                                    <span class="primary"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px"> רכב בבעלות</label>
-                                </label>
-                            </li>
-
-
-                            <!-- Debts -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #debts type="checkbox" name="debt" class="input" formControlName="debt" />
-                                    <span class="success"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">חובות</label>
-                                </label>
-                            </li>
-
-                            <!-- Pay Checks -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #payChecks type="checkbox" name="payChecks" class="input" formControlName="payChecks" />
-                                    <span class="info"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים האחרונים</label>
-                                </label>
-                            </li>
-
-                            <!-- Social Security -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #bituahLeumi type="checkbox" name="bituahLeumi" class="input"
-                                        formControlName="bituahLeumi" />
-                                    <span class="warning"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">מסמכים המוכיחים קבלת
-                                        תמיכה מביטוח לאומי - אם יש</label>
-                                </label>
-                            </li>
+                                <!-- Car -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #car type="checkbox" name="car" class="input" formControlName="car" />
+                                        <span class="primary"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px"> רכב בבעלות</label>
+                                    </label>
+                                </li>
 
 
-                            <!-- Bank Account -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #bankAccount type="checkbox" name="bankAccount" class="input"
-                                        formControlName="bankAccount" />
-                                    <span class="danger"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט חשבון בנק מן
-                                        החודשיים האחרונים</label>
-                                </label>
-                            </li>
+                                <!-- Debts -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #debts type="checkbox" name="debt" class="input"
+                                            formControlName="debt" />
+                                        <span class="success"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">חובות</label>
+                                    </label>
+                                </li>
+
+                                <!-- Pay Checks -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #payChecks type="checkbox" name="payChecks" class="input"
+                                            formControlName="payChecks" />
+                                        <span class="info"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">שכר מן החודשיים
+                                            האחרונים</label>
+                                    </label>
+                                </li>
+
+                                <!-- Social Security -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #bituahLeumi type="checkbox" name="bituahLeumi" class="input"
+                                            formControlName="bituahLeumi" />
+                                        <span class="warning"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">מסמכים המוכיחים קבלת
+                                            תמיכה מביטוח לאומי - אם יש</label>
+                                    </label>
+                                </li>
 
 
-                            <!-- Credit details -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #creditCard type="checkbox" name="creditCard" class="input" formControlName="creditCard" />
-                                    <span class="danger"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">פירוט אשראי מן החודשיים
-                                        האחרונים</label>
-                                </label>
-                            </li>
+                                <!-- Bank Account -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #bankAccount type="checkbox" name="bankAccount" class="input"
+                                            formControlName="bankAccount" />
+                                        <span class="danger"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">פירוט חשבון בנק מן
+                                            החודשיים האחרונים</label>
+                                    </label>
+                                </li>
 
 
-                            <!-- Id -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #copyId type="checkbox" name="copyId" class="input" formControlName="copyId" />
-                                    <span class="danger"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">צילום+ ספח של ת.ז </label>
-                                </label>
-                            </li>
+                                <!-- Credit details -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #creditCard type="checkbox" name="creditCard" class="input"
+                                            formControlName="creditCard" />
+                                        <span class="danger"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">פירוט אשראי מן
+                                            החודשיים
+                                            האחרונים</label>
+                                    </label>
+                                </li>
 
 
-                            <!-- Rent Contract -->
-                            <li class="list-group-item">
-                                <label class="checkbox">
-                                    <input #rentContract type="checkbox" name="rentContract" class="input"
-                                        formControlName="rentContract" />
-                                    <span class="danger"></span>
-                                    <label style="position: absolute; top:0.8em; left: -65px">חוזה שכר דירה</label>
-                                </label>
-                            </li>
-                        </ul>
+                                <!-- Id -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #copyId type="checkbox" name="copyId" class="input"
+                                            formControlName="copyId" />
+                                        <span class="danger"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">צילום+ ספח של ת.ז
+                                        </label>
+                                    </label>
+                                </li>
+
+
+                                <!-- Rent Contract -->
+                                <li class="list-group-item">
+                                    <label class="checkbox">
+                                        <input #rentContract type="checkbox" name="rentContract" class="input"
+                                            formControlName="rentContract" />
+                                        <span class="danger"></span>
+                                        <label style="position: absolute; top:0.8em; left: -65px">חוזה שכר דירה</label>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
             <!-- Bottom -->
             <div class="form-group">

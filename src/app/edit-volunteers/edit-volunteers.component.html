@@ -28,14 +28,16 @@
         <form>
 
             <!-----Choose volunteer -->
-            <div class="form-group">
-                <label>:בחר מתנדב</label>
-                <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir="rtl"
-                    name="edvol" class="form-control">
-                    <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
-                        {{vol.VolunteerFName}}</option>
-                </select>
-                <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר מתנדב </small>
+            <div class="form-group required">
+                <div class="form-group">
+                    <label class="control-label">:בחר מתנדב</label>
+                    <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir="rtl"
+                        name="edvol" class="form-control">
+                        <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
+                            {{vol.VolunteerFName}}</option>
+                    </select>
+                    <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר מתנדב </small>
+                </div>
             </div>
         </form>
         <hr>
@@ -53,25 +55,29 @@
             *ngIf="selectedVol.VolunteerId" accept-charset="UTF-8" name="form">
 
             <!-- Dropdown volunteers type -->
-            <div class="form-group" *ngIf="selectedVol.VolunteerId">
-                <label>:סוג מתנדב</label>
-                <select #VolunteerType [(ngModel)]="selectedVol.VolunteerType" dir="rtl" formControlName="VolunteerType"
-                    name="VolunteerType" id="VolunteerType" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.VolunteerType?.errors }"
-                    aria-describedby="inputGroupPrepend2">
-                    <option value="קבוע">מתנדב קבוע</option>
-                    <option value="חגים">בחגים</option>
-                    <div *ngIf="submitted && f.VolunteerType?.errors" class="invalid-feedback">
-                        <div class="error1" *ngIf="f.VolunteerType.errors.required">אנא בחר סוג מתנדב</div>
-                    </div>
-                </select>
-                <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג מתנדב </small>
+            <div class="form-group required">
+                <div class="form-group" *ngIf="selectedVol.VolunteerId">
+                    <label class="control-label">:סוג מתנדב</label>
+                    <select #VolunteerType [(ngModel)]="selectedVol.VolunteerType" dir="rtl"
+                        formControlName="VolunteerType" name="VolunteerType" id="VolunteerType" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.VolunteerType?.errors }"
+                        aria-describedby="inputGroupPrepend2">
+                        <option value="קבוע">מתנדב קבוע</option>
+                        <option value="חגים">בחגים</option>
+                        <div *ngIf="submitted && f.VolunteerType?.errors" class="invalid-feedback">
+                            <div class="error1" *ngIf="f.VolunteerType.errors.required">אנא בחר סוג מתנדב</div>
+                        </div>
+                    </select>
+                    <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג מתנדב </small>
+                </div>
             </div>
+
 
             <!-- First Name Field -->
             <div class="form-row">
                 <div class="col-12">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #volunteerFName type="text" formControlName="VolunteerFName" ngModel
                             name="VolunteerFName" id="VolunteerFName" placeholder="שם פרטי" ngModel
                             [(ngModel)]="selectedVol.VolunteerFName" class="form-control"
@@ -89,6 +95,7 @@
             <div class="form-row">
                 <div class="col-12">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #volunteerLName type="text" formControlName="VolunteerLName" ngModel
                             name="VolunteerLName" id="VolunteerLName" placeholder="שם משפחה" ngModel
                             [(ngModel)]="selectedVol.VolunteerLName" class="form-control"
@@ -106,6 +113,7 @@
             <div class="form-row">
                 <div class="col-12">
                     <div class="form-group">
+                        <span class="required-mark"> * </span>
                         <input #volunteerPhone type="text" formControlName="vPhone" ngModel name="vPhone" id="vPhone"
                             placeholder="מספר טלפון" ngModel [(ngModel)]="selectedVol.vPhone" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.vPhone?.errors }"
@@ -152,10 +160,7 @@
                         </mat-form-field>
                     </div>
                 </div> <br> <br>
-            </div> <br> 
-
-
-
+            </div> <br>
 
 
             <!-- Bottom -->

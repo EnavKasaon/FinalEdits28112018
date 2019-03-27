@@ -54,6 +54,15 @@ textarea{
 
 /* Puts * near lables */
 .form-group.required .control-label:after {
-    content:"*";
+    content:" *";
     color:red;
-  }
+  } 
+
+    /* Puts * near input filds */
+ .required-mark {
+    display:inline-flex; 
+    color:red;
+    direction: rtl;
+    position: absolute;
+    right: 10px;
+ }

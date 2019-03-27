@@ -10,6 +10,7 @@
 
       <!-- User Name Field --> 
         <div class="form-group">
+            <span class="required-mark"> * </span>
           <input #userName type="text"  [(ngModel)]="newUser.userName" formControlName="userName" id="userName" placeholder="שם משתמש"
           [className]="userNameVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control" 
           [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }" name="userName" required>
@@ -23,6 +24,7 @@
 
         <!-- Password Field -->
         <div class="form-group">
+            <span class="required-mark"> * </span>
           <input #password type="password" [(ngModel)]="newUser.password" formControlName="password" id="password" placeholder="סיסמה"
              [className]="passwordVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.password?.errors }" name="password" required>

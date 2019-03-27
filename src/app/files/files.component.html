@@ -11,6 +11,7 @@
 
                         <!-- File name Field -->
                         <div class="form-group">
+                                <span class="required-mark"> * </span>
                                 <input #fileName type="text" formControlName="fileName" name="fileName" id="fileName"
                                         placeholder="הזן שם טופס" class="form-control" dir="rtl"
                                         [ngClass]="{ 'is-invalid': submitted && f.fileName?.errors }">
@@ -21,11 +22,16 @@
                         <br>
 
                         <!-- Adding the file -->
-                        <div class="form-group">
-                                <label>:בחר קובץ</label>
-                                <input type="file" name="fileToUpload" class="form-fields" dir="rtl">
-                        </div>
+                        <div class="block">
 
+                                        <div class="form-group required">
+                                                <div class="form-group">
+
+                                                        <label class="control-label">:בחר קובץ</label>
+                                                        <input type="file" name="fileToUpload" class="form-fields"
+                                                                dir="rtl"> </div>
+                                                </div>
+                        </div>
                         <br>
                         <br>
                         <button class="btn btn-primary" type="submit"> הוסף </button>

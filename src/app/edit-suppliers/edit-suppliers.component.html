@@ -26,15 +26,17 @@
     <form>
 
       <!-----Choose Supplier -->
-      <div class="form-group">
-        <label>:בחר ספק</label>
-        <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)" dir="rtl" name="sele"
-          class="form-control">
-          <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
-            {{sup.companyName}}
-          </option>
-        </select>
-        <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר ספק </small>
+      <div class="form-group required">
+        <div class="form-group">
+          <label class="control-label">:בחר ספק</label>
+          <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)" dir="rtl" name="sele"
+            class="form-control">
+            <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
+              {{sup.companyName}}
+            </option>
+          </select>
+          <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר ספק </small>
+        </div>
       </div>
     </form>
     <hr>
@@ -48,18 +50,20 @@
       accept-charset="UTF-8">
 
       <!-- Dropdown Supplier Type -->
-      <div class="form-group" *ngIf="selectedSup.ID">
-        <label>:ספק</label>
-        <select [(ngModel)]="selectedSup.SupplierType" #Type dir="rtl" ngModel name="SupplierType" id="SupplierType"
-          formControlName="SupplierType" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.SupplierType?.errors }" aria-describedby="inputGroupPrepend2">
-          <option value="רגיל">רגיל</option>
-          <option value="תורם">תורם</option>
-          <div *ngIf="submitted && f.SupplierType?.errors" class="invalid-feedback">
-            <div class="error1" *ngIf="f.SupplierType.errors.required">אנא בחר סוג ספק</div>
-          </div>
-        </select>
-        <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג ספק </small>
+      <div class="form-group required">
+        <div class="form-group" *ngIf="selectedSup.ID">
+          <label class="control-label">:ספק</label>
+          <select [(ngModel)]="selectedSup.SupplierType" #Type dir="rtl" ngModel name="SupplierType" id="SupplierType"
+            formControlName="SupplierType" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.SupplierType?.errors }" aria-describedby="inputGroupPrepend2">
+            <option value="רגיל">רגיל</option>
+            <option value="תורם">תורם</option>
+            <div *ngIf="submitted && f.SupplierType?.errors" class="invalid-feedback">
+              <div class="error1" *ngIf="f.SupplierType.errors.required">אנא בחר סוג ספק</div>
+            </div>
+          </select>
+          <small id="passwordHelpBlock" class="form-text text-muted"> אנא בחר סוג ספק </small>
+        </div>
       </div>
 
       <!-- Contact Person Field -->
@@ -78,6 +82,7 @@
         <!-- Compny Name Field -->
         <div class="col-md-6">
           <div class="form-group">
+            <span class="required-mark"> * </span>
             <input #companyName type="text" formControlName="companyName" ngModel name="companyName" id="company"
               [(ngModel)]="selectedSup.companyName" placeholder="שם חברה" class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.companyName?.errors }" aria-describedby="inputGroupPrepend2">
@@ -107,6 +112,7 @@
         <!-- Phone Field -->
         <div class="col-md-6">
           <div class="form-group">
+            <span class="required-mark"> * </span>
             <input #Phone type="text" formControlName="Phone" ngModel name="Phone" id="phone"
               [(ngModel)]="selectedSup.Phone" placeholder="טלפון" class="form-control"
               aria-describedby="inputGroupPrepend2" [ngClass]="{ 'is-invalid': submitted && f.Phone?.errors }"> <br>
@@ -150,6 +156,7 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
+            <span class="required-mark"> * </span>
             <input #GoodsType type="text" formControlName="GoodsType" ngModel name="GoodsType" id="GoodsType"
               [(ngModel)]="selectedSup.GoodsType" placeholder="סוג סחורה" class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.GoodsType?.errors }" aria-describedby="inputGroupPrepend2">

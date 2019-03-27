@@ -22,8 +22,9 @@ integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7
                 <form #vf="ngForm">
 
                         <!-----Choose Supplier -->
+                        <div class="form-group required">
                         <div class="form-group">
-                                <label>:בחר ספק</label>
+                                <label class="control-label">:בחר ספק</label>
                                 <select [(ngModel)]="selectedSup.ID" (change)="onChange($event.target.value)" dir="rtl"
                                         class="form-control">
                                         <option *ngFor="let sup of supplierDetails" [value]="sup.ID">
@@ -31,6 +32,7 @@ integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7
                                         </option>
                                 </select>
                         </div>
+                      </div>
                 </form>
                 <hr>
                 <!---END-->

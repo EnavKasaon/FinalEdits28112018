@@ -21,13 +21,15 @@
                          <form #myForm1 = "ngForm" name="viewv" >
 
                              <!-----Choose volunteer --> 
+                             <div class="form-group required">
                              <div class="form-group">
-                                    <label>:בחר מתנדב</label>
+                                    <label class="control-label">:בחר מתנדב</label>
                                     <select [(ngModel)]="selectedVol.VolunteerId" (change)="onChange($event.target.value)" dir= "rtl" name="viewPick"class= "form-control">
                                             <option *ngFor="let vol of volunteerDetails" [value]="vol.VolunteerId">
                                                 {{vol.VolunteerFName}}</option>
                                     </select> 
                                  </div>
+                                </div>
                          </form>
                  <!---END-->
  

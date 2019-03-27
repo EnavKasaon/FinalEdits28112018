@@ -5,20 +5,25 @@
 <br>
 <app-header [name]="'טפסים'" [titleIcon]="'fa fa-file-text-o'"
 [action]="'מחיקה'"></app-header>
-
+ 
 
 <!-----Remove Familiy form------>
 <div class="container">
         <div class="col-md-6 offset-md-3">
              <form #myForm2 = "ngForm" (ngSubmit) = "DeleteFamiliy(myForm2)">
-                 <!-----Choose Familiy --> 
+               
+               
+                <!-----Choose Familiy --> 
+                <div class="form-group required">
                  <div class="form-group">
-                         <label>:בחר טופס</label>
+                         <label class="control-label">:בחר טופס</label>
                          <select  dir= "rtl" name="choosePackageToDelete" id="choosePackageToDelete" class= "form-control">
                                 <option value="1" >1</option>
                                 <option value="2" >2</option>
                             </select>
                      </div>
+                    </div>
+
                      <br>
                      <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>
              </form>

@@ -146,3 +146,12 @@ h2 {
   font-size: 12px;
   color: red;
 } 
+
+    /* Puts * near input filds */
+    .required-mark {
+      display:inline-flex; 
+      color:red;
+      direction: rtl;
+      position: absolute;
+      right: 22px;
+   } 

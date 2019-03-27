@@ -27,6 +27,7 @@
 
       <!-- User Name Field -->
         <div class="form-group">
+            <span class="required-mark"> * </span>
           <input #userName type="text" formControlName="userName" name="userName" id="userName" placeholder="הזן שם משתמש"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.userName?.errors }">
           <div *ngIf="submitted && f.userName?.errors" class="invalid-feedback">
@@ -36,6 +37,7 @@
 
         <!-- Password Field -->
         <div class="form-group">
+            <span class="required-mark"> * </span>
           <input #Password type="Password" formControlName="Password" name="Password" id="Password" placeholder="הזן סיסמה"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.Password?.errors }">
           <div *ngIf="submitted && f.Password?.errors" class="invalid-feedback">
@@ -46,6 +48,7 @@
 
         <!-- Comfirm Password Field  -->
         <div class="form-group">
+            <span class="required-mark"> * </span>
           <input #confirmPassword type="Password" formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="אשר סיסמה"
             class="form-control" dir="rtl" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword?.errors }">
           <div *ngIf="submitted && f.confirmPassword?.errors" class="invalid-feedback">
@@ -56,6 +59,7 @@
  
         <!-- Email Field -->
         <div class="form-group">
+            <span class="required-mark"> * </span>
           <input #Email type="text" [(ngModel)]="newUser.Email" formControlName="Email"  id="Email" placeholder="הזן כתובת אימייל"
           [className]="emailVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && f.Email?.errors }" name="Email" (ngModelChange) = "checkEmail()" required>

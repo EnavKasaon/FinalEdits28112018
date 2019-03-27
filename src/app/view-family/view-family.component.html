@@ -23,14 +23,16 @@
 
 
             <!-----Choose Familiy -->
+          <div class="form-group required">
             <div class="form-group">
-                <label>:בחר משפחה</label>
+                <label class="control-label">:בחר משפחה</label>
                 <select [(ngModel)]="selectedFam.familyId" (change)="onChange($event.target.value)" dir="rtl"
                     name="familyType" id="familyType" class="form-control">
                     <option *ngFor="let fam of familyDetails" [value]="fam.familyId">
                         {{fam.firstName}}</option>
                 </select>
             </div>
+        </div>
         </form>
         <hr>
         <br>

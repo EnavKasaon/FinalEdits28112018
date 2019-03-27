@@ -19,14 +19,16 @@
              <form  #myForm2 = "ngForm" (ngSubmit) = "DeleteSupplier(myForm2)">
                  
                  <!-----Choose Familiy --> 
+                 <div class="form-group required">
                  <div class="form-group">
-                         <label>:בחר ספק</label>
+                         <label class="control-label">:בחר ספק</label>
                     <select #ID [(ngModel)]="selectedSupplier"  dir= "rtl" name="chooseSupplierToDelete" id="chooseSupplierToDelete" class= "form-control">
                         <option *ngFor="let sup of supplierDetails" [ngValue]="sup.ID">
                             {{sup.companyName}}
                            </option> 
                     </select>
                 </div>
+            </div>
                 <button  class = "btn btn-primary submitBtn" type= "submit"> מחק </button>
         </form>
 

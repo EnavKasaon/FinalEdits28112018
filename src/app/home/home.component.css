@@ -24,7 +24,7 @@ li {
       }
 /* title style */
 h1 {
-    text-align: center;
+    text-align: right;
     color:black;
     font-family: 'Varela Round', sans-serif;
     padding: 0%;
@@ -53,6 +53,7 @@ hr {
     width: 200px;
     text-align: right;
 }
+
 select{
     right: auto;
     padding: 13px 45px 15px 0px;
@@ -61,6 +62,7 @@ select{
     display: inline;
     width: 150px;
 }
+
 input[type=date]{
     display: inline;
     width: 150px;
@@ -69,17 +71,20 @@ input[type=date]{
     direction: ltr;
     float: left;
 }
+
 input[type=checkbox]{
     display: inline;
     right: auto;
     padding: 13px 45px 15px 0px;
     float: left;
 }
+
 span{
     min-width: 100px;
     text-align: right;
     float: right;
 }
+
 textarea{
     max-width: 200px;
     text-align: right;

@@ -79,3 +79,8 @@ ul{
 .checkbox input:checked + .danger:after{border-color: #ff3399}
 .checkbox input:checked + .danger:after{border-color:#cc33ff}
 
+/* Puts * near lables */
+.form-group.required .control-label:after {
+    content:" *";
+    color:red;
+  }
