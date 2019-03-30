@@ -11,7 +11,7 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } 
   templateUrl: './family.component.html',
   styleUrls: ['./family.component.css']
 })
-
+ 
 export class FamilyComponent implements OnInit {
 
   familyDetails: any = [];
@@ -65,11 +65,69 @@ export class FamilyComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+
+  StreetError: string="";
+  StreetVaild: boolean = false;
+  NoValueStreet: string="שדה זה הינו שדה חובה";
+  houseNumError: string="";
+  houseNumVaild: boolean = false;
+  NoValueHouseNum: string="שדה זה הינו שדה חובה";
+  floorError: string="";
+  floordVaild: boolean = false;
+  NoValueFloor: string="שדה זה הינו שדה חובה";
+  err: boolean = false;
+
+  CheckUniqueAddress(){
+    this.StreetError = "";
+    this.houseNumError = "";
+    this.floorError = "";
+    var ans = false;
+    if( this.newFam.street == "" || this.newFam.houseNum == "" || this.newFam.floor == null){
+      this.StreetError = this.NoValueStreet;
+      this.houseNumError = this.NoValueHouseNum;
+      this.floorError = this.NoValueFloor;
+
+      this.StreetVaild = false;
+      this.houseNumVaild = false;
+      this.floordVaild = false;
+
+      this.err = false; 
+
+      console.log(this.StreetError);
+      console.log(this.houseNumError);
+      console.log(this.floorError);
+
+    }
+    else {
+      this.StreetVaild = true;
+      this.houseNumVaild = true;
+      this.floordVaild = true;
+      this.StreetError = "";
+      this.houseNumError = "";
+      this.floorError = "";
+
+    this._familyService.CheckUniqueAddress(this.newFam ).subscribe((data) =>{
+        ans = data.SuccesMsg;
+        if(ans) {
+          this.StreetError ="הכתובת כבר קיימת במערכת";
+          console.log(this.StreetError);
+          this.StreetVaild = false;
+        }
+        else{
+          this.StreetError = "";
+          this.StreetVaild = true;
+        }   
+       });
+    }
+  }
+
+
+
   insertFamily() {
     this.submitted = true;
     console.log("Trying to insert family...");
     console.log("Family: " + JSON.stringify(this.newFam) + " ID: " + this.newFam.familyId);
-    if (!this.registerForm.invalid) {
+    if (!this.registerForm.invalid && this.StreetVaild==true) {
       this.stopLoading = true;
       this.newFam = <Family>this.registerForm.value;
       this._familyService.insertFamily(this.newFam).subscribe((res) => {

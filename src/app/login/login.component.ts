@@ -125,7 +125,7 @@ export class LoginComponent implements OnInit {
                   console.log(err) // when there's an error
                  });
                           }          // },
-              error => {
+              error => { 
                 this.alertType = "danger";
                 this.alertMsg = "שגיאה בעת הכניסה.";
                 this.submitted = false;

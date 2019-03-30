@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-            </div> <br>
+            </div> <br> 
 
             <!-- Floor Number Field -->
             <div class="form-row">
@@ -161,9 +161,12 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <span class="required-mark"> * </span>
-                        <input #houseNum type="text" formControlName="houseNum" name="houseNum" id="houseNum"
-                            placeholder="מספר בית" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.houseNum?.errors }">
+                        <input #houseNum type="text" [(ngModel)]="newFam.houseNum" formControlName="houseNum" id="houseNum" placeholder="מספר בית" 
+                        [className]="StreetVaild ? 'form-control is-valid' : 'form-control is-invalid'" dir="rtl" class="form-control" 
+                        [ngClass]="{ 'is-invalid': submitted && f.houseNum?.errors }" name="houseNum" (ngModelChange) = "CheckUniqueAddress()" required>
+                        <div [className]="StreetVaild ? 'valid-feedback' : 'invalid-feedback'" id="validationName">            
+                        <div>{{ StreetError }}</div>
+                           </div>
                         <div *ngIf="submitted && f.houseNum?.errors" class="invalid-feedback">
                             <div class="error1" *ngIf="f.houseNum.errors.required">אנא הכנס מספר בית</div>
                         </div>

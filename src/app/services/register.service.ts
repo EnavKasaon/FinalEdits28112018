@@ -58,7 +58,7 @@ export class RegisterService {
     const body = JSON.stringify(email);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
     return this._http.put(`${this._appSettings.serverBaseUrl}/api/Register/CheckIfEmailExist`, body , headerOptions);
-  }
+  } 
 
   public getAllUsers(): Observable<User>{  
     return this._http.get<User>(`${this._appSettings.serverBaseUrl}/api/Register/GetAllUsers`);

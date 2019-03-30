@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
   constructor(private _registerService:RegisterService, 
     private formBuilder: FormBuilder,
     private router: Router) { }
-  //  private registerService: RegisterService
 
   ngOnInit() { 
     // this.stopLoading=false;
@@ -45,7 +44,6 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required] },
        {
         validator: MustMatch('Password', 'confirmPassword')
-       // validator1: checkEmail('Email')
     });
     console.log(this.registerDetails.Email);
   }

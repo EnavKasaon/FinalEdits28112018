@@ -56,11 +56,15 @@ export class FamilyService {
     const body = JSON.stringify(family);
     const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
     return this._http.post(`${this._appSettings.serverBaseUrl}/api/Family/Insert`, body , headerOptions);
-    
 
 }
 
+// Check if the address is unique
+public CheckUniqueAddress(family:Family): Observable<any>{
+  const body = JSON.stringify(family);
+  const headerOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+  return this._http.post(`${this._appSettings.serverBaseUrl}/api/Family/CheckUniqueAddress`, body , headerOptions);
+}  
 
-
-    
 }
+
